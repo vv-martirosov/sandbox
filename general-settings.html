@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>General Settings · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="general-settings">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main">
+          <div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Настройки</span></div>
+          <h1>Общие настройки</h1>
+          <p class="ph-sub">Глобальные параметры платформы: модели по умолчанию, безопасность, лимиты и уведомления.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-ghost">Сбросить</button>
+          <button class="btn btn-primary" data-toast="ok|Сохранено|Настройки применены"><i data-lucide="check"></i>Сохранить изменения</button>
+        </div>
+      </div>
+
+      <div class="tabs" data-tabs>
+        <button class="active" data-tab="general"><i data-lucide="settings" class="i"></i>Общее</button>
+        <button data-tab="models"><i data-lucide="cpu" class="i"></i>Модели</button>
+        <button data-tab="security"><i data-lucide="shield" class="i"></i>Безопасность</button>
+        <button data-tab="limits"><i data-lucide="gauge" class="i"></i>Лимиты</button>
+        <button data-tab="notif"><i data-lucide="bell" class="i"></i>Уведомления</button>
+        <button data-tab="conn"><i data-lucide="share-2" class="i"></i>Коннекторы</button>
+        <button data-tab="surf"><i data-lucide="layout-template" class="i"></i>Поверхности</button>
+      </div>
+
+      <!-- GENERAL -->
+      <div data-panel="general" class="grid" style="grid-template-columns:1fr 1fr">
+        <div class="card"><div class="card-head"><h3>Рабочее пространство</h3></div><div class="card-body">
+          <div class="field"><label class="label">Название платформы</label><input class="input" value="Sber AI Agents Platform"></div>
+          <div class="field"><label class="label">Окружение</label>
+            <div class="seg fw" style="display:flex"><button>Dev</button><button>Staging</button><button class="active">Production</button></div></div>
+          <div class="form-grid">
+            <div class="field"><label class="label">Язык интерфейса</label><select class="select"><option>Русский</option><option>English</option></select></div>
+            <div class="field"><label class="label">Часовой пояс</label><select class="select"><option>Europe/Moscow (UTC+3)</option><option>UTC</option></select></div>
+          </div>
+          <div class="field tight"><label class="label">Описание <span class="opt">— опционально</span></label>
+            <textarea class="textarea" data-count="#dCount" placeholder="Краткое описание назначения платформы">Платформа для масштабирования AI-агентов в банковском контексте.</textarea>
+            <div class="char-count"><span id="dCount">0</span> / 500</div></div>
+        </div></div>
+
+        <div class="card"><div class="card-head"><h3>Оформление</h3></div><div class="card-body">
+          <div class="field"><label class="label">Плотность интерфейса</label>
+            <div class="flex col gap-sm">
+              <label class="radio"><input type="radio" name="dens" checked><span class="box"></span><span class="opt-txt"><b>Комфортная</b><span>Больше воздуха между элементами</span></span></label>
+              <label class="radio"><input type="radio" name="dens"><span class="box"></span><span class="opt-txt"><b>Компактная</b><span>Больше данных на экране</span></span></label>
+            </div></div>
+          <div class="divider"></div>
+          <div class="field"><label class="label">Акцентный цвет</label>
+            <div class="row gap-sm">
+              <span class="tooltip" data-tip="Sber Green"><span style="width:30px;height:30px;border-radius:8px;background:#1FA03B;display:block;box-shadow:var(--ring);cursor:pointer"></span></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#2F6FED;display:block;cursor:pointer"></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#8B5CF6;display:block;cursor:pointer"></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#0E8FC9;display:block;cursor:pointer"></span>
+              <span style="width:30px;height:30px;border-radius:8px;background:#D98200;display:block;cursor:pointer"></span>
+            </div></div>
+          <div class="divider"></div>
+          <div class="row between mb-2"><div><b class="t-sm">Анимации интерфейса</b><div class="muted t-xs">Плавные переходы и эффекты</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          <div class="row between"><div><b class="t-sm">Компактный сайдбар по умолчанию</b><div class="muted t-xs">Сворачивать меню при загрузке</div></div><label class="switch"><input type="checkbox"><span class="track"></span></label></div>
+        </div></div>
+      </div>
+
+      <!-- MODELS -->
+      <div data-panel="models" class="hide grid" style="grid-template-columns:1fr 1fr">
+        <div class="card"><div class="card-head"><h3>Модели по умолчанию</h3></div><div class="card-body">
+          <div class="field"><label class="label">Провайдер по умолчанию</label><select class="select"><option>GigaChat (Sber)</option><option>OpenAI</option><option>Anthropic</option></select></div>
+          <div class="field"><label class="label">Основная модель</label><select class="select"><option>GigaChat-Pro</option><option>gpt-4o</option></select></div>
+          <div class="field"><label class="label">Fallback-модель</label><select class="select"><option>gpt-4o-mini</option><option>GigaChat-Lite</option></select></div>
+          <div class="field"><label class="label">Температура по умолчанию</label>
+            <div class="range-row"><input type="range" class="range" min="0" max="2" step="0.1" value="0.4" data-out="#gT"><span class="range-val" id="gT">0.4</span></div></div>
+          <div class="row between"><div><b class="t-sm">Автоматический fallback</b><div class="muted t-xs">Переключаться при ошибке основной модели</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+        </div></div>
+        <div class="card"><div class="card-head"><h3>API-ключи провайдеров</h3></div><div class="card-body">
+          <div class="field"><label class="label">OpenAI API Key</label>
+            <div class="input-group"><i data-lucide="key-round" class="i input-ic"></i><input class="input" type="password" value="sk-••••••••••••••••3f8a"></div></div>
+          <div class="field"><label class="label">GigaChat Client Secret</label>
+            <div class="input-group"><i data-lucide="key-round" class="i input-ic"></i><input class="input" type="password" value="••••••••••••7c21"></div></div>
+          <div class="field"><label class="label">Endpoint (self-hosted)</label>
+            <div class="input-group affix"><span class="input-affix pre">https://</span><input class="input left" value="llm.sber.internal/v1"></div></div>
+          <button class="btn btn-outline btn-sm" data-toast="ok|Проверено|Соединение с провайдером успешно"><i data-lucide="plug-zap"></i>Проверить соединение</button>
+        </div></div>
+      </div>
+
+      <!-- SECURITY -->
+      <div data-panel="security" class="hide grid" style="grid-template-columns:1fr 1fr">
+        <div class="card"><div class="card-head"><h3>Доступ и аутентификация</h3></div><div class="card-body">
+          <div class="row between mb-2"><div><b class="t-sm">Двухфакторная аутентификация</b><div class="muted t-xs">Обязательна для всех администраторов</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          <div class="row between mb-2"><div><b class="t-sm">SSO (SAML / OIDC)</b><div class="muted t-xs">Вход через корпоративный провайдер</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          <div class="divider"></div>
+          <div class="field"><label class="label">Время жизни сессии</label><select class="select"><option>8 часов</option><option>24 часа</option><option>7 дней</option></select></div>
+          <div class="field tight"><label class="label">Разрешённые IP (allowlist)</label>
+            <div class="row wrap gap-sm"><span class="chip">10.0.0.0/8<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip">192.168.1.0/24<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip chip-add"><i data-lucide="plus" class="i-sm"></i>Добавить</span></div></div>
+        </div></div>
+        <div class="card"><div class="card-head"><h3>Данные и приватность</h3></div><div class="card-body">
+          <div class="field"><label class="label">Уровень логирования PII</label>
+            <div class="flex col gap-sm">
+              <label class="radio"><input type="radio" name="pii" checked><span class="box"></span><span class="opt-txt"><b>Маскировать</b><span>Персональные данные заменяются на токены</span></span></label>
+              <label class="radio"><input type="radio" name="pii"><span class="box"></span><span class="opt-txt"><b>Не логировать</b><span>Полностью исключать PII из логов</span></span></label>
+              <label class="radio"><input type="radio" name="pii"><span class="box"></span><span class="opt-txt"><b>Полное логирование</b><span>Только для dev-окружения</span></span></label>
+            </div></div>
+          <div class="divider"></div>
+          <div class="row between mb-2"><div><b class="t-sm">Хранить трассировки</b><div class="muted t-xs">Срок хранения — 90 дней</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          <div class="field tight"><label class="label">Экспорт данных</label>
+            <div class="dropzone"><i data-lucide="upload-cloud" class="i"></i><div class="t-sm"><b>Загрузите политику доступа</b><div class="muted t-xs">JSON или YAML, до 2 МБ</div></div></div></div>
+        </div></div>
+      </div>
+
+      <!-- LIMITS -->
+      <div data-panel="limits" class="hide grid" style="grid-template-columns:1fr 1fr">
+        <div class="card"><div class="card-head"><h3>Лимиты потребления</h3></div><div class="card-body">
+          <div class="form-grid">
+            <div class="field"><label class="label">Токенов / день</label><div class="input-group affix"><input class="input left" value="20 000 000"><span class="input-affix post">ток.</span></div></div>
+            <div class="field"><label class="label">Запросов / мин</label><div class="input-group affix"><input class="input left" value="600"><span class="input-affix post">rpm</span></div></div>
+          </div>
+          <div class="field"><label class="label">Дневной бюджет</label><div class="input-group affix"><span class="input-affix pre">₽</span><input class="input left" value="50 000"></div></div>
+          <div class="field"><label class="label">Порог оповещения о бюджете</label>
+            <div class="range-row"><input type="range" class="range" min="50" max="100" step="5" value="80" data-out="#bT"><span class="range-val" id="bT">80</span></div>
+            <div class="hint"><i data-lucide="bell" class="i-sm"></i>Уведомить при достижении % бюджета</div></div>
+        </div></div>
+        <div class="card"><div class="card-head"><h3>Параллелизм</h3></div><div class="card-body">
+          <div class="field"><label class="label">Одновременных сессий</label>
+            <div class="range-row"><input type="range" class="range" min="1" max="64" step="1" value="16" data-out="#cS"><span class="range-val" id="cS">16</span></div></div>
+          <div class="field"><label class="label">Таймаут шага</label><div class="input-group affix"><input class="input left" value="30"><span class="input-affix post">сек</span></div></div>
+          <div class="field"><label class="label">Ретраи при ошибке</label>
+            <div class="seg"><button>0</button><button>1</button><button class="active">3</button><button>5</button></div></div>
+          <div class="row between"><div><b class="t-sm">Очередь при превышении</b><div class="muted t-xs">Ставить в очередь вместо отклонения</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+        </div></div>
+      </div>
+
+      <!-- NOTIFICATIONS -->
+      <div data-panel="notif" class="hide card">
+        <div class="card-head"><h3>Каналы уведомлений</h3></div>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>Событие</th><th class="tac">Email</th><th class="tac">Telegram</th><th class="tac">Web-push</th><th class="tac">Webhook</th></tr></thead>
+          <tbody>
+            <tr><td class="t-primary">Сценарий завершён с ошибкой</td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td></tr>
+            <tr><td class="t-primary">Превышение бюджета</td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td></tr>
+            <tr><td class="t-primary">Требуется подтверждение (HITL)</td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td></tr>
+            <tr><td class="t-primary">Новый пользователь</td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+              <td class="tac"><label class="check" style="justify-content:center"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td></tr>
+          </tbody>
+        </table></div>
+        <div class="card-foot"><i data-lucide="info" class="i muted"></i><span class="muted t-sm">Webhook отправляет POST на настроенный endpoint интеграции.</span></div>
+      </div>
+
+      <!-- CONNECTORS -->
+      <div data-panel="conn" class="hide">
+        <!-- master switch -->
+        <div class="card mb-3" style="border-color:var(--brand-200)"><div class="card-body row wrap" style="gap:16px;align-items:center">
+          <div class="kpi-ic g" style="width:48px;height:48px;border-radius:13px"><i data-lucide="share-2" class="i-lg"></i></div>
+          <div class="f1" style="min-width:240px"><b class="t-lg">Разрешить внешних агентов</b>
+            <p class="muted t-sm mt-1" style="margin:0">Позволяет сценариям вызывать агентов из внешних платформ (A2A). При выключении все внешние коннекторы недоступны.</p></div>
+          <label class="switch" style="transform:scale(1.15)"><input type="checkbox" id="extAgents" checked><span class="track"></span></label>
+        </div></div>
+
+        <div class="grid" style="grid-template-columns:1fr 1fr" id="connBody">
+          <!-- policy -->
+          <div class="card"><div class="card-head"><i data-lucide="shield-check" class="i muted"></i><h3>Политика внешних агентов</h3></div><div class="card-body">
+            <div class="field"><label class="label">Протокол взаимодействия</label>
+              <div class="seg fw" style="display:flex"><button class="active">A2A</button><button>MCP</button><button>REST</button></div></div>
+            <div class="field"><label class="label">Уровень доверия по умолчанию</label>
+              <label class="radio"><input type="radio" name="trust" checked><span class="box"></span><span class="opt-txt"><b>Песочница</b><span>Без доступа к данным банка и записи</span></span></label>
+              <label class="radio"><input type="radio" name="trust"><span class="box"></span><span class="opt-txt"><b>Ограниченный</b><span>Только чтение из разрешённых источников</span></span></label>
+              <label class="radio"><input type="radio" name="trust"><span class="box"></span><span class="opt-txt"><b>Доверенный</b><span>Полный доступ по allowlist</span></span></label></div>
+            <div class="divider"></div>
+            <div class="row between mb-2"><div><b class="t-sm">Ручное одобрение подключения</b><div class="muted t-xs">Новый внешний агент требует ревью админом</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+            <div class="row between"><div><b class="t-sm">Логировать все внешние вызовы</b><div class="muted t-xs">Полная трассировка A2A-обменов</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          </div></div>
+
+          <!-- OpenClaw -->
+          <div class="card"><div class="card-head"><div class="kpi-ic b" style="width:34px;height:34px"><i data-lucide="cat" class="i-sm"></i></div><h3>OpenClaw</h3><span class="badge badge-ok dot spacer">Подключено</span></div>
+            <div class="card-body">
+              <p class="muted t-xs mb-2">Внешняя платформа мультиагентов. 12 агентов доступно для вызова.</p>
+              <div class="field"><label class="label">Endpoint</label><div class="input-group affix"><span class="input-affix pre">https://</span><input class="input left mono" value="api.openclaw.io/a2a"></div></div>
+              <div class="field"><label class="label">API-ключ</label><div class="input-group"><i data-lucide="key-round" class="i input-ic"></i><input class="input" type="password" value="oc-••••••••4f2a"></div></div>
+              <div class="field tight"><label class="label">Разрешённые возможности</label>
+                <div class="row wrap gap-sm"><span class="chip brand">search<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip brand">summarize<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip chip-add"><i data-lucide="plus" class="i-sm"></i></span></div></div>
+              <div class="row gap-sm mt-2"><button class="btn btn-outline btn-sm" data-toast="ok|Проверено|OpenClaw отвечает · 12 агентов"><i data-lucide="plug-zap"></i>Проверить</button><button class="btn btn-ghost btn-sm">Каталог агентов</button></div>
+            </div></div>
+
+          <!-- Hermes -->
+          <div class="card"><div class="card-head"><div class="kpi-ic p" style="width:34px;height:34px"><i data-lucide="feather" class="i-sm"></i></div><h3>Hermes</h3><span class="badge badge-neutral spacer">Не подключено</span></div>
+            <div class="card-body">
+              <p class="muted t-xs mb-2">Шина обмена сообщениями между агентами. Требуется учётная запись Hermes.</p>
+              <div class="field"><label class="label">Broker URL</label><div class="input-group affix"><span class="input-affix pre">amqps://</span><input class="input left mono" placeholder="hermes.internal:5671"></div></div>
+              <div class="form-grid"><div class="field"><label class="label">Client ID</label><input class="input mono" placeholder="client_id"></div>
+                <div class="field"><label class="label">Secret</label><div class="input-group"><i data-lucide="lock" class="i input-ic"></i><input class="input" type="password" placeholder="••••"></div></div></div>
+              <button class="btn btn-primary btn-block mt-1" data-toast="info|Подключение|Мастер настройки Hermes открыт"><i data-lucide="plug"></i>Подключить Hermes</button>
+            </div></div>
+
+          <!-- Own agents -->
+          <div class="card"><div class="card-head"><div class="kpi-ic a" style="width:34px;height:34px"><i data-lucide="boxes" class="i-sm"></i></div><h3>Собственные агенты</h3><span class="badge badge-ok dot spacer">3 подключено</span></div>
+            <div class="card-body">
+              <p class="muted t-xs mb-2">Агенты из ваших сервисов, зарегистрированные по A2A / gRPC.</p>
+              <div class="list-line" style="padding:9px 0"><span class="kpi-ic g" style="width:28px;height:28px"><i data-lucide="bot" class="i-sm"></i></span><div class="f1"><b class="t-sm">risk-agent</b><div class="muted t-xs mono">grpc://risk.svc:9000</div></div><span class="status s-ok">онлайн</span></div>
+              <div class="list-line" style="padding:9px 0"><span class="kpi-ic g" style="width:28px;height:28px"><i data-lucide="bot" class="i-sm"></i></span><div class="f1"><b class="t-sm">docs-extractor</b><div class="muted t-xs mono">https://ml.svc/a2a</div></div><span class="status s-ok">онлайн</span></div>
+              <div class="list-line" style="padding:9px 0"><span class="kpi-ic g" style="width:28px;height:28px"><i data-lucide="bot" class="i-sm"></i></span><div class="f1"><b class="t-sm">fraud-scorer</b><div class="muted t-xs mono">grpc://fraud.svc:9000</div></div><span class="status s-warn">деградация</span></div>
+              <button class="btn btn-outline btn-block mt-2" data-modal="mOwn"><i data-lucide="plus"></i>Зарегистрировать агента</button>
+            </div></div>
+        </div>
+      </div>
+
+      <!-- SURFACES -->
+      <div data-panel="surf" class="hide">
+        <p class="muted t-sm mb-3 row" style="gap:6px"><i data-lucide="info" class="i-sm"></i>Поверхности — каналы, через которые агенты и сценарии доступны конечным пользователям. Включите нужные и привяжите сценарий по умолчанию.</p>
+        <div class="grid g-2">
+
+          <!-- Telegram -->
+          <div class="card"><div class="card-head"><div class="kpi-ic b" style="width:36px;height:36px"><i data-lucide="send" class="i-sm"></i></div><h3>Телеграм Бот</h3><span class="badge badge-ok dot spacer">Активна</span>
+            <label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="field"><label class="label">Bot username</label><div class="input-group affix"><span class="input-affix pre">@</span><input class="input left mono" value="ai_ucp_bot"></div></div>
+                <div class="field"><label class="label">Bot token</label><div class="input-group"><i data-lucide="key-round" class="i input-ic"></i><input class="input" type="password" value="••••••••:AAF••••"></div></div>
+              </div>
+              <div class="field"><label class="label">Сценарий по умолчанию</label><select class="select"><option>Разбор обращения</option><option>Онбординг клиента</option></select></div>
+              <div class="row between mb-2"><div><b class="t-sm">Inline-кнопки и меню</b><div class="muted t-xs">Виджеты сценария как кнопки бота</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+              <div class="row between"><div><b class="t-sm">Разрешить mini-app</b><div class="muted t-xs">Экраны сценария как Telegram Mini App (WebApp)</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+              <div class="row gap-sm mt-2"><button class="btn btn-outline btn-sm" data-toast="ok|Проверено|Бот отвечает · webhook активен"><i data-lucide="plug-zap"></i>Проверить</button><button class="btn btn-ghost btn-sm"><i data-lucide="external-link"></i>Открыть бота</button></div>
+            </div></div>
+
+          <!-- Web app -->
+          <div class="card"><div class="card-head"><div class="kpi-ic g" style="width:36px;height:36px"><i data-lucide="globe" class="i-sm"></i></div><h3>Веб-приложение</h3><span class="badge badge-ok dot spacer">Активна</span>
+            <label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+            <div class="card-body">
+              <div class="field"><label class="label">Домен</label><div class="input-group affix"><span class="input-affix pre">https://</span><input class="input left mono" value="agents.sber.ru"></div></div>
+              <div class="form-grid">
+                <div class="field"><label class="label">Тема</label><div class="seg fw" style="display:flex"><button class="active">Светлая</button><button>Тёмная</button><button>Авто</button></div></div>
+                <div class="field"><label class="label">Сценарий по умолчанию</label><select class="select"><option>Онбординг клиента</option></select></div>
+              </div>
+              <div class="row between"><div><b class="t-sm">Аутентификация Sber ID</b><div class="muted t-xs">Требовать вход перед сессией</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+              <div class="row gap-sm mt-2"><button class="btn btn-outline btn-sm"><i data-lucide="palette"></i>Брендинг</button><button class="btn btn-ghost btn-sm"><i data-lucide="external-link"></i>Открыть</button></div>
+            </div></div>
+
+          <!-- Mobile app -->
+          <div class="card"><div class="card-head"><div class="kpi-ic p" style="width:36px;height:36px"><i data-lucide="smartphone" class="i-sm"></i></div><h3>Мобильное приложение</h3><span class="badge badge-warn dot spacer">Настройка</span>
+            <label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+            <div class="card-body">
+              <div class="field"><label class="label">SDK-ключ</label><div class="input-group"><i data-lucide="key-round" class="i input-ic"></i><input class="input mono" value="mob-live-••••4c2a"></div></div>
+              <div class="field"><label class="label">Платформы</label>
+                <div class="row wrap gap-sm">
+                  <label class="check"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span><span>iOS</span></label>
+                  <label class="check"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span><span>Android</span></label>
+                  <label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span><span>HarmonyOS</span></label>
+                </div></div>
+              <div class="row between"><div><b class="t-sm">Push-уведомления</b><div class="muted t-xs">Ответы агента и HITL-запросы</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+              <div class="row gap-sm mt-2"><button class="btn btn-outline btn-sm"><i data-lucide="book"></i>Документация SDK</button></div>
+            </div></div>
+
+          <!-- Widget -->
+          <div class="card"><div class="card-head"><div class="kpi-ic a" style="width:36px;height:36px"><i data-lucide="message-circle" class="i-sm"></i></div><h3>Виджет</h3><span class="badge badge-neutral spacer">Выключена</span>
+            <label class="switch"><input type="checkbox"><span class="track"></span></label></div>
+            <div class="card-body">
+              <div class="field"><label class="label">Встраиваемый код</label>
+                <div class="code" style="font-size:11.5px">&lt;script src=<span class="s">"https://cdn.sber.ru/ucp-widget.js"</span>
+  data-scenario=<span class="s">"onboarding"</span> data-pos=<span class="s">"br"</span>&gt;&lt;/script&gt;</div></div>
+              <div class="form-grid">
+                <div class="field"><label class="label">Позиция</label><select class="select"><option>Справа снизу</option><option>Слева снизу</option></select></div>
+                <div class="field"><label class="label">Акцентный цвет</label><div class="row gap-sm"><span style="width:32px;height:32px;border-radius:8px;background:#1FA03B;box-shadow:var(--ring);cursor:pointer"></span><span style="width:32px;height:32px;border-radius:8px;background:#2F6FED;cursor:pointer"></span><span style="width:32px;height:32px;border-radius:8px;background:#8B5CF6;cursor:pointer"></span></div></div>
+              </div>
+              <div class="field tight"><label class="label">Разрешённые домены</label><div class="row wrap gap-sm"><span class="chip">sber.ru<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip chip-add"><i data-lucide="plus" class="i-sm"></i></span></div></div>
+              <button class="btn btn-outline btn-sm mt-1" data-toast="ok|Скопировано|Код виджета в буфере обмена"><i data-lucide="copy"></i>Копировать код</button>
+            </div></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<template id="mOwn">
+  <div class="modal-head"><i data-lucide="boxes" class="i"></i><h3>Зарегистрировать агента</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Имя агента <span class="req">*</span></label><input class="input mono" placeholder="my-agent"></div>
+    <div class="field"><label class="label">Протокол</label><div class="seg"><button class="active">A2A</button><button>gRPC</button><button>REST</button></div></div>
+    <div class="field"><label class="label">Endpoint</label><input class="input mono" placeholder="grpc://service.svc:9000"></div>
+    <div class="field tight"><label class="label">Уровень доступа</label><select class="select"><option>Песочница</option><option>Ограниченный (read-only)</option><option>Доверенный</option></select></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Готово|Агент зарегистрирован и отправлен на ревью"><i data-lucide="check"></i>Зарегистрировать</button></div>
+</template>
+
+<script src="assets/app.js"></script>
+<script>
+window.addEventListener('shell:ready', () => {
+  const master = document.getElementById('extAgents');
+  const body = document.getElementById('connBody');
+  const sync = () => { if(!body) return; body.style.opacity = master.checked ? '1' : '.45';
+    body.style.pointerEvents = master.checked ? '' : 'none'; };
+  if (master) { master.addEventListener('change', () => { sync();
+    CrewUI.toast(master.checked?'ok':'warn', master.checked?'Включено':'Выключено', master.checked?'Внешние агенты разрешены':'Внешние коннекторы отключены'); }); sync(); }
+});
+</script>
+</body>
+</html>

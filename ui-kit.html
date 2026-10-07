@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI Kit · AI UCP Control Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>.kit-sec{scroll-margin-top:80px}.swatch{height:56px;border-radius:10px;display:flex;align-items:flex-end;padding:7px;color:#fff;font-size:11px;font-weight:600}</style>
+</head>
+<body>
+<div class="app" data-page="ui-kit">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>UI Kit</span></div>
+          <h1>UI Kit</h1><p class="ph-sub">Библиотека компонентов дизайн-системы: типографика, цвета, формы, статусы, оверлеи и обратная связь.</p></div>
+        <div class="page-actions"><span class="badge badge-neutral">Inter + Lucide</span><span class="badge badge-ok dot">v1.0</span></div>
+      </div>
+
+      <!-- Colors -->
+      <div class="card mb-3 kit-sec"><div class="card-head"><h3>Палитра</h3></div><div class="card-body">
+        <div class="grid" style="grid-template-columns:repeat(6,1fr)">
+          <div class="swatch" style="background:#1FA03B">Brand #1FA03B</div>
+          <div class="swatch" style="background:#2F6FED">Info #2F6FED</div>
+          <div class="swatch" style="background:#D98200">Warning #D98200</div>
+          <div class="swatch" style="background:#8B5CF6">Purple #8B5CF6</div>
+          <div class="swatch" style="background:#E5484D">Danger #E5484D</div>
+          <div class="swatch" style="background:#0E8FC9">Cyan #0E8FC9</div>
+        </div>
+      </div></div>
+
+      <div class="grid g-2">
+        <!-- Buttons -->
+        <div class="card kit-sec"><div class="card-head"><h3>Кнопки</h3></div><div class="card-body">
+          <div class="row wrap gap-sm mb-2"><button class="btn btn-primary"><i data-lucide="plus"></i>Primary</button><button class="btn btn-outline">Outline</button><button class="btn btn-subtle">Subtle</button><button class="btn btn-ghost">Ghost</button></div>
+          <div class="row wrap gap-sm mb-2"><button class="btn btn-danger"><i data-lucide="trash-2"></i>Danger</button><button class="btn btn-danger-soft">Soft danger</button><button class="btn btn-primary" disabled>Disabled</button></div>
+          <div class="row wrap gap-sm"><button class="btn btn-primary btn-lg">Large</button><button class="btn btn-outline btn-sm">Small</button><button class="btn btn-outline btn-icon"><i data-lucide="settings"></i></button></div>
+        </div></div>
+
+        <!-- Badges & status -->
+        <div class="card kit-sec"><div class="card-head"><h3>Бейджи и статусы</h3></div><div class="card-body">
+          <div class="row wrap gap-sm mb-2"><span class="badge badge-ok dot">Success</span><span class="badge badge-warn dot">Warning</span><span class="badge badge-danger dot">Danger</span><span class="badge badge-info dot">Info</span><span class="badge badge-purple">Beta</span><span class="badge badge-neutral">Neutral</span></div>
+          <div class="row wrap gap-lg mt-2"><span class="status s-run">Выполняется</span><span class="status s-ok">Успех</span><span class="status s-warn">Внимание</span><span class="status s-err">Ошибка</span><span class="status s-idle">Ожидание</span></div>
+          <div class="row wrap gap-sm mt-2"><span class="tag">tag</span><span class="chip">Chip<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip brand">Brand chip<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><kbd>⌘K</kbd></div>
+        </div></div>
+
+        <!-- Inputs -->
+        <div class="card kit-sec"><div class="card-head"><h3>Поля ввода</h3></div><div class="card-body">
+          <div class="field"><label class="label">Текст <span class="req">*</span></label><input class="input" value="Значение"></div>
+          <div class="field"><label class="label">С иконкой</label><div class="input-group"><i data-lucide="search" class="i input-ic"></i><input class="input" placeholder="Поиск…"></div></div>
+          <div class="field"><label class="label">Ошибка</label><input class="input is-error" value="Некорректно"><div class="hint err"><i data-lucide="alert-circle" class="i-sm"></i>Проверьте значение</div></div>
+          <div class="field"><label class="label">Select</label><select class="select"><option>Вариант 1</option><option>Вариант 2</option></select></div>
+          <div class="field tight"><label class="label">Textarea</label><textarea class="textarea" placeholder="Многострочный текст…"></textarea></div>
+        </div></div>
+
+        <!-- Choice controls -->
+        <div class="card kit-sec"><div class="card-head"><h3>Выбор</h3></div><div class="card-body">
+          <div class="field"><label class="label">Radio</label>
+            <label class="radio"><input type="radio" name="k" checked><span class="box"></span><span>Вариант A</span></label>
+            <label class="radio"><input type="radio" name="k"><span class="box"></span><span>Вариант B</span></label></div>
+          <div class="field"><label class="label">Checkbox</label>
+            <label class="check"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span><span>Согласен</span></label></div>
+          <div class="field"><label class="label">Switch</label><label class="switch"><input type="checkbox" checked><span class="track"></span><span>Включено</span></label></div>
+          <div class="field"><label class="label">Segmented</label><div class="seg"><button class="active">День</button><button>Неделя</button><button>Месяц</button></div></div>
+          <div class="field tight"><label class="label">Range</label><div class="range-row"><input type="range" class="range" min="0" max="100" value="60" data-out="#rk"><span class="range-val" id="rk">60</span></div></div>
+        </div></div>
+      </div>
+
+      <!-- Feedback -->
+      <div class="card mt-3 kit-sec"><div class="card-head"><h3>Обратная связь и оверлеи</h3></div><div class="card-body">
+        <div class="row wrap gap-sm mb-3">
+          <button class="btn btn-outline" data-toast="ok|Успешно|Действие выполнено"><i data-lucide="check-circle"></i>Toast success</button>
+          <button class="btn btn-outline" data-toast="err|Ошибка|Что-то пошло не так"><i data-lucide="x-circle"></i>Toast error</button>
+          <button class="btn btn-outline" data-toast="warn|Внимание|Проверьте данные"><i data-lucide="alert-triangle"></i>Toast warning</button>
+          <button class="btn btn-outline" data-toast="info|Инфо|Просто уведомление"><i data-lucide="info"></i>Toast info</button>
+          <button class="btn btn-primary" data-modal="mDemo"><i data-lucide="square-stack"></i>Открыть модалку</button>
+          <button class="btn btn-outline" data-menu="createMenu"><i data-lucide="chevron-down"></i>Dropdown</button>
+          <span class="tooltip" data-tip="Это подсказка"><button class="btn btn-outline"><i data-lucide="help-circle"></i>Tooltip</button></span>
+        </div>
+        <div class="grid g-2">
+          <div><div class="menu-label" style="padding-left:0">Progress</div><div class="progress mb-2"><span style="width:65%"></span></div><div class="progress"><span class="warn" style="width:35%"></span></div></div>
+          <div><div class="menu-label" style="padding-left:0">Skeleton</div><div class="skeleton" style="height:14px;width:80%;margin-bottom:8px"></div><div class="skeleton" style="height:14px;width:60%"></div></div>
+        </div>
+      </div></div>
+
+      <div class="grid g-2 mt-3">
+        <!-- attachments -->
+        <div class="card kit-sec"><div class="card-head"><h3>Вложения и изображения</h3></div><div class="card-body">
+          <div class="attach mb-2"><div class="attach-ic"><i data-lucide="file-text" class="i-sm"></i></div><div class="f1"><b>отчёт.pdf</b><span>1.2 МБ</span></div><button class="btn btn-ghost btn-sm"><i data-lucide="download"></i></button></div>
+          <div class="row gap-sm mb-2">
+            <div class="thumb" data-lightbox="assets/img/shot1.svg"><img src="assets/img/shot1.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div>
+            <div class="thumb" data-lightbox="assets/img/shot2.svg"><img src="assets/img/shot2.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div>
+          </div>
+          <div class="dropzone"><i data-lucide="upload-cloud" class="i"></i><div class="t-sm"><b>Перетащите файлы</b><div class="muted t-xs">или нажмите для выбора</div></div></div>
+        </div></div>
+
+        <!-- avatars & steps & timeline -->
+        <div class="card kit-sec"><div class="card-head"><h3>Аватары · Шаги · Таймлайн</h3></div><div class="card-body">
+          <div class="row gap-sm mb-3"><div class="avatar sm">СМ</div><div class="avatar">МВ<span class="avatar-status on"></span></div><div class="avatar lg" style="background:#e9f0fe;color:#245fce">АП</div>
+            <div class="avatar-grp"><div class="avatar sm">1</div><div class="avatar sm">2</div><div class="avatar sm">3</div></div></div>
+          <div class="steps mb-3"><div class="step done">Шаг 1</div><div class="step active">Шаг 2</div><div class="step">Шаг 3</div></div>
+          <div class="timeline"><div class="tl-item ok"><b class="t-sm">Событие A</b><div class="muted t-xs">описание</div></div><div class="tl-item"><b class="t-sm">Событие B</b><div class="muted t-xs">описание</div></div></div>
+        </div></div>
+      </div>
+
+      <!-- empty + code -->
+      <div class="grid g-2 mt-3">
+        <div class="card kit-sec"><div class="card-body"><div class="empty"><div class="ic"><i data-lucide="inbox" class="i"></i></div><h4>Пусто</h4><p>Здесь пока ничего нет</p><button class="btn btn-primary btn-sm mt-2"><i data-lucide="plus"></i>Добавить</button></div></div></div>
+        <div class="card kit-sec"><div class="card-head"><h3>Код</h3></div><div class="card-body"><div class="code"><span class="c"># инициализация агента</span>
+<span class="k">agent</span> = Agent(<span class="s">role</span>=<span class="s">"analyst"</span>, <span class="s">temperature</span>=0.3)
+<span class="k">crew</span>.add(agent)</div></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mDemo">
+  <div class="modal-head"><i data-lucide="info" class="i"></i><h3>Пример модального окна</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body"><p class="sub">Модальные окна используются для подтверждений, форм и деталей. Закрываются по клику вне окна, кнопке или Esc.</p>
+    <div class="field mt-2"><label class="label">Поле в модалке</label><input class="input" placeholder="Введите…"></div></div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Готово|Форма отправлена">Подтвердить</button></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

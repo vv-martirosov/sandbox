@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI UCP — платформа AI-агентов для бизнеса</title>
+<meta name="description" content="AI UCP — enterprise-платформа для создания, оркестрации и масштабирования AI-агентов. Конструктор без кода, мультиагентные сценарии, наблюдаемость и выход на любые каналы.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<style>
+:root{
+  --brand:#1FA03B; --brand-2:#2fd45f; --brand-3:#13c48a;
+  --bg:#ffffff; --soft:#f4f8f5; --ink:#0d1a12; --ink-2:#516156; --line:#e6ece8;
+  --dark:#081810; --dark-2:#0c2217; --card-d:rgba(255,255,255,.06);
+  --r:22px; --r-sm:14px;
+  --disp:'Space Grotesk','Inter',sans-serif; --ff:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--ff);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.55}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-height:1.05}
+p{margin:0}
+.ic{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.fill{fill:currentColor;stroke:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.grad-text{background:linear-gradient(100deg,var(--brand) 0%,var(--brand-3) 55%,var(--brand-2) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--brand);
+  background:rgba(31,160,59,.10);border:1px solid rgba(31,160,59,.22);padding:7px 14px;border-radius:999px}
+.btn{display:inline-flex;align-items:center;gap:9px;height:52px;padding:0 26px;border-radius:14px;font-weight:600;font-size:15.5px;cursor:pointer;
+  border:1px solid transparent;transition:.2s cubic-bezier(.2,.7,.2,1);white-space:nowrap;font-family:var(--ff)}
+.btn .ic{width:19px;height:19px}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 10px 30px -8px rgba(31,160,59,.55)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -8px rgba(31,160,59,.65);background:#23b043}
+.btn-ghost{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.18);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.btn-light{background:var(--ink);color:#fff}.btn-light:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(13,26,18,.5)}
+.btn-outline{background:#fff;border-color:var(--line);color:var(--ink)}.btn-outline:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-2px)}
+.btn-sm{height:44px;font-size:14.5px;padding:0 20px}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
+.nav-in{display:flex;align-items:center;gap:26px;max-width:1180px;margin:14px auto 0;padding:11px 16px 11px 20px;
+  border-radius:18px;background:rgba(10,26,17,.55);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(16px) saturate(160%);transition:.3s}
+.nav.scrolled .nav-in{background:rgba(255,255,255,.82);border-color:var(--line);box-shadow:0 8px 30px -12px rgba(13,26,18,.18);margin-top:8px}
+.nav.scrolled a.nlink,.nav.scrolled .brand b{color:var(--ink)}
+.nav.scrolled .brand small{color:var(--ink-2)}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--brand-2),var(--brand));display:grid;place-items:center;color:#fff;box-shadow:0 6px 18px -4px rgba(31,160,59,.6)}
+.brand b{color:#fff;font-family:var(--disp);font-size:18px;letter-spacing:-.01em}
+.brand small{display:block;color:rgba(255,255,255,.6);font-size:11px;margin-top:-2px}
+.nlinks{display:flex;gap:6px;margin-left:8px}
+a.nlink{color:rgba(255,255,255,.8);font-size:14.5px;font-weight:500;padding:8px 13px;border-radius:9px;transition:.15s}
+a.nlink:hover{background:rgba(127,184,148,.16);color:#fff}
+.nav.scrolled a.nlink:hover{background:var(--soft);color:var(--brand)}
+.nav-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nav-signin{color:#fff;font-weight:600;font-size:14.5px;padding:8px 12px;border-radius:9px}
+.nav.scrolled .nav-signin{color:var(--ink)}
+.burger{display:none}
+@media(max-width:860px){.nlinks,.nav-signin{display:none}.burger{display:grid}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:170px 0 90px;background:radial-gradient(120% 90% at 50% -10%,#0f3120 0%,#0a1c12 45%,#07130c 100%);overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(180deg,#000,transparent 80%);pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none;will-change:transform}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,#2fd45f,transparent 65%);top:-120px;left:-80px}
+.blob.b2{width:460px;height:460px;background:radial-gradient(circle,#13c48a,transparent 65%);top:40px;right:-120px;opacity:.42}
+.blob.b3{width:400px;height:400px;background:radial-gradient(circle,#1FA03B,transparent 65%);bottom:-160px;left:40%;opacity:.35;animation:float 14s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-26px)}}
+.hero-in{position:relative;z-index:2;text-align:center;max-width:900px;margin:0 auto}
+.hero h1{font-size:clamp(38px,6.4vw,74px);color:#fff;margin:22px 0 0}
+.hero .sub{color:rgba(226,240,231,.82);font-size:clamp(16px,2.2vw,20px);max-width:660px;margin:22px auto 0}
+.hero-cta{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.hero-trust{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:34px;color:rgba(226,240,231,.62);font-size:13.5px}
+.hero-trust b{color:#fff;font-family:var(--disp)}
+.hero-trust .dot{width:5px;height:5px;border-radius:50%;background:var(--brand-2);align-self:center}
+/* hero product mock */
+.mock{position:relative;z-index:2;max-width:1000px;margin:56px auto 0;perspective:1600px}
+.mock-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:14px;
+  backdrop-filter:blur(8px);box-shadow:0 40px 90px -30px rgba(0,0,0,.7);transform:rotateX(9deg);transform-origin:top center}
+.mock-bar{display:flex;gap:6px;padding:4px 6px 12px}
+.mock-bar i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.22)}
+.mock-body{background:#fff;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:180px 1fr}
+.mock-side{background:#0c2217;padding:16px 12px}
+.mock-side .ms{display:flex;align-items:center;gap:9px;color:rgba(207,227,214,.8);font-size:12px;padding:8px 10px;border-radius:8px;margin-bottom:3px}
+.mock-side .ms.on{background:rgba(47,212,95,.16);color:#fff}
+.mock-side .ms .ic{width:15px;height:15px}
+.mock-main{padding:18px}
+.mk-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.mk-kpi{border:1px solid var(--line);border-radius:12px;padding:12px}
+.mk-kpi .l{font-size:10.5px;color:var(--ink-2)}
+.mk-kpi .v{font-family:var(--disp);font-size:22px;font-weight:700}
+.mk-chart{border:1px solid var(--line);border-radius:12px;padding:14px;height:150px}
+.mk-float{position:absolute;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px 14px;box-shadow:0 20px 40px -14px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600}
+.mk-float .ico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff}
+.mk-float.f1{left:-40px;top:96px;animation:float 7s ease-in-out infinite}
+.mk-float.f2{right:-30px;bottom:70px;animation:float 8s ease-in-out .8s infinite}
+@media(max-width:640px){.mk-float{display:none}.mock-body{grid-template-columns:1fr}.mock-side{display:none}}
+
+/* ---------- SECTIONS ---------- */
+section{position:relative}
+.sec{padding:96px 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 54px}
+.sec-head h2{font-size:clamp(30px,4.4vw,46px);margin-top:16px}
+.sec-head p{color:var(--ink-2);font-size:17px;margin-top:16px}
+
+/* logos marquee */
+.marq{overflow:hidden;padding:26px 0;border-block:1px solid var(--line);background:var(--soft);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marq-track{display:flex;gap:56px;width:max-content;animation:marq 26s linear infinite}
+.marq-track span{font-family:var(--disp);font-weight:600;font-size:19px;color:#98a8a0;white-space:nowrap;display:flex;align-items:center;gap:10px}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* stats */
+.stats{background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.stats .blob{opacity:.3}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2}
+.stat{padding:8px 4px}
+.stat .n{font-family:var(--disp);font-size:clamp(36px,5vw,54px);font-weight:700;background:linear-gradient(180deg,#fff,#9fe6b4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .l{color:rgba(226,240,231,.7);font-size:14.5px;margin-top:4px}
+@media(max-width:760px){.stats-grid{grid-template-columns:1fr 1fr;gap:28px 16px}}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.b-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;position:relative;overflow:hidden;transition:.25s cubic-bezier(.2,.7,.2,1)}
+.b-card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -22px rgba(13,26,18,.22);border-color:rgba(31,160,59,.35)}
+.b-card .bico{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:#fff;margin-bottom:16px;box-shadow:0 10px 22px -8px rgba(31,160,59,.5)}
+.b-card h3{font-size:20px}
+.b-card p{color:var(--ink-2);font-size:14.5px;margin-top:9px}
+.b-card.col3{grid-column:span 3}.b-card.col2{grid-column:span 2}.b-card.col4{grid-column:span 4}
+.b-card.feat{background:linear-gradient(150deg,#0c2217,#0a1b12);color:#fff;border:none}
+.b-card.feat p{color:rgba(226,240,231,.72)}
+.b-card.feat::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(47,212,95,.4),transparent 65%);top:-90px;right:-60px;filter:blur(30px)}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--soft);color:var(--ink-2);border:1px solid var(--line)}
+.b-card.feat .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:#dcefe3}
+@media(max-width:900px){.bento{grid-template-columns:1fr 1fr}.b-card.col3,.b-card.col2,.b-card.col4{grid-column:span 1}}
+@media(max-width:560px){.bento{grid-template-columns:1fr}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;position:relative}
+.step .num{font-family:var(--disp);font-size:15px;font-weight:700;color:#fff;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand-2),var(--brand));margin-bottom:16px}
+.step h3{font-size:20px}.step p{color:var(--ink-2);font-size:14.5px;margin-top:9px}
+@media(max-width:820px){.steps{grid-template-columns:1fr}}
+
+/* feature rows */
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:70px}
+.frow.rev .fr-media{order:-1}
+.fr-copy h2{font-size:clamp(26px,3.4vw,36px)}
+.fr-copy p{color:var(--ink-2);font-size:16.5px;margin-top:16px}
+.fr-list{margin-top:22px;display:flex;flex-direction:column;gap:12px}
+.fr-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.fr-list .tick{width:24px;height:24px;border-radius:8px;background:rgba(31,160,59,.12);color:var(--brand);display:grid;place-items:center;flex:none}
+.fr-list .tick .ic{width:15px;height:15px}
+.fr-media{position:relative}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 30px 60px -30px rgba(13,26,18,.28);overflow:hidden}
+.panel-h{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);font-weight:600;font-size:14px}
+.panel-b{padding:18px}
+.node{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;box-shadow:0 6px 16px -10px rgba(13,26,18,.2)}
+.node .nic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;flex:none}
+.node b{font-size:13.5px}.node small{color:var(--ink-2);font-size:11.5px;display:block}
+.conn{width:2px;height:16px;background:var(--line);margin:0 auto}
+.agent-hd{display:flex;gap:13px;align-items:center;margin-bottom:14px}
+.agent-av{width:52px;height:52px;border-radius:15px;background:rgba(31,160,59,.12);color:var(--brand);display:grid;place-items:center}
+.field{margin-bottom:12px}.field .fl{font-size:11.5px;color:var(--ink-2);font-weight:600;margin-bottom:5px}
+.field .fv{border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:13px;background:var(--soft)}
+.slider{height:6px;border-radius:6px;background:var(--soft);position:relative}
+.slider::after{content:"";position:absolute;left:0;top:0;height:100%;width:32%;border-radius:6px;background:var(--brand)}
+.slider::before{content:"";position:absolute;left:30%;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--brand);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.stars-mini{color:#E0A100;font-size:16px;letter-spacing:1px}
+@media(max-width:820px){.frow{grid-template-columns:1fr;gap:28px}.frow.rev .fr-media{order:0}}
+
+/* security band */
+.sec-dark{background:var(--dark);color:#fff;border-radius:34px;padding:64px 48px;position:relative;overflow:hidden;margin:0 24px}
+.sec-dark .blob{opacity:.28}
+.sec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:2}
+.sec-item{display:flex;gap:14px;align-items:flex-start}
+.sec-item .si{width:44px;height:44px;border-radius:12px;background:rgba(47,212,95,.15);color:var(--brand-2);display:grid;place-items:center;flex:none}
+.sec-item b{font-size:16px;font-family:var(--disp)}
+.sec-item p{color:rgba(226,240,231,.7);font-size:13.5px;margin-top:4px}
+@media(max-width:820px){.sec-grid{grid-template-columns:1fr}.sec-dark{padding:44px 26px}}
+
+/* testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:.25s}
+.quote:hover{transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(13,26,18,.2)}
+.quote .stars-mini{margin-bottom:12px;display:block}
+.quote p{font-size:15px}
+.quote .who{display:flex;align-items:center;gap:11px;margin-top:18px}
+.quote .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--brand-2),var(--brand));color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.quote .who b{font-size:14px}.quote .who small{color:var(--ink-2);font-size:12.5px;display:block}
+@media(max-width:820px){.quotes{grid-template-columns:1fr}}
+
+/* pricing */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
+.price{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;transition:.25s}
+.price:hover{transform:translateY(-4px);box-shadow:0 24px 50px -24px rgba(13,26,18,.18)}
+.price.pop{background:linear-gradient(160deg,#0c2217,#0a1b12);color:#fff;border:none;position:relative;box-shadow:0 30px 60px -24px rgba(12,34,23,.6)}
+.price.pop p,.price.pop .pr-li{color:rgba(226,240,231,.8)}
+.price .tag{font-size:13px;font-weight:600;color:var(--brand)}
+.price.pop .tag{color:var(--brand-2)}
+.price .amt{font-family:var(--disp);font-size:40px;font-weight:700;margin:12px 0 2px}
+.price .per{color:var(--ink-2);font-size:13.5px}.price.pop .per{color:rgba(226,240,231,.6)}
+.pr-list{list-style:none;padding:0;margin:20px 0 24px;display:flex;flex-direction:column;gap:11px}
+.pr-li{display:flex;gap:10px;align-items:center;font-size:14px}
+.pr-li .ic{width:17px;height:17px;color:var(--brand)}
+.price.pop .pr-li .ic{color:var(--brand-2)}
+.badge-pop{position:absolute;top:22px;right:22px;background:var(--brand);color:#fff;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px}
+@media(max-width:860px){.pricing{grid-template-columns:1fr}}
+
+/* CTA */
+.cta{background:linear-gradient(140deg,#12351f 0%,#0a1c12 100%);border-radius:34px;padding:74px 40px;text-align:center;position:relative;overflow:hidden;margin:0 24px}
+.cta .blob{opacity:.4}
+.cta h2{font-size:clamp(30px,4.6vw,50px);color:#fff;position:relative;z-index:2}
+.cta p{color:rgba(226,240,231,.78);font-size:18px;margin-top:16px;position:relative;z-index:2}
+.cta .hero-cta{position:relative;z-index:2}
+
+/* footer */
+footer{background:var(--dark-2);color:#fff;padding:64px 0 34px;margin-top:96px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+.foot-grid h4{font-family:var(--disp);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.5);margin-bottom:14px}
+.foot-grid a{display:block;color:rgba(226,240,231,.75);font-size:14px;padding:5px 0;transition:.15s}
+.foot-grid a:hover{color:var(--brand-2)}
+.foot-brand p{color:rgba(226,240,231,.6);font-size:14px;margin-top:14px;max-width:280px}
+.foot-bot{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:22px;display:flex;justify-content:space-between;color:rgba(226,240,231,.5);font-size:13px;flex-wrap:wrap;gap:10px}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+/* reveal */
+[data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}.blob,.mk-float,.marq-track{animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-hex" viewBox="0 0 24 24"><path d="M12 3l7 4v10l-7 4-7-4V7z"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3.2" r="1"/><path d="M9 14h.01M15 14h.01"/></symbol>
+<symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="4" width="7" height="6" rx="1.6"/><rect x="14" y="14" width="7" height="6" rx="1.6"/><path d="M10 7h4.5A2.5 2.5 0 0 1 17 9.5V14"/></symbol>
+<symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 13l4-3.5"/><path d="M4.5 18a8 8 0 1 1 15 0"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.6-3 7.4-7 9-4-1.6-7-4.4-7-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M7 8h10v2.5a5 5 0 0 1-10 0zM12 15.5V21"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+<symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.2"/><path d="M12 12l6-3"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.2 12h17.6M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-branch" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="8" r="2.4"/><path d="M6 8.4v7.2M18 10.4c0 3.2-4 3.4-6 4.8"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l4.5 4.5L20 6"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.6 6.3L21 10l-5 4.2L17.5 21 12 17.4 6.5 21 8 14.2 3 10l6.4-.7z"/></symbol>
+<symbol id="i-msg" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M3.5 20c0-3.2 2.5-5.5 5.5-5.5S14.5 16.8 14.5 20"/><path d="M16 4.8a3.4 3.4 0 0 1 0 6.4M20.5 20c0-2.4-1.4-4.4-3.5-5.2"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.6"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 3v2M14 3v2M10 19v2M14 19v2M3 10h2M3 14h2M19 10h2M19 14h2"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2z"/><path d="M18 6H7"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.7 4.8L18.5 9.5 13.7 11.2 12 16l-1.7-4.8L5.5 9.5l4.8-1.7z"/></symbol>
+</defs></svg>
+
+<!-- NAV -->
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="brand" href="landing.html"><span class="logo"><svg class="ic"><use href="#i-hex"/></svg></span><span><b>AI UCP</b><small>Agent Platform</small></span></a>
+  <div class="nlinks">
+    <a class="nlink" href="#features">Возможности</a>
+    <a class="nlink" href="#how">Как работает</a>
+    <a class="nlink" href="#results">Результаты</a>
+    <a class="nlink" href="#pricing">Тарифы</a>
+  </div>
+  <div class="nav-cta">
+    <a class="nav-signin" href="auth.html">Войти</a>
+    <a class="btn btn-primary btn-sm" href="index.html"><svg class="ic"><use href="#i-play"/></svg>Смотреть демо</a>
+    <a class="btn btn-ghost btn-sm burger" href="#features" style="padding:0;width:44px;justify-content:center"><svg class="ic"><use href="#i-menu"/></svg></a>
+  </div>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="blob b1" data-par="0.02"></span><span class="blob b2" data-par="-0.03"></span><span class="blob b3"></span>
+  <div class="wrap hero-in">
+    <span class="eyebrow" data-reveal><svg class="ic" style="width:15px;height:15px"><use href="#i-spark"/></svg>Enterprise-платформа AI-агентов</span>
+    <h1 data-reveal style="--d:.05s">Соберите <span class="grad-text">AI-агента</span> за минуты.<br>Запустите сценарий на <span class="grad-text">миллионы</span> клиентов.</h1>
+    <p class="sub" data-reveal style="--d:.12s">AI UCP превращает идею в работающего агента: конструктор без кода, мультиагентные сценарии, полная наблюдаемость и выход на любой канал — от Telegram до мобильного банка.</p>
+    <div class="hero-cta" data-reveal style="--d:.18s">
+      <a class="btn btn-primary" href="index.html"><svg class="ic"><use href="#i-play"/></svg>Открыть демо-панель</a>
+      <a class="btn btn-ghost" href="#how">Как это работает<svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="hero-trust" data-reveal style="--d:.24s">
+      <span><b>18 402</b> запусков/день</span><span class="dot"></span>
+      <span><b>99.9%</b> uptime</span><span class="dot"></span>
+      <span><b>×7.4</b> ROI сценария</span><span class="dot"></span>
+      <span><b>96.8%</b> success rate</span>
+    </div>
+  </div>
+
+  <!-- product mock -->
+  <div class="wrap mock" data-reveal style="--d:.3s">
+    <div class="mk-float f1"><span class="ico" style="background:var(--brand)"><svg class="ic"><use href="#i-check"/></svg></span><div>Сценарий завершён<br><span style="color:var(--ink-2);font-weight:500;font-size:11px">4.2 c · CSAT 4.6★</span></div></div>
+    <div class="mk-float f2"><span class="ico" style="background:#2F6FED"><svg class="ic"><use href="#i-users"/></svg></span><div>7 сессий онлайн<br><span style="color:var(--ink-2);font-weight:500;font-size:11px">142 сообщ/мин</span></div></div>
+    <div class="mock-card">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="mock-body">
+        <div class="mock-side">
+          <div class="ms on"><svg class="ic"><use href="#i-gauge"/></svg>Дашборд</div>
+          <div class="ms"><svg class="ic"><use href="#i-bot"/></svg>Агенты</div>
+          <div class="ms"><svg class="ic"><use href="#i-flow"/></svg>Сценарии</div>
+          <div class="ms"><svg class="ic"><use href="#i-branch"/></svg>Трассировка</div>
+          <div class="ms"><svg class="ic"><use href="#i-layers"/></svg>Библиотеки</div>
+        </div>
+        <div class="mock-main">
+          <div class="mk-kpis">
+            <div class="mk-kpi"><div class="l">Активные агенты</div><div class="v">24</div></div>
+            <div class="mk-kpi"><div class="l">Запусков</div><div class="v">18.4k</div></div>
+            <div class="mk-kpi"><div class="l">Success</div><div class="v" style="color:var(--brand)">96.8%</div></div>
+          </div>
+          <div class="mk-chart">
+            <svg viewBox="0 0 520 120" width="100%" height="100%" preserveAspectRatio="none">
+              <defs><linearGradient id="hg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1FA03B" stop-opacity=".28"/><stop offset="1" stop-color="#1FA03B" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,90 L70,72 L140,80 L210,50 L280,60 L350,32 L420,44 L520,26 L520,120 L0,120Z" fill="url(#hg)"/>
+              <polyline points="0,90 70,72 140,80 210,50 280,60 350,32 420,44 520,26" fill="none" stroke="#1FA03B" stroke-width="3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- LOGOS -->
+<div class="marq">
+  <div class="marq-track">
+    <span><svg class="ic" style="color:#98a8a0"><use href="#i-shield"/></svg>Банковский контур</span>
+    <span><svg class="ic" style="color:#98a8a0"><use href="#i-lock"/></svg>152-ФЗ</span>
+    <span><svg class="ic" style="color:#98a8a0"><use href="#i-cpu"/></svg>GigaChat</span>
+    <span>OpenAI</span><span>Anthropic</span><span>Qdrant</span><span>MCP</span><span>A2A</span>
+    <span><svg class="ic" style="color:#98a8a0"><use href="#i-shield"/></svg>Банковский контур</span>
+    <span><svg class="ic" style="color:#98a8a0"><use href="#i-lock"/></svg>152-ФЗ</span>
+    <span><svg class="ic" style="color:#98a8a0"><use href="#i-cpu"/></svg>GigaChat</span>
+    <span>OpenAI</span><span>Anthropic</span><span>Qdrant</span><span>MCP</span><span>A2A</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="sec stats" id="results">
+  <span class="blob b2" style="top:-100px;left:-80px"></span>
+  <div class="wrap">
+    <div class="sec-head" data-reveal><span class="eyebrow" style="background:rgba(47,212,95,.14);border-color:rgba(47,212,95,.3);color:var(--brand-2)">Результаты в цифрах</span>
+      <h2 style="color:#fff">Автоматизация, которую видно в P&L</h2></div>
+    <div class="stats-grid">
+      <div class="stat" data-reveal><div class="n"><span data-count="6240">0</span></div><div class="l">кейсов автоматизировано / квартал</div></div>
+      <div class="stat" data-reveal style="--d:.08s"><div class="n">−<span data-count="94">0</span>%</div><div class="l">стоимость одного кейса</div></div>
+      <div class="stat" data-reveal style="--d:.16s"><div class="n">×<span data-count="46">0</span></div><div class="l">рост пропускной способности</div></div>
+      <div class="stat" data-reveal style="--d:.24s"><div class="n"><span data-count="3480">0</span>ч</div><div class="l">сэкономлено ≈ 21 FTE/мес</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES BENTO -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec-head" data-reveal><span class="eyebrow">Возможности</span>
+      <h2>Всё для агентов — в одной платформе</h2>
+      <p>От первого промпта до продакшена на миллионы пользователей. Никаких разрозненных инструментов и самописных пайплайнов.</p></div>
+    <div class="bento">
+      <div class="b-card feat col3" data-reveal>
+        <div class="bico" style="background:linear-gradient(135deg,#2fd45f,#1FA03B)"><svg class="ic"><use href="#i-bot"/></svg></div>
+        <h3>Конструктор агентов</h3>
+        <p>Роль, цель, системный промпт, модель и провайдер, температура, навыки и память — агент готов без единой строки кода. Гардрейлы и тест прямо в интерфейсе.</p>
+        <div class="chip-row"><span class="chip">GigaChat · GPT-4o</span><span class="chip">Rules & Guardrails</span><span class="chip">Память</span><span class="chip">Тест агента</span></div>
+      </div>
+      <div class="b-card col3" data-reveal style="--d:.08s">
+        <div class="bico" style="background:linear-gradient(135deg,#2F6FED,#1e57c9)"><svg class="ic"><use href="#i-flow"/></svg></div>
+        <h3>Сценарии drag-and-drop</h3>
+        <p>Собирайте мультиагентные процессы как из кубиков: агенты, инструменты, условия, human-in-the-loop, параллельные ветки и экраны для пользователя.</p>
+        <div class="chip-row"><span class="chip">Crew · Sequential</span><span class="chip">HITL</span><span class="chip">Экраны и виджеты</span></div>
+      </div>
+      <div class="b-card col2" data-reveal>
+        <div class="bico" style="background:linear-gradient(135deg,#8B5CF6,#6f42d6)"><svg class="ic"><use href="#i-eye"/></svg></div>
+        <h3>Видно каждый шаг</h3>
+        <p>Логи, waterfall-трассировка, метрики и стоимость по токенам в реальном времени.</p>
+      </div>
+      <div class="b-card col2" data-reveal style="--d:.08s">
+        <div class="bico" style="background:linear-gradient(135deg,#0E8FC9,#0a6fa0)"><svg class="ic"><use href="#i-layers"/></svg></div>
+        <h3>Библиотеки знаний</h3>
+        <p>Навыки, интеграции, RAG-справочники и Wiki — переиспользуйте, а не переписывайте.</p>
+      </div>
+      <div class="b-card col2" data-reveal style="--d:.16s">
+        <div class="bico" style="background:linear-gradient(135deg,#D98200,#b56b00)"><svg class="ic"><use href="#i-globe"/></svg></div>
+        <h3>Любой канал</h3>
+        <p>Web, мобильное приложение, Telegram, mini-app и виджет — одним переключателем.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="sec-head" data-reveal><span class="eyebrow">Как это работает</span>
+      <h2>От идеи до продакшена — за три шага</h2>
+      <p>Без DevOps-марафона. Платформа берёт на себя инфраструктуру, вы — бизнес-логику.</p></div>
+    <div class="steps">
+      <div class="step" data-reveal><div class="num">01</div><h3>Создайте агента</h3><p>Опишите роль и цель, выберите модель, подключите навыки и инструменты. Проверьте поведение в тесте.</p></div>
+      <div class="step" data-reveal style="--d:.1s"><div class="num">02</div><h3>Соберите сценарий</h3><p>Перетащите шаги во flow: агенты, условия, инструменты и экраны. Задайте триггер и команду агентов.</p></div>
+      <div class="step" data-reveal style="--d:.2s"><div class="num">03</div><h3>Запустите и измерьте</h3><p>Выкатите на нужный канал, следите за CSAT, ROI и SLA. Улучшайте на данных, а не на догадках.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE ROWS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head" data-reveal><span class="eyebrow">Под капотом</span><h2>Инструменты, а не обещания</h2></div>
+
+    <!-- agent builder -->
+    <div class="frow">
+      <div class="fr-copy" data-reveal>
+        <span class="eyebrow"><svg class="ic" style="width:15px;height:15px"><use href="#i-bot"/></svg>Конструктор агентов</span>
+        <h2 style="margin-top:16px">Агент — это конфигурация, а не спринт</h2>
+        <p>Меняйте промпт, температуру и инструменты и сразу видьте эффект. Версионирование, гардрейлы и оценка стоимости встроены.</p>
+        <ul class="fr-list">
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Модель и провайдер в один клик: GigaChat, OpenAI, Anthropic, self-hosted</li>
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Rules, instructions и защита от утечки промпта</li>
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Долговременная память и подключение RAG</li>
+        </ul>
+      </div>
+      <div class="fr-media" data-reveal style="--d:.1s">
+        <div class="panel">
+          <div class="panel-h"><span style="width:26px;height:26px;border-radius:8px;background:rgba(31,160,59,.12);color:var(--brand);display:grid;place-items:center"><svg class="ic" style="width:15px;height:15px"><use href="#i-bot"/></svg></span>Аналитик рынка</div>
+          <div class="panel-b">
+            <div class="agent-hd"><div class="agent-av"><svg class="ic" style="width:24px;height:24px"><use href="#i-bot"/></svg></div><div><b style="font-size:15px">Senior Market Analyst</b><div style="color:var(--ink-2);font-size:12.5px">gpt-4o · 4 инструмента</div></div></div>
+            <div class="field"><div class="fl">Системный промпт</div><div class="fv">Отвечай кратко и только по проверенным источникам…</div></div>
+            <div class="field"><div class="fl">Температура · 0.3</div><div class="slider"></div></div>
+            <div class="chip-row"><span class="chip">Web Search</span><span class="chip">News API</span><span class="chip">RAG</span><span class="chip">Code</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- flow builder -->
+    <div class="frow rev">
+      <div class="fr-copy" data-reveal>
+        <span class="eyebrow"><svg class="ic" style="width:15px;height:15px"><use href="#i-flow"/></svg>Конструктор сценариев</span>
+        <h2 style="margin-top:16px">Сложные процессы — простыми блоками</h2>
+        <p>Перетаскивайте шаги, ветвите логику, вставляйте подтверждение человека и экраны с виджетами. Тест-прогон и версии — до выката в прод.</p>
+        <ul class="fr-list">
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Агенты, инструменты, условия, параллельность, HITL</li>
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Экран «Показать» — набор виджетов с порядком drag-and-drop</li>
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Триггеры: API, расписание, событие, вручную</li>
+        </ul>
+      </div>
+      <div class="fr-media" data-reveal style="--d:.1s">
+        <div class="panel"><div class="panel-h"><span style="width:26px;height:26px;border-radius:8px;background:rgba(47,111,237,.12);color:#2F6FED;display:grid;place-items:center"><svg class="ic" style="width:15px;height:15px"><use href="#i-flow"/></svg></span>Онбординг клиента · Flow</div>
+          <div class="panel-b">
+            <div class="node"><span class="nic" style="background:#2F6FED"><svg class="ic" style="width:18px;height:18px"><use href="#i-globe"/></svg></span><div><b>Приём заявки</b><small>Триггер · webhook</small></div></div>
+            <div class="conn"></div>
+            <div class="node"><span class="nic" style="background:#1FA03B"><svg class="ic" style="width:18px;height:18px"><use href="#i-bot"/></svg></span><div><b>Сбор и валидация анкеты</b><small>Агент · 3 навыка</small></div></div>
+            <div class="conn"></div>
+            <div class="node"><span class="nic" style="background:#D98200"><svg class="ic" style="width:18px;height:18px"><use href="#i-branch"/></svg></span><div><b>Скоринг и решение</b><small>Условие · score &gt; 0.7</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- reports -->
+    <div class="frow">
+      <div class="fr-copy" data-reveal>
+        <span class="eyebrow"><svg class="ic" style="width:15px;height:15px"><use href="#i-gauge"/></svg>Отчёты Value &amp; CSAT</span>
+        <h2 style="margin-top:16px">Доказывайте эффект цифрами</h2>
+        <p>Каждый сценарий считает сэкономленные часы, деньги и ROI. Удовлетворённость (CSAT) — по сценарию и по каждой сессии, с ответами пользователей.</p>
+        <ul class="fr-list">
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>ROI, экономия времени и стоимости — из коробки</li>
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>Сравнение «ручной процесс vs агент»</li>
+          <li><span class="tick"><svg class="ic"><use href="#i-check"/></svg></span>CSAT в % + распределение оценок и комментарии</li>
+        </ul>
+      </div>
+      <div class="fr-media" data-reveal style="--d:.1s">
+        <div class="panel"><div class="panel-h"><span style="width:26px;height:26px;border-radius:8px;background:rgba(224,161,0,.14);color:#D98200;display:grid;place-items:center"><svg class="ic fill" style="width:15px;height:15px"><use href="#i-star"/></svg></span>Value · Онбординг клиента</div>
+          <div class="panel-b">
+            <div class="mk-kpis" style="margin-bottom:16px">
+              <div class="mk-kpi"><div class="l">ROI</div><div class="v" style="color:var(--brand)">×7.4</div></div>
+              <div class="mk-kpi"><div class="l">Экономия</div><div class="v">4.2М ₽</div></div>
+              <div class="mk-kpi"><div class="l">CSAT</div><div class="v">92%</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px 14px">
+              <div><div style="font-family:var(--disp);font-size:26px;font-weight:700">4.6</div><div class="stars-mini">★★★★<span style="color:var(--line)">★</span></div></div>
+              <div style="flex:1">
+                <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-2)"><span style="width:34px">5★</span><div style="flex:1;height:6px;border-radius:4px;background:var(--soft)"><div style="width:68%;height:100%;border-radius:4px;background:var(--brand)"></div></div><b>68%</b></div>
+                <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-2);margin-top:6px"><span style="width:34px">4★</span><div style="flex:1;height:6px;border-radius:4px;background:var(--soft)"><div style="width:21%;height:100%;border-radius:4px;background:var(--brand)"></div></div><b>21%</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="sec"><div class="sec-dark">
+  <span class="blob b2" style="top:-120px;right:-100px"></span>
+  <div class="sec-head" data-reveal style="margin-bottom:40px"><span class="eyebrow" style="background:rgba(47,212,95,.14);border-color:rgba(47,212,95,.3);color:var(--brand-2)">Enterprise & Security</span>
+    <h2 style="color:#fff">Готово к банковскому контуру</h2></div>
+  <div class="sec-grid">
+    <div class="sec-item" data-reveal><span class="si"><svg class="ic"><use href="#i-shield"/></svg></span><div><b>RBAC / ABAC</b><p>Тонкие права по средам и объектам, разделение обязанностей.</p></div></div>
+    <div class="sec-item" data-reveal style="--d:.06s"><span class="si"><svg class="ic"><use href="#i-eye"/></svg></span><div><b>Полный аудит</b><p>Неизменяемый журнал действий и трассировка всех вызовов.</p></div></div>
+    <div class="sec-item" data-reveal style="--d:.12s"><span class="si"><svg class="ic"><use href="#i-lock"/></svg></span><div><b>Шифрование секретов</b><p>AES-256, Vault, маскирование PII в логах.</p></div></div>
+    <div class="sec-item" data-reveal style="--d:.18s"><span class="si"><svg class="ic"><use href="#i-cpu"/></svg></span><div><b>On-prem и GigaChat</b><p>Приватные модели для чувствительных данных.</p></div></div>
+    <div class="sec-item" data-reveal style="--d:.24s"><span class="si"><svg class="ic"><use href="#i-check"/></svg></span><div><b>Гардрейлы и evals</b><p>Контроль качества и рисков LLM до прод-выката.</p></div></div>
+    <div class="sec-item" data-reveal style="--d:.3s"><span class="si"><svg class="ic"><use href="#i-shield"/></svg></span><div><b>152-ФЗ и объяснимость</b><p>Соответствие требованиям и прозрачность решений.</p></div></div>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" style="background:var(--soft)"><div class="wrap">
+  <div class="sec-head" data-reveal><span class="eyebrow">Что говорят команды</span><h2>Внедрять стало быстрее в разы</h2></div>
+  <div class="quotes">
+    <div class="quote" data-reveal><span class="stars-mini">★★★★★</span><p>«Раньше на одного агента уходил спринт. Теперь — до обеда, и сразу с трассировкой и метриками.»</p><div class="who"><div class="av">ПО</div><div><b>Product Owner</b><small>Розничный блок</small></div></div></div>
+    <div class="quote" data-reveal style="--d:.1s"><span class="stars-mini">★★★★★</span><p>«Flow-конструктор понятен аналитикам без разработки. Мы собрали онбординг за день и вынесли на три канала.»</p><div class="who"><div class="av">РА</div><div><b>Руководитель аналитики</b><small>Клиентский путь</small></div></div></div>
+    <div class="quote" data-reveal style="--d:.2s"><span class="stars-mini">★★★★<span style="color:var(--line)">★</span></span><p>«Value-отчёты сняли вечный спор об эффекте: ROI и CSAT видно в одном экране.»</p><div class="who"><div class="av">ФД</div><div><b>Финансовый директор</b><small>Дивизион</small></div></div></div>
+  </div>
+</div></section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing"><div class="wrap">
+  <div class="sec-head" data-reveal><span class="eyebrow">Тарифы</span><h2>Начните с малого — масштабируйтесь без переписывания</h2>
+    <p>Оплата за использование, прозрачные лимиты и бюджеты. Enterprise — под контур и SLA.</p></div>
+  <div class="pricing">
+    <div class="price" data-reveal>
+      <div class="tag">Старт</div><div class="amt">0 ₽</div><div class="per">для пилота · до 3 агентов</div>
+      <ul class="pr-list">
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Конструктор агентов и сценариев</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>1 канал (Web-чат)</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Базовая наблюдаемость</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Библиотека навыков</li>
+      </ul>
+      <a class="btn btn-outline" style="width:100%;justify-content:center" href="auth.html">Попробовать</a>
+    </div>
+    <div class="price pop" data-reveal style="--d:.08s">
+      <span class="badge-pop">Популярный</span>
+      <div class="tag">Бизнес</div><div class="amt">по запросу</div><div class="per">команды и отделы</div>
+      <ul class="pr-list">
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Всё из «Старт» +</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Все каналы: Web, Mobile, Telegram, mini-app</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Value & CSAT-отчёты</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Внешние агенты (A2A), RAG-справочники</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Роли и лимиты бюджета</li>
+      </ul>
+      <a class="btn btn-primary" style="width:100%;justify-content:center" href="index.html">Смотреть демо</a>
+    </div>
+    <div class="price" data-reveal style="--d:.16s">
+      <div class="tag">Enterprise</div><div class="amt">индивидуально</div><div class="per">банковский контур</div>
+      <ul class="pr-list">
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>Всё из «Бизнес» +</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>On-prem / private LLM, SSO, SCIM</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>RBAC/ABAC, аудит, гардрейлы, evals</li>
+        <li class="pr-li"><svg class="ic"><use href="#i-check"/></svg>SLA и выделенная поддержка</li>
+      </ul>
+      <a class="btn btn-outline" style="width:100%;justify-content:center" href="auth.html">Связаться</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="sec" style="padding-top:20px"><div class="cta">
+  <span class="blob b1" style="top:-140px;left:20%"></span><span class="blob b2" style="bottom:-160px;right:10%"></span>
+  <div data-reveal>
+    <h2>Готовы запустить своих агентов?</h2>
+    <p>Откройте демо-панель или войдите — и соберите первого агента уже сегодня.</p>
+    <div class="hero-cta" style="justify-content:center;margin-top:30px">
+      <a class="btn btn-primary" href="index.html"><svg class="ic"><use href="#i-play"/></svg>Открыть демо-панель</a>
+      <a class="btn btn-ghost" href="auth.html">Войти в аккаунт<svg class="ic"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="landing.html"><span class="logo"><svg class="ic"><use href="#i-hex"/></svg></span><span><b>AI UCP</b><small>Agent Platform</small></span></a>
+      <p>Платформа для создания, оркестрации и масштабирования AI-агентов в enterprise-контуре.</p>
+    </div>
+    <div><h4>Продукт</h4><a href="#features">Возможности</a><a href="index.html">Демо-панель</a><a href="#pricing">Тарифы</a><a href="ui-kit.html">UI Kit</a></div>
+    <div><h4>Платформа</h4><a href="agents-list.html">Агенты</a><a href="scenarios-list.html">Сценарии</a><a href="observability.html">Наблюдаемость</a><a href="knowledge-bases.html">Знания</a></div>
+    <div><h4>Компания</h4><a href="organization.html">Организация</a><a href="wiki.html">Wiki</a><a href="auth.html">Войти</a></div>
+  </div>
+  <div class="foot-bot"><span>© 2026 AI UCP · Sber AI Platform</span><span>Демонстрационный прототип · все данные вымышлены</span></div>
+</div></footer>
+
+<script>
+(function(){
+  // scroll reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el);});
+
+  // nav scrolled
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>40);};
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+
+  // hero blob parallax
+  var blobs=document.querySelectorAll('.hero [data-par]');
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.addEventListener('mousemove',function(ev){
+      var x=(ev.clientX/window.innerWidth-.5),y=(ev.clientY/window.innerHeight-.5);
+      blobs.forEach(function(b){var p=parseFloat(b.getAttribute('data-par'))*60;b.style.transform='translate('+(x*p)+'px,'+(y*p)+'px)';});
+    });
+  }
+
+  // count-up
+  var counted=new WeakSet();
+  var fmt=function(n){return n>=1000?n.toLocaleString('ru-RU'):n;};
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting||counted.has(e.target))return;counted.add(e.target);
+    var el=e.target,target=+el.getAttribute('data-count'),dur=1400,t0=null;
+    var step=function(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1);var eased=1-Math.pow(1-p,3);
+      el.textContent=fmt(Math.round(target*eased));if(p<1)requestAnimationFrame(step);};
+    requestAnimationFrame(step);
+  });},{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
+})();
+</script>
+</body>
+</html>

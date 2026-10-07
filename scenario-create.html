@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Создание сценария · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="scenarios-list">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><a href="scenarios-list.html">Сценарии</a><i data-lucide="chevron-right" class="i"></i><span>Новый сценарий</span></div>
+          <h1>Создание сценария</h1><p class="ph-sub">Задайте основные параметры и команду. Логику шагов настроите в flow-конструкторе.</p></div>
+        <div class="page-actions"><button class="btn btn-outline" data-toast="info|Черновик|Сохранён как черновик"><i data-lucide="save"></i>Черновик</button>
+          <a href="scenarios.html" class="btn btn-primary"><i data-lucide="arrow-right"></i>К конструктору</a></div>
+      </div>
+
+      <div class="steps mb-3" style="max-width:640px">
+        <div class="step active">Основное</div><div class="step">Триггер</div><div class="step">Команда</div><div class="step">Flow</div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+        <div class="flex col" style="gap:18px">
+          <div class="card"><div class="card-head"><i data-lucide="info" class="i muted"></i><h3>Основное</h3></div><div class="card-body">
+            <div class="field"><label class="label">Название сценария <span class="req">*</span></label><input class="input" placeholder="Например: Онбординг клиента"></div>
+            <div class="field"><label class="label">Описание</label><textarea class="textarea" data-count="#dc" placeholder="Что делает сценарий и когда запускается"></textarea><div class="char-count"><span id="dc">0</span> / 400</div></div>
+            <div class="field tight"><label class="label">Тип оркестрации</label>
+              <div class="grid g-3">
+                <label class="opt-card"><input type="radio" name="orc" checked><div><b>Crew</b><div class="muted t-xs">Мультиагентная команда</div></div></label>
+                <label class="opt-card"><input type="radio" name="orc"><div><b>Sequential</b><div class="muted t-xs">Строго по шагам</div></div></label>
+                <label class="opt-card"><input type="radio" name="orc"><div><b>Hierarchical</b><div class="muted t-xs">Менеджер + исполнители</div></div></label>
+              </div></div>
+          </div></div>
+
+          <div class="card"><div class="card-head"><i data-lucide="zap" class="i muted"></i><h3>Триггер запуска</h3></div><div class="card-body">
+            <div class="field"><label class="label">Способ запуска</label>
+              <div class="flex col gap-sm">
+                <label class="radio"><input type="radio" name="trg" checked><span class="box"></span><span class="opt-txt"><b>API / вебхук</b><span>POST на эндпоинт с входными данными</span></span></label>
+                <label class="radio"><input type="radio" name="trg"><span class="box"></span><span class="opt-txt"><b>По расписанию (cron)</b><span>Регулярный автозапуск</span></span></label>
+                <label class="radio"><input type="radio" name="trg"><span class="box"></span><span class="opt-txt"><b>Событие в очереди</b><span>Реакция на сообщение из брокера</span></span></label>
+                <label class="radio"><input type="radio" name="trg"><span class="box"></span><span class="opt-txt"><b>Вручную</b><span>Запуск оператором из панели</span></span></label>
+              </div></div>
+            <div class="field tight"><label class="label">Эндпоинт</label><div class="input-group affix"><span class="input-affix pre">POST /run/</span><input class="input left" value="onboarding"></div></div>
+          </div></div>
+
+          <div class="card"><div class="card-head"><i data-lucide="users" class="i muted"></i><h3>Команда агентов</h3><a href="agents-list.html" class="btn btn-ghost btn-sm spacer">Каталог<i data-lucide="arrow-right"></i></a></div><div class="card-body">
+            <div class="flex col gap-sm">
+              <label class="opt-card sel"><input type="checkbox" checked><div class="kpi-ic g" style="width:34px;height:34px"><i data-lucide="bot" class="i-sm"></i></div><div class="f1"><b>Онбординг-ассистент</b><div class="muted t-xs">gpt-4o · сбор анкеты</div></div><span class="badge badge-purple">Менеджер</span></label>
+              <label class="opt-card sel"><input type="checkbox" checked><div class="kpi-ic b" style="width:34px;height:34px"><i data-lucide="calculator" class="i-sm"></i></div><div class="f1"><b>Скоринг-агент</b><div class="muted t-xs">GigaChat-Pro · решение</div></div></label>
+              <label class="opt-card"><input type="checkbox"><div class="kpi-ic a" style="width:34px;height:34px"><i data-lucide="file-search" class="i-sm"></i></div><div class="f1"><b>Проверка документов</b><div class="muted t-xs">OCR · валидация</div></div></label>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="flex col" style="gap:18px;position:sticky;top:80px">
+          <div class="card"><div class="card-head"><h3>Сводка</h3><span class="badge badge-purple spacer">Черновик</span></div><div class="card-body">
+            <dl class="kv"><dt>Тип</dt><dd>Crew</dd><dt>Триггер</dt><dd>API / вебхук</dd><dt>Агентов</dt><dd>2</dd><dt>Шагов</dt><dd>—</dd></dl>
+            <div class="divider"></div>
+            <a href="scenarios.html" class="btn btn-primary btn-block"><i data-lucide="workflow"></i>Собрать flow</a>
+          </div></div>
+          <div class="card"><div class="card-body"><div class="callout" style="background:var(--brand-050);border:1px solid var(--brand-100);border-radius:12px;padding:12px 14px;margin:0"><b class="t-sm row" style="gap:6px;color:var(--brand-700)"><i data-lucide="lightbulb" class="i-sm"></i>Совет</b><p class="t-sm mt-1" style="margin:0">Для Crew назначьте одного агента менеджером — он координирует остальных.</p></div></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

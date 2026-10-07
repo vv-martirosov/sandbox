@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Реестр виджетов · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="stylesheet" href="assets/widgets.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+  .wg-card{display:flex;flex-direction:column;overflow:hidden}
+  .wg-prev{background:var(--k-white);color:var(--k-text);padding:16px;border-bottom:1px solid var(--border);min-height:140px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;font-family:var(--k-font)}
+  .wg-meta{padding:13px 15px;display:flex;flex-direction:column;gap:9px}
+  .wg-cat{display:none}
+</style>
+</head>
+<body>
+<div class="app" data-page="widget-registry">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>База знаний</span><i data-lucide="chevron-right" class="i"></i><span>Реестр виджетов</span></div>
+          <h1>Реестр виджетов</h1><p class="ph-sub">Изолированная библиотека UI-компонентов (слой <span class="mono">.k-*</span> + <span class="mono">widgets.css</span>) для быстрой сборки экранов мобильного приложения. Каждый виджет самодостаточен и подгружается отдельно.</p></div>
+        <div class="page-actions"><a href="widget-screen-preview.html" class="btn btn-outline"><i data-lucide="smartphone"></i>Конструктор экрана</a>
+          <button class="btn btn-primary" data-modal="mWg"><i data-lucide="plus"></i>Создать виджет</button></div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="layout-grid" class="i"></i></div><span class="kpi-label">Компонентов</span></div><div class="kpi-val num" id="kTotal">—</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="folders" class="i"></i></div><span class="kpi-label">Категорий</span></div><div class="kpi-val num" id="kCats">—</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="file-code-2" class="i"></i></div><span class="kpi-label">CSS-слой</span></div><div class="kpi-val num" style="font-size:19px">widgets.css</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="smartphone" class="i"></i></div><span class="kpi-label">Экран</span></div><div class="kpi-val num" style="font-size:19px">393 px</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input id="wSearch" placeholder="Поиск виджета или класса…"></div>
+        <div class="pills" id="wCats"><span class="pill active" data-cat="all">Все</span></div>
+        <div class="seg k-theme-seg spacer" id="wTheme"><button class="active" type="button" data-theme="light"><i data-lucide="sun"></i>Светлая</button><button type="button" data-theme="dark"><i data-lucide="moon"></i>Тёмная</button></div>
+      </div>
+
+      <div class="wgrid" id="wGrid"></div>
+      <p class="empty" id="wEmpty" hidden>Ничего не найдено.</p>
+    </div>
+  </main>
+</div>
+
+<template id="mWg" data-lg="1">
+  <div class="modal-head"><i data-lucide="layout-grid" class="i"></i><h3>Новый виджет</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Название <span class="req">*</span></label><input class="input" placeholder="Например: Карточка курса"></div>
+    <div class="field"><label class="label">Категория</label><select class="select" id="mWgCat"></select></div>
+    <div class="field tight"><label class="label">Область видимости</label>
+      <div class="grid g-2">
+        <label class="opt-card"><input type="radio" name="scope" checked><div class="kpi-ic b" style="width:32px;height:32px"><i data-lucide="globe" class="i-sm"></i></div><div><b>Общий</b><div class="muted t-xs">Доступен команде</div></div></label>
+        <label class="opt-card"><input type="radio" name="scope"><div class="kpi-ic a" style="width:32px;height:32px"><i data-lucide="user" class="i-sm"></i></div><div><b>Только личный</b><div class="muted t-xs">Виден только вам</div></div></label>
+      </div></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Создано|Виджет добавлен в реестр"><i data-lucide="check"></i>Создать</button></div>
+</template>
+
+<script src="assets/vendor/Sortable.min.js"></script>
+<script src="assets/widgets.js"></script>
+<script src="assets/app.js"></script>
+<script>
+window.addEventListener('shell:ready', () => {
+  const K = window.KWidgets; const grid = document.getElementById('wGrid');
+  document.getElementById('kTotal').textContent = K.list.length;
+  document.getElementById('kCats').textContent = Object.keys(K.cats).length;
+
+  // категории-фильтры
+  const catsEl = document.getElementById('wCats');
+  Object.entries(K.cats).forEach(([key,label])=>{ const s=document.createElement('span'); s.className='pill'; s.dataset.cat=key; s.textContent=label; catsEl.appendChild(s); });
+  const mc = document.getElementById('mWgCat'); if(mc) mc.innerHTML = Object.entries(K.cats).map(([k,l])=>`<option value="${k}">${l}</option>`).join('');
+
+  // карточки
+  grid.innerHTML = K.list.map(w=>`
+    <div class="card wg-card" data-w="${w.key}" data-cat="${w.cat}" data-hay="${(w.name+' '+w.cls+' '+w.key).toLowerCase()}">
+      <div class="wg-prev">${w.html}</div>
+      <div class="wg-meta">
+        <div class="row between"><b>${w.name}</b><span class="badge badge-neutral">${K.cats[w.cat]}</span></div>
+        <div class="row between"><code class="mono t-xs" style="color:var(--text-3)">${w.cls}</code>
+          <div class="row gap-sm">
+            <button class="btn btn-ghost btn-sm" data-copy="${w.key}"><i data-lucide="copy"></i>HTML</button>
+            <a class="btn btn-outline btn-sm" href="widget-screen-preview.html#add=${w.key}"><i data-lucide="plus"></i>На экран</a>
+          </div></div>
+      </div>
+    </div>`).join('');
+  K.enhance(grid); if (window.lucide) lucide.createIcons();
+
+  // фильтрация
+  let cat='all', q='';
+  const apply=()=>{ let shown=0; document.querySelectorAll('#wGrid .wg-card').forEach(c=>{
+      const ok=(cat==='all'||c.dataset.cat===cat) && (!q||c.dataset.hay.includes(q)); c.hidden=!ok; if(ok)shown++; });
+    document.getElementById('wEmpty').hidden = shown>0; };
+  catsEl.addEventListener('click',e=>{ const p=e.target.closest('[data-cat]'); if(!p)return;
+    catsEl.querySelectorAll('.pill').forEach(x=>x.classList.toggle('active',x===p)); cat=p.dataset.cat; apply(); });
+  document.getElementById('wSearch').addEventListener('input',e=>{ q=e.target.value.trim().toLowerCase().replace(/^\./,''); apply(); });
+
+  // копирование HTML
+  grid.addEventListener('click',e=>{ const b=e.target.closest('[data-copy]'); if(!b)return;
+    const html=K.render(b.dataset.copy);
+    try{ navigator.clipboard.writeText(html); }catch(_){}
+    CrewUI.toast('ok','Скопировано','HTML виджета в буфере обмена'); });
+
+  // переключатель светлой / тёмной темы виджетов
+  document.getElementById('wTheme').addEventListener('click', e => { const b=e.target.closest('button'); if(!b)return;
+    document.querySelectorAll('#wTheme button').forEach(x=>x.classList.toggle('active',x===b));
+    if(b.dataset.theme==='dark') grid.setAttribute('data-k-theme','dark'); else grid.removeAttribute('data-k-theme');
+    if(window.lucide) lucide.createIcons(); });
+});
+</script>
+</body>
+</html>

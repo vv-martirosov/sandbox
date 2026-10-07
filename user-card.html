@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карточка пользователя · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="users">
+  <main class="main">
+    <div class="page">
+      <div class="breadcrumb mb-2"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><a href="users.html">Пользователи</a><i data-lucide="chevron-right" class="i"></i><span>Алексей Петров</span></div>
+
+      <!-- Header card -->
+      <div class="card mb-3"><div class="card-body row wrap" style="gap:20px;align-items:center">
+        <div class="avatar xl" style="background:#e9f0fe;color:#245fce">АП<span class="avatar-status on" style="width:16px;height:16px;bottom:2px;right:2px"></span></div>
+        <div class="f1" style="min-width:220px">
+          <div class="row" style="gap:10px"><h1 style="font-size:22px">Алексей Петров</h1><span class="badge badge-info"><i data-lucide="code" class="i-sm"></i>Разработчик</span><span class="badge badge-ok dot">Активен</span></div>
+          <div class="row wrap gap-lg mt-1 muted t-sm">
+            <span class="row" style="gap:6px"><i data-lucide="mail" class="i-sm"></i>a.petrov@sber.ru</span>
+            <span class="row" style="gap:6px"><i data-lucide="building" class="i-sm"></i>Департамент AI-платформ</span>
+            <span class="row" style="gap:6px"><i data-lucide="map-pin" class="i-sm"></i>Москва</span>
+            <span class="row" style="gap:6px"><i data-lucide="calendar" class="i-sm"></i>С нами с марта 2025</span>
+          </div>
+        </div>
+        <div class="row gap-sm">
+          <button class="btn btn-outline"><i data-lucide="message-square"></i>Написать</button>
+          <button class="btn btn-outline" data-toast="info|Сброс|Ссылка отправлена"><i data-lucide="key-round"></i>Сбросить пароль</button>
+          <button class="btn btn-primary"><i data-lucide="pencil"></i>Редактировать</button>
+        </div>
+      </div></div>
+
+      <div class="grid" style="grid-template-columns:300px 1fr;align-items:start">
+        <!-- LEFT: quick facts -->
+        <div class="flex col" style="gap:18px">
+          <div class="card"><div class="card-head"><h3>Сводка</h3></div><div class="card-body">
+            <dl class="kv">
+              <dt>ID</dt><dd class="mono">usr_4c02a</dd>
+              <dt>Роль</dt><dd>Разработчик</dd>
+              <dt>Отдел</dt><dd>AI-платформа</dd>
+              <dt>2FA</dt><dd><span class="badge badge-ok dot">Вкл</span></dd>
+              <dt>Статус</dt><dd><span class="status s-ok">Активен</span></dd>
+              <dt>Последний вход</dt><dd>12 мин назад</dd>
+            </dl>
+          </div></div>
+          <div class="card"><div class="card-head"><h3>Использование</h3></div><div class="card-body">
+            <div class="row between mb-1"><span class="muted t-sm">Запусков за месяц</span><b class="num">1 240</b></div>
+            <div class="progress mb-2"><span style="width:62%"></span></div>
+            <div class="row between mb-1"><span class="muted t-sm">Токенов</span><b class="num">2.1M</b></div>
+            <div class="progress mb-2"><span class="b2" style="width:41%"></span></div>
+            <div class="row between mb-1"><span class="muted t-sm">Создано агентов</span><b class="num">6</b></div>
+            <div class="progress"><span class="warn" style="width:30%"></span></div>
+          </div></div>
+        </div>
+
+        <!-- RIGHT: tabs -->
+        <div>
+          <div class="tabs" data-tabs>
+            <button class="active" data-tab="perm"><i data-lucide="shield-check" class="i"></i>Права доступа</button>
+            <button data-tab="act"><i data-lucide="activity" class="i"></i>Активность</button>
+            <button data-tab="sess"><i data-lucide="monitor" class="i"></i>Сессии</button>
+            <button data-tab="keys"><i data-lucide="key-round" class="i"></i>API-ключи</button>
+          </div>
+
+          <!-- permissions -->
+          <div data-panel="perm" class="card"><div class="card-head"><h3>Матрица прав</h3><span class="badge badge-info spacer">Роль: Разработчик</span></div>
+            <div class="table-wrap"><table class="tbl">
+              <thead><tr><th>Ресурс</th><th class="tac">Просмотр</th><th class="tac">Создание</th><th class="tac">Изменение</th><th class="tac">Удаление</th></tr></thead>
+              <tbody>
+                <tr><td class="t-primary">Агенты</td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td></tr>
+                <tr><td class="t-primary">Сценарии</td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td></tr>
+                <tr><td class="t-primary">Логи и трассы</td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td></tr>
+                <tr><td class="t-primary">Пользователи</td><td class="tac"><i data-lucide="check" class="i" style="color:var(--ok)"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td></tr>
+                <tr><td class="t-primary">Настройки платформы</td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td><td class="tac"><i data-lucide="minus" class="i muted"></i></td></tr>
+              </tbody>
+            </table></div>
+            <div class="card-foot"><i data-lucide="info" class="i muted"></i><span class="muted t-sm">Права наследуются от роли. Индивидуальные исключения — по запросу владельца.</span></div>
+          </div>
+
+          <!-- activity -->
+          <div data-panel="act" class="hide card"><div class="card-head"><h3>Лента активности</h3></div><div class="card-body">
+            <div class="timeline">
+              <div class="tl-item ok"><div class="row between"><b class="t-sm">Опубликовал агента «Скоринг v3»</b><span class="tl-time">2 ч</span></div><div class="muted t-sm">Изменена температура и системный промпт</div></div>
+              <div class="tl-item"><div class="row between"><b class="t-sm">Запустил сценарий «Онбординг»</b><span class="tl-time">4 ч</span></div><div class="muted t-sm">6 240 кейсов · success 98%</div></div>
+              <div class="tl-item"><div class="row between"><b class="t-sm">Подключил интеграцию CRM API</b><span class="tl-time">вчера</span></div><div class="muted t-sm">OAuth 2.0 · scope read</div></div>
+              <div class="tl-item err"><div class="row between"><b class="t-sm">Ошибка деплоя навыка</b><span class="tl-time">2 дня</span></div><div class="muted t-sm">«Web Search v2» — таймаут сборки</div></div>
+              <div class="tl-item"><div class="row between"><b class="t-sm">Вход с нового устройства</b><span class="tl-time">3 дня</span></div><div class="muted t-sm">Chrome · macOS · Москва</div></div>
+            </div>
+          </div></div>
+
+          <!-- sessions -->
+          <div data-panel="sess" class="hide card"><div class="card-head"><h3>Активные сессии входа</h3>
+            <button class="btn btn-danger-soft btn-sm spacer" data-toast="warn|Готово|Все сессии завершены">Завершить все</button></div>
+            <div class="table-wrap"><table class="tbl">
+              <thead><tr><th>Устройство</th><th>Расположение</th><th>IP</th><th>Активность</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="cell-user"><i data-lucide="chrome" class="i"></i><div><div class="t-primary">Chrome · macOS</div><div class="t-sub">Текущая сессия</div></div></td><td>Москва, RU</td><td class="mono t-sub">10.0.12.44</td><td><span class="status s-ok">сейчас</span></td><td><span class="badge badge-ok">Эта</span></td></tr>
+                <tr><td class="cell-user"><i data-lucide="smartphone" class="i"></i><div class="t-primary">iOS · Safari</div></td><td>Москва, RU</td><td class="mono t-sub">10.0.18.9</td><td class="t-sub">3 ч назад</td><td><button class="btn btn-ghost btn-sm">Выйти</button></td></tr>
+                <tr><td class="cell-user"><i data-lucide="monitor" class="i"></i><div class="t-primary">Firefox · Windows</div></td><td>СПб, RU</td><td class="mono t-sub">10.0.31.2</td><td class="t-sub">2 дня назад</td><td><button class="btn btn-ghost btn-sm">Выйти</button></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+
+          <!-- keys -->
+          <div data-panel="keys" class="hide card"><div class="card-head"><h3>API-ключи</h3>
+            <button class="btn btn-primary btn-sm spacer" data-toast="ok|Ключ создан|Скопируйте — он показывается один раз"><i data-lucide="plus"></i>Новый ключ</button></div>
+            <div class="table-wrap"><table class="tbl">
+              <thead><tr><th>Название</th><th>Ключ</th><th>Scope</th><th>Создан</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="t-primary">Прод-интеграция</td><td class="mono t-sub">sk-••••••3f8a</td><td><span class="tag">read · write</span></td><td class="t-sub">12.03.2025</td><td><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></td></tr>
+                <tr><td class="t-primary">Локальная разработка</td><td class="mono t-sub">sk-••••••9c21</td><td><span class="tag">read</span></td><td class="t-sub">01.08.2026</td><td><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

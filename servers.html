@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сервера · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .uptime{display:flex;gap:2px;align-items:flex-end;height:26px}
+  .uptime span{width:4px;border-radius:1px;background:var(--ok)}
+  .uptime span.w{background:var(--warn)}.uptime span.d{background:var(--danger)}
+  .mini-gauge{width:34px;height:34px}
+</style>
+</head>
+<body>
+<div class="app" data-page="servers">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Интерфейсы</span><i data-lucide="chevron-right" class="i"></i><span>Сервера</span></div>
+          <h1 class="row" style="gap:10px">Сервера <span class="badge badge-ok dot" style="vertical-align:middle">Все системы в норме</span></h1>
+          <p class="ph-sub">Инфраструктура платформы и мониторинг доступности: статус, нагрузка и uptime за 24 часа.</p></div>
+        <div class="page-actions"><div class="seg"><button>1ч</button><button class="active">24ч</button><button>7д</button></div>
+          <button class="btn btn-outline"><i data-lucide="refresh-cw"></i>Обновить</button>
+          <button class="btn btn-primary" data-modal="mSrv"><i data-lucide="plus"></i>Добавить сервер</button></div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="server" class="i"></i></div><span class="kpi-label">Серверов</span></div><div class="kpi-val num">14</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="check-circle" class="i"></i></div><span class="kpi-label">Онлайн</span></div><div class="kpi-val num">12</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="alert-triangle" class="i"></i></div><span class="kpi-label">Деградация</span></div><div class="kpi-val num">1</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic r"><i data-lucide="x-circle" class="i"></i></div><span class="kpi-label">Офлайн</span></div><div class="kpi-val num">1</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск по имени, роли, региону…"></div>
+        <div class="pills"><span class="pill active">Все</span><span class="pill">Онлайн</span><span class="pill">Деградация</span><span class="pill">Офлайн</span></div>
+        <div class="spacer"></div>
+        <select class="select" style="width:170px"><option>Все регионы</option><option>Москва (M9)</option><option>СПб</option><option>Владимир</option></select>
+      </div>
+
+      <div class="card"><div class="table-wrap"><table class="tbl">
+        <thead><tr><th>Сервер</th><th>Роль</th><th>Регион</th><th>Статус</th><th>Uptime 30д</th><th>CPU</th><th>RAM</th><th>Latency</th><th>Доступность 24ч</th><th></th></tr></thead>
+        <tbody>
+          <tr><td class="cell-user"><i data-lucide="server" class="i" style="color:var(--c1)"></i><div><div class="t-primary mono">gw-prod-01</div><div class="t-sub">Gateway</div></div></td>
+            <td><span class="badge badge-neutral">API Gateway</span></td><td>Москва (M9)</td><td><span class="status s-ok">Онлайн</span></td>
+            <td class="num">99.99%</td>
+            <td><div class="progress thin" style="width:60px"><span style="width:38%"></span></div></td>
+            <td><div class="progress thin" style="width:60px"><span class="b2" style="width:54%"></span></div></td>
+            <td class="num">12ms</td>
+            <td><div class="uptime"><span style="height:26px"></span><span style="height:24px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span style="height:26px"></span><span style="height:26px"></span></div></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="srvMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td class="cell-user"><i data-lucide="server" class="i" style="color:var(--c1)"></i><div><div class="t-primary mono">orch-prod-01</div><div class="t-sub">Оркестратор</div></div></td>
+            <td><span class="badge badge-neutral">Orchestrator</span></td><td>Москва (M9)</td><td><span class="status s-ok">Онлайн</span></td>
+            <td class="num">99.97%</td>
+            <td><div class="progress thin" style="width:60px"><span style="width:42%"></span></div></td>
+            <td><div class="progress thin" style="width:60px"><span class="b2" style="width:61%"></span></div></td>
+            <td class="num">8ms</td>
+            <td><div class="uptime"><span style="height:26px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span></div></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="srvMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td class="cell-user"><i data-lucide="cpu" class="i" style="color:var(--c1)"></i><div><div class="t-primary mono">gpu-pool-03</div><div class="t-sub">LLM inference</div></div></td>
+            <td><span class="badge badge-purple">GPU-пул</span></td><td>Владимир</td><td><span class="status s-warn">Деградация</span></td>
+            <td class="num">99.41%</td>
+            <td><div class="progress thin" style="width:60px"><span class="warn" style="width:88%"></span></div></td>
+            <td><div class="progress thin" style="width:60px"><span class="warn" style="width:82%"></span></div></td>
+            <td class="num">140ms</td>
+            <td><div class="uptime"><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span class="w" style="height:20px"></span><span class="w" style="height:18px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span class="w" style="height:20px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span class="w" style="height:19px"></span><span style="height:26px"></span></div></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="srvMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td class="cell-user"><i data-lucide="database" class="i" style="color:var(--c1)"></i><div><div class="t-primary mono">vecdb-01</div><div class="t-sub">Qdrant</div></div></td>
+            <td><span class="badge badge-neutral">Vector DB</span></td><td>Москва (M9)</td><td><span class="status s-ok">Онлайн</span></td>
+            <td class="num">99.95%</td>
+            <td><div class="progress thin" style="width:60px"><span style="width:35%"></span></div></td>
+            <td><div class="progress thin" style="width:60px"><span class="warn" style="width:74%"></span></div></td>
+            <td class="num">22ms</td>
+            <td><div class="uptime"><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:26px"></span></div></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="srvMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td class="cell-user"><i data-lucide="server-off" class="i" style="color:var(--danger)"></i><div><div class="t-primary mono">worker-dev-07</div><div class="t-sub">Tool-раннер</div></div></td>
+            <td><span class="badge badge-neutral">Worker</span></td><td>СПб</td><td><span class="status s-err">Офлайн</span></td>
+            <td class="num">96.20%</td>
+            <td><div class="progress thin" style="width:60px"><span class="danger" style="width:0%"></span></div></td>
+            <td><div class="progress thin" style="width:60px"><span class="danger" style="width:0%"></span></div></td>
+            <td class="num muted">—</td>
+            <td><div class="uptime"><span style="height:26px"></span><span style="height:25px"></span><span style="height:26px"></span><span class="w" style="height:18px"></span><span class="d" style="height:10px"></span><span class="d" style="height:10px"></span><span class="d" style="height:10px"></span><span class="d" style="height:10px"></span><span style="height:26px"></span><span style="height:26px"></span><span style="height:24px"></span><span style="height:26px"></span><span class="w" style="height:18px"></span><span class="d" style="height:10px"></span><span class="d" style="height:10px"></span><span class="d" style="height:10px"></span></div></td>
+            <td><div class="row-actions"><button class="btn btn-primary btn-sm" data-toast="info|Перезапуск|Сервер перезапускается…"><i data-lucide="power"></i></button><button class="tb-btn" style="width:30px;height:30px" data-menu="srvMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+        </tbody>
+      </table></div>
+      <div class="card-foot"><span class="muted t-sm">Показано 5 из 14</span>
+        <div class="spacer row gap-lg t-xs muted"><span class="row" style="gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--ok)"></span>Онлайн</span>
+          <span class="row" style="gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--warn)"></span>Деградация</span>
+          <span class="row" style="gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--danger)"></span>Недоступен</span></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mSrv">
+  <div class="modal-head"><i data-lucide="server" class="i"></i><h3>Добавить сервер в мониторинг</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Имя <span class="req">*</span></label><input class="input mono" placeholder="worker-prod-08"></div>
+    <div class="form-grid">
+      <div class="field"><label class="label">Роль</label><select class="select"><option>Worker</option><option>Gateway</option><option>Orchestrator</option><option>GPU-пул</option><option>Vector DB</option></select></div>
+      <div class="field"><label class="label">Регион</label><select class="select"><option>Москва (M9)</option><option>СПб</option><option>Владимир</option></select></div>
+    </div>
+    <div class="field"><label class="label">Health-check URL</label><div class="input-group affix"><span class="input-affix pre">https://</span><input class="input left mono" placeholder="host:port/healthz"></div></div>
+    <div class="field tight"><label class="label">Интервал проверки</label><div class="seg"><button>10с</button><button class="active">30с</button><button>60с</button></div></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Добавлено|Сервер поставлен на мониторинг"><i data-lucide="check"></i>Добавить</button></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

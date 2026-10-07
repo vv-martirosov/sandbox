@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Новая запись Wiki · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .editor-toolbar{display:flex;flex-wrap:wrap;gap:2px;padding:8px;border:1px solid var(--border-strong);border-bottom:none;border-radius:10px 10px 0 0;background:var(--surface-2)}
+  .etb{width:34px;height:34px;border-radius:7px;display:grid;place-items:center;color:var(--text-2);cursor:pointer}
+  .etb:hover{background:var(--surface-3);color:var(--text)}
+  .etb-sep{width:1px;background:var(--border);margin:4px 3px}
+  .editor-area{min-height:360px;border-radius:0 0 10px 10px;border:1px solid var(--border-strong);padding:16px 18px;font-size:14.5px;line-height:1.65;outline:none}
+  .editor-area:focus{border-color:var(--brand);box-shadow:var(--ring)}
+  .editor-area h2{font-size:20px;margin:14px 0 8px}
+</style>
+</head>
+<body>
+<div class="app" data-page="wiki">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><a href="wiki.html">Wiki</a><i data-lucide="chevron-right" class="i"></i><span>Новая запись</span></div>
+          <h1>Новая запись Wiki</h1><p class="ph-sub">Создайте статью базы знаний. Поддерживается форматирование, вложения и шаблоны.</p></div>
+        <div class="page-actions"><button class="btn btn-ghost"><i data-lucide="eye"></i>Предпросмотр</button>
+          <button class="btn btn-outline" data-toast="info|Черновик|Сохранено как черновик"><i data-lucide="save"></i>Черновик</button>
+          <button class="btn btn-primary" data-toast="ok|Опубликовано|Запись добавлена в Wiki"><i data-lucide="send"></i>Опубликовать</button></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+        <!-- editor -->
+        <div class="card"><div class="card-body">
+          <input class="input" style="height:52px;font-size:22px;font-weight:700;border:none;padding-left:2px;margin-bottom:10px" placeholder="Заголовок записи…" value="Паттерны проектирования Crew">
+          <div class="editor-toolbar">
+            <div class="etb tooltip" data-tip="Заголовок"><i data-lucide="heading" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Жирный"><i data-lucide="bold" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Курсив"><i data-lucide="italic" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Зачёркнутый"><i data-lucide="strikethrough" class="i-sm"></i></div>
+            <div class="etb-sep"></div>
+            <div class="etb tooltip" data-tip="Список"><i data-lucide="list" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Нумерация"><i data-lucide="list-ordered" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Цитата"><i data-lucide="quote" class="i-sm"></i></div>
+            <div class="etb-sep"></div>
+            <div class="etb tooltip" data-tip="Ссылка"><i data-lucide="link" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Код"><i data-lucide="code" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Изображение"><i data-lucide="image" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Таблица"><i data-lucide="table" class="i-sm"></i></div>
+            <div class="etb-sep"></div>
+            <div class="etb tooltip" data-tip="Заметка"><i data-lucide="lightbulb" class="i-sm"></i></div>
+            <div class="etb tooltip" data-tip="Упоминание"><i data-lucide="at-sign" class="i-sm"></i></div>
+          </div>
+          <div class="editor-area" contenteditable="true">
+            <p>Crew — это команда агентов, работающих над общей целью. Ниже — типовые паттерны их организации.</p>
+            <h2>Sequential</h2>
+            <p>Агенты выполняются последовательно, результат каждого передаётся следующему. Подходит для линейных процессов вроде онбординга.</p>
+            <h2>Hierarchical</h2>
+            <p>Агент-менеджер распределяет задачи между исполнителями и агрегирует результаты. Хорош для сложных, ветвящихся сценариев.</p>
+            <p class="muted">Начните печатать, чтобы дополнить статью…</p>
+          </div>
+          <div class="mt-2"><div class="menu-label" style="padding-left:0">Вложения</div>
+            <div class="row wrap gap-sm">
+              <div class="attach" style="flex:1;min-width:200px"><div class="attach-ic"><i data-lucide="image" class="i-sm"></i></div><div class="f1"><b>diagram.png</b><span>340 КБ</span></div><button class="btn btn-ghost btn-sm"><i data-lucide="x"></i></button></div>
+              <button class="chip chip-add" style="height:44px"><i data-lucide="paperclip" class="i-sm"></i>Прикрепить</button>
+            </div></div>
+        </div></div>
+
+        <!-- settings -->
+        <div class="flex col" style="gap:18px;position:sticky;top:80px">
+          <div class="card"><div class="card-head"><i data-lucide="settings-2" class="i muted"></i><h3>Публикация</h3></div><div class="card-body">
+            <div class="field"><label class="label">Пространство</label><select class="select"><option>Гайды</option><option>Онбординг</option><option>Регламенты</option></select></div>
+            <div class="field"><label class="label">Родительская страница</label><select class="select"><option>Проектирование сценариев</option><option>— нет —</option></select></div>
+            <div class="field"><label class="label">Статус</label>
+              <div class="seg fw" style="display:flex"><button class="active">Черновик</button><button>На ревью</button><button>Опубликовано</button></div></div>
+            <div class="field tight"><label class="label">Видимость</label>
+              <label class="radio"><input type="radio" name="vis" checked><span class="box"></span><span>Вся команда</span></label>
+              <label class="radio"><input type="radio" name="vis"><span class="box"></span><span>Только администраторы</span></label></div>
+          </div></div>
+
+          <div class="card"><div class="card-head"><i data-lucide="tag" class="i muted"></i><h3>Метки</h3></div><div class="card-body">
+            <div class="row wrap gap-sm"><span class="chip brand">#crew<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip brand">#паттерны<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip chip-add"><i data-lucide="plus" class="i-sm"></i>Метка</span></div>
+            <div class="divider"></div>
+            <div class="row between"><div><b class="t-sm">Индексировать в RAG</b><div class="muted t-xs">Доступно агентам для поиска</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поверхности · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>.surf{transition:.14s}.surf:hover{box-shadow:var(--sh-2)}</style>
+</head>
+<body>
+<div class="app" data-page="surfaces">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Интерфейсы</span><i data-lucide="chevron-right" class="i"></i><span>Поверхности</span></div>
+          <h1>Поверхности</h1><p class="ph-sub">Подключённые каналы, через которые агенты доступны пользователям, сгруппированные по типам.</p></div>
+        <div class="page-actions"><a href="general-settings.html" class="btn btn-ghost"><i data-lucide="settings"></i>Настройки каналов</a>
+          <button class="btn btn-primary" data-modal="mSurf"><i data-lucide="plus"></i>Подключить поверхность</button></div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="layout-template" class="i"></i></div><span class="kpi-label">Активных</span></div><div class="kpi-val num">6</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="messages-square" class="i"></i></div><span class="kpi-label">Сессий сегодня</span></div><div class="kpi-val num">4 210</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="users" class="i"></i></div><span class="kpi-label">Уник. пользователей</span></div><div class="kpi-val num">1 840</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="pause" class="i"></i></div><span class="kpi-label">Выключено</span></div><div class="kpi-val num">1</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск поверхности…"></div>
+        <div class="pills"><span class="pill active">Все типы</span><span class="pill">Web app</span><span class="pill">Mini App</span><span class="pill">Mobile</span><span class="pill">Telegram</span><span class="pill">Виджет</span></div>
+      </div>
+
+      <!-- Web app -->
+      <div class="divider-txt">Веб-приложение</div>
+      <div class="grid g-2 mb-3">
+        <div class="card surf"><div class="card-body row" style="gap:13px;align-items:flex-start">
+          <div class="kpi-ic g" style="width:44px;height:44px"><i data-lucide="globe" class="i"></i></div>
+          <div class="f1"><div class="row between"><b>Основной веб-кабинет</b><span class="badge badge-ok dot">Активна</span></div>
+            <div class="muted t-xs mono mt-1">agents.sber.ru · Sber ID</div>
+            <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Онбординг клиента</span><span class="tag num">2 310 сессий</span></div></div>
+          <button class="btn btn-outline btn-sm"><i data-lucide="settings"></i></button></div></div>
+        <div class="card surf"><div class="card-body row" style="gap:13px;align-items:flex-start">
+          <div class="kpi-ic g" style="width:44px;height:44px"><i data-lucide="globe" class="i"></i></div>
+          <div class="f1"><div class="row between"><b>Портал поддержки</b><span class="badge badge-ok dot">Активна</span></div>
+            <div class="muted t-xs mono mt-1">help.sber.ru · публичный</div>
+            <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Разбор обращения</span><span class="tag num">640 сессий</span></div></div>
+          <button class="btn btn-outline btn-sm"><i data-lucide="settings"></i></button></div></div>
+      </div>
+
+      <!-- Telegram / Mini App -->
+      <div class="divider-txt">Telegram / Mini App</div>
+      <div class="grid g-2 mb-3">
+        <div class="card surf"><div class="card-body row" style="gap:13px;align-items:flex-start">
+          <div class="kpi-ic b" style="width:44px;height:44px"><i data-lucide="send" class="i"></i></div>
+          <div class="f1"><div class="row between"><b>@ai_ucp_bot</b><span class="badge badge-ok dot">Активна</span></div>
+            <div class="muted t-xs mt-1">Бот · inline-меню · mini-app вкл.</div>
+            <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Разбор обращения</span><span class="tag num">890 сессий</span></div></div>
+          <button class="btn btn-outline btn-sm"><i data-lucide="settings"></i></button></div></div>
+        <div class="card surf"><div class="card-body row" style="gap:13px;align-items:flex-start">
+          <div class="kpi-ic p" style="width:44px;height:44px"><i data-lucide="app-window" class="i"></i></div>
+          <div class="f1"><div class="row between"><b>Mini App «Кабинет»</b><span class="badge badge-ok dot">Активна</span></div>
+            <div class="muted t-xs mono mt-1">app.sber.ru · WebApp</div>
+            <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="monitor" class="i-sm"></i>4 экрана</span><span class="tag num">210 сессий</span></div></div>
+          <button class="btn btn-outline btn-sm"><i data-lucide="settings"></i></button></div></div>
+      </div>
+
+      <!-- Mobile -->
+      <div class="divider-txt">Мобильное приложение</div>
+      <div class="grid g-2 mb-3">
+        <div class="card surf"><div class="card-body row" style="gap:13px;align-items:flex-start">
+          <div class="kpi-ic a" style="width:44px;height:44px"><i data-lucide="smartphone" class="i"></i></div>
+          <div class="f1"><div class="row between"><b>СберБанк Онлайн · AI</b><span class="badge badge-warn dot">Настройка</span></div>
+            <div class="muted t-xs mt-1">SDK · iOS, Android · push вкл.</div>
+            <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Онбординг клиента</span><span class="tag num">160 сессий</span></div></div>
+          <button class="btn btn-outline btn-sm"><i data-lucide="settings"></i></button></div></div>
+      </div>
+
+      <!-- Widget -->
+      <div class="divider-txt">Виджет</div>
+      <div class="grid g-2">
+        <div class="card surf" style="opacity:.75"><div class="card-body row" style="gap:13px;align-items:flex-start">
+          <div class="kpi-ic" style="width:44px;height:44px;background:var(--muted-bg);color:var(--text-2)"><i data-lucide="message-circle" class="i"></i></div>
+          <div class="f1"><div class="row between"><b>Веб-виджет чата</b><span class="badge badge-neutral">Выключена</span></div>
+            <div class="muted t-xs mono mt-1">embed · sber.ru</div>
+            <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="code" class="i-sm"></i>&lt;script&gt; snippet</span></div></div>
+          <label class="switch"><input type="checkbox"><span class="track"></span></label></div></div>
+        <div class="card surf" style="border-style:dashed;background:var(--surface-2)" data-modal="mSurf"><div class="card-body" style="display:flex;align-items:center;justify-content:center;gap:10px;min-height:80px;cursor:pointer">
+          <div class="kpi-ic" style="width:38px;height:38px;background:var(--brand-050);color:var(--brand-600)"><i data-lucide="plus" class="i"></i></div>
+          <b>Подключить поверхность</b></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mSurf" data-lg="1">
+  <div class="modal-head"><i data-lucide="layout-template" class="i"></i><h3>Подключить поверхность</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Тип поверхности</label>
+      <div class="grid g-2">
+        <label class="opt-card sel"><input type="radio" name="sf" checked><div class="kpi-ic g" style="width:34px;height:34px"><i data-lucide="globe" class="i-sm"></i></div><div><b>Веб-приложение</b><div class="muted t-xs">Кабинет на домене</div></div></label>
+        <label class="opt-card"><input type="radio" name="sf"><div class="kpi-ic b" style="width:34px;height:34px"><i data-lucide="send" class="i-sm"></i></div><div><b>Telegram / Mini App</b><div class="muted t-xs">Бот и WebApp</div></div></label>
+        <label class="opt-card"><input type="radio" name="sf"><div class="kpi-ic a" style="width:34px;height:34px"><i data-lucide="smartphone" class="i-sm"></i></div><div><b>Мобильное приложение</b><div class="muted t-xs">SDK iOS/Android</div></div></label>
+        <label class="opt-card"><input type="radio" name="sf"><div class="kpi-ic p" style="width:34px;height:34px"><i data-lucide="message-circle" class="i-sm"></i></div><div><b>Виджет</b><div class="muted t-xs">Embed на сайт</div></div></label>
+      </div></div>
+    <div class="field tight"><label class="label">Сценарий по умолчанию</label><select class="select"><option>Онбординг клиента</option><option>Разбор обращения</option></select></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><a href="general-settings.html" class="btn btn-primary" data-toast="ok|Готово|Открываю настройки канала"><i data-lucide="arrow-right"></i>Далее</a></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

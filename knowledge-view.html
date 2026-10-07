@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Справочник по интересным местам · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>.rate{color:#D98200;font-weight:700}</style>
+</head>
+<body>
+<div class="app" data-page="knowledge-bases">
+  <main class="main">
+    <div class="page">
+      <div class="breadcrumb mb-2"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><a href="knowledge-bases.html">RAG · Справочники</a><i data-lucide="chevron-right" class="i"></i><span>Интересные места</span></div>
+
+      <div class="card mb-3"><div class="card-body row wrap" style="gap:18px;align-items:center">
+        <div class="kpi-ic g" style="width:52px;height:52px;border-radius:14px"><i data-lucide="map-pin" class="i-lg"></i></div>
+        <div class="f1" style="min-width:220px"><div class="row" style="gap:10px"><h1 style="font-size:21px">Справочник по интересным местам</h1><span class="badge badge-info">Справочник</span><span class="badge badge-ok dot">Готов</span></div>
+          <div class="row wrap gap-lg mt-1 muted t-sm"><span class="row" style="gap:6px"><i data-lucide="list" class="i-sm"></i>248 записей</span><span class="row" style="gap:6px"><i data-lucide="columns-3" class="i-sm"></i>7 полей</span><span class="row" style="gap:6px"><i data-lucide="bot" class="i-sm"></i>используют 3 агента</span><span class="row" style="gap:6px"><i data-lucide="clock" class="i-sm"></i>обновлён сегодня</span></div></div>
+        <div class="row gap-sm"><button class="btn btn-outline"><i data-lucide="download"></i>Экспорт CSV</button><button class="btn btn-primary" data-modal="mAdd"><i data-lucide="plus"></i>Добавить место</button></div>
+      </div></div>
+
+      <div class="tabs" data-tabs>
+        <button class="active" data-tab="rec"><i data-lucide="list" class="i"></i>Записи<span class="count">248</span></button>
+        <button data-tab="sch"><i data-lucide="columns-3" class="i"></i>Схема полей</button>
+        <button data-tab="rag"><i data-lucide="boxes" class="i"></i>Настройки RAG</button>
+      </div>
+
+      <!-- RECORDS -->
+      <div data-panel="rec">
+        <div class="row wrap mb-2">
+          <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск по названию, описанию…"></div>
+          <select class="select" style="width:170px"><option>Все категории</option><option>Парк</option><option>Музей</option><option>Смотровая</option><option>Архитектура</option></select>
+          <select class="select" style="width:150px"><option>Все города</option><option>Москва</option><option>СПб</option></select>
+          <div class="spacer"></div><div class="seg"><button class="active">Таблица</button><button>Карточки</button></div>
+        </div>
+
+        <div class="card"><div class="table-wrap"><table class="tbl">
+          <thead><tr><th></th><th class="sortable">Название</th><th>Категория</th><th>Город</th><th>Рейтинг</th><th>Координаты</th><th></th></tr></thead>
+          <tbody>
+            <tr><td style="width:70px"><div class="thumb" data-lightbox="assets/img/shot1.svg" style="width:52px;height:52px"><img src="assets/img/shot1.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div></td>
+              <td><div class="t-primary">Парк «Зарядье»</div><div class="t-sub">Парящий мост, ландшафты</div></td>
+              <td><span class="badge badge-ok">Парк</span></td><td>Москва</td><td><span class="rate">4.8</span> <span class="muted t-xs">/5</span></td><td class="mono t-sub">55.751, 37.629</td>
+              <td><button class="btn btn-ghost btn-sm" data-modal="mPlace">Открыть</button></td></tr>
+            <tr><td><div class="thumb" data-lightbox="assets/img/shot2.svg" style="width:52px;height:52px"><img src="assets/img/shot2.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div></td>
+              <td><div class="t-primary">Смотровая «Панорама 360»</div><div class="t-sub">Башня «Федерация»</div></td>
+              <td><span class="badge badge-info">Смотровая</span></td><td>Москва</td><td><span class="rate">4.9</span> <span class="muted t-xs">/5</span></td><td class="mono t-sub">55.749, 37.539</td>
+              <td><button class="btn btn-ghost btn-sm" data-modal="mPlace">Открыть</button></td></tr>
+            <tr><td><div class="thumb" data-lightbox="assets/img/doc.svg" style="width:52px;height:52px"><img src="assets/img/doc.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div></td>
+              <td><div class="t-primary">Третьяковская галерея</div><div class="t-sub">Русское искусство</div></td>
+              <td><span class="badge badge-purple">Музей</span></td><td>Москва</td><td><span class="rate">4.7</span> <span class="muted t-xs">/5</span></td><td class="mono t-sub">55.741, 37.620</td>
+              <td><button class="btn btn-ghost btn-sm" data-modal="mPlace">Открыть</button></td></tr>
+            <tr><td><div class="thumb" data-lightbox="assets/img/shot1.svg" style="width:52px;height:52px"><img src="assets/img/shot1.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div></td>
+              <td><div class="t-primary">Воробьёвы горы</div><div class="t-sub">Смотровая площадка МГУ</div></td>
+              <td><span class="badge badge-ok">Парк</span></td><td>Москва</td><td><span class="rate">4.6</span> <span class="muted t-xs">/5</span></td><td class="mono t-sub">55.710, 37.543</td>
+              <td><button class="btn btn-ghost btn-sm" data-modal="mPlace">Открыть</button></td></tr>
+            <tr><td><div class="thumb" data-lightbox="assets/img/shot2.svg" style="width:52px;height:52px"><img src="assets/img/shot2.svg"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div></td>
+              <td><div class="t-primary">Патриаршие пруды</div><div class="t-sub">Исторический район</div></td>
+              <td><span class="badge badge-warn">Архитектура</span></td><td>Москва</td><td><span class="rate">4.5</span> <span class="muted t-xs">/5</span></td><td class="mono t-sub">55.764, 37.591</td>
+              <td><button class="btn btn-ghost btn-sm" data-modal="mPlace">Открыть</button></td></tr>
+          </tbody>
+        </table></div>
+        <div class="card-foot"><span class="muted t-sm">Показано 5 из 248</span><div class="spacer row gap-sm">
+          <button class="btn btn-outline btn-sm" disabled><i data-lucide="chevron-left"></i></button>
+          <button class="btn btn-primary btn-sm" style="width:32px">1</button><button class="btn btn-outline btn-sm" style="width:32px">2</button><button class="btn btn-outline btn-sm" style="width:32px">3</button>
+          <button class="btn btn-outline btn-sm"><i data-lucide="chevron-right"></i></button></div></div>
+        </div>
+      </div>
+
+      <!-- SCHEMA -->
+      <div data-panel="sch" class="hide card"><div class="card-head"><h3>Схема полей записи</h3><button class="btn btn-outline btn-sm spacer"><i data-lucide="plus"></i>Поле</button></div>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>Поле</th><th>Ключ</th><th>Тип</th><th>Обязательное</th><th>Индексируется в RAG</th></tr></thead>
+          <tbody>
+            <tr><td class="t-primary">Название</td><td class="mono t-sub">title</td><td><span class="badge badge-neutral">Строка</span></td><td><span class="badge badge-ok dot">Да</span></td><td><label class="switch"><input type="checkbox" checked><span class="track"></span></label></td></tr>
+            <tr><td class="t-primary">Описание</td><td class="mono t-sub">description</td><td><span class="badge badge-neutral">Текст</span></td><td><span class="badge badge-ok dot">Да</span></td><td><label class="switch"><input type="checkbox" checked><span class="track"></span></label></td></tr>
+            <tr><td class="t-primary">Категория</td><td class="mono t-sub">category</td><td><span class="badge badge-info">Enum</span></td><td><span class="badge badge-ok dot">Да</span></td><td><label class="switch"><input type="checkbox" checked><span class="track"></span></label></td></tr>
+            <tr><td class="t-primary">Город</td><td class="mono t-sub">city</td><td><span class="badge badge-neutral">Строка</span></td><td><span class="badge badge-neutral">Нет</span></td><td><label class="switch"><input type="checkbox"><span class="track"></span></label></td></tr>
+            <tr><td class="t-primary">Рейтинг</td><td class="mono t-sub">rating</td><td><span class="badge badge-purple">Число</span></td><td><span class="badge badge-neutral">Нет</span></td><td><label class="switch"><input type="checkbox"><span class="track"></span></label></td></tr>
+            <tr><td class="t-primary">Координаты</td><td class="mono t-sub">geo</td><td><span class="badge badge-warn">Гео</span></td><td><span class="badge badge-neutral">Нет</span></td><td><label class="switch"><input type="checkbox"><span class="track"></span></label></td></tr>
+            <tr><td class="t-primary">Фото</td><td class="mono t-sub">image</td><td><span class="badge badge-info">Файл</span></td><td><span class="badge badge-neutral">Нет</span></td><td><label class="switch"><input type="checkbox"><span class="track"></span></label></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <!-- RAG -->
+      <div data-panel="rag" class="hide grid g-2">
+        <div class="card"><div class="card-head"><h3>Параметры поиска</h3></div><div class="card-body">
+          <div class="field"><label class="label">Стратегия</label><select class="select"><option>Гибридный (BM25 + вектор)</option><option>Только вектор</option><option>Только ключевые слова</option></select></div>
+          <div class="field"><label class="label">Top-K результатов</label><div class="range-row"><input type="range" class="range" min="1" max="20" value="5" data-out="#kk"><span class="range-val" id="kk">5</span></div></div>
+          <div class="field tight"><label class="label">Порог релевантности</label><div class="range-row"><input type="range" class="range" min="0" max="1" step="0.05" value="0.75" data-out="#rr"><span class="range-val" id="rr">0.75</span></div></div>
+        </div></div>
+        <div class="card"><div class="card-head"><h3>Индексация</h3></div><div class="card-body">
+          <div class="row between mb-2"><div><b class="t-sm">Автоиндексация при изменении</b><div class="muted t-xs">Переиндексировать запись после правки</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+          <div class="divider"></div>
+          <dl class="kv mb-2"><dt>Модель эмбеддингов</dt><dd>GigaChat-Emb</dd><dt>Размерность</dt><dd>1024</dd><dt>Последняя индексация</dt><dd>сегодня 11:20</dd><dt>Проиндексировано</dt><dd>248 / 248</dd></dl>
+          <button class="btn btn-outline btn-block" data-toast="info|Индексация|Запущена полная переиндексация"><i data-lucide="refresh-cw"></i>Переиндексировать всё</button>
+        </div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Place detail modal -->
+<template id="mPlace" data-lg="1">
+  <div class="modal-head"><div class="kpi-ic g" style="width:34px;height:34px"><i data-lucide="map-pin" class="i-sm"></i></div><h3>Парк «Зарядье»</h3><span class="badge badge-ok dot" style="margin-left:6px">Парк</span><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="thumb" data-lightbox="assets/img/shot1.svg" style="width:100%;height:200px;margin-bottom:16px"><img src="assets/img/shot1.svg" style="object-fit:cover"><div class="zoom"><i data-lucide="maximize-2" class="i-sm"></i></div></div>
+    <div class="grid g-2 mb-2">
+      <dl class="kv"><dt>Категория</dt><dd>Парк</dd><dt>Город</dt><dd>Москва</dd><dt>Рейтинг</dt><dd><span class="rate">4.8</span> / 5</dd></dl>
+      <dl class="kv"><dt>Координаты</dt><dd class="mono">55.751, 37.629</dd><dt>Часы</dt><dd>круглосуточно</dd><dt>Вход</dt><dd>бесплатно</dd></dl>
+    </div>
+    <div class="menu-label" style="padding-left:0">Описание</div>
+    <p class="sub">Ландшафтный парк у стен Кремля с четырьмя природными зонами, «Парящим мостом» над Москвой-рекой и подземным музеем. Популярное место для прогулок и панорамных видов.</p>
+    <div class="row wrap gap-sm mt-2"><span class="tag">#прогулки</span><span class="tag">#видовые</span><span class="tag">#центр</span></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-danger-soft" data-close><i data-lucide="trash-2"></i>Удалить</button><button class="btn btn-outline" data-close>Закрыть</button><button class="btn btn-primary" data-close data-toast="ok|Сохранено|Запись обновлена"><i data-lucide="pencil"></i>Редактировать</button></div>
+</template>
+
+<!-- Add place modal -->
+<template id="mAdd">
+  <div class="modal-head"><i data-lucide="map-pin" class="i"></i><h3>Добавить место</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Название <span class="req">*</span></label><input class="input" placeholder="Например: Парк Горького"></div>
+    <div class="form-grid"><div class="field"><label class="label">Категория</label><select class="select"><option>Парк</option><option>Музей</option><option>Смотровая</option><option>Архитектура</option></select></div>
+      <div class="field"><label class="label">Город</label><input class="input" value="Москва"></div></div>
+    <div class="form-grid"><div class="field"><label class="label">Рейтинг</label><input class="input" type="number" step="0.1" placeholder="4.5"></div>
+      <div class="field"><label class="label">Координаты</label><input class="input mono" placeholder="55.000, 37.000"></div></div>
+    <div class="field"><label class="label">Описание</label><textarea class="textarea" placeholder="Краткое описание места"></textarea></div>
+    <div class="field tight"><label class="label">Фото</label><div class="dropzone"><i data-lucide="image" class="i"></i><div class="t-sm"><b>Загрузите фото</b><div class="muted t-xs">JPG/PNG, до 5 МБ</div></div></div></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Добавлено|Место добавлено в справочник"><i data-lucide="check"></i>Добавить</button></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

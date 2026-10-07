@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Переменные окружения · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="env-variables">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Библиотеки</span><i data-lucide="chevron-right" class="i"></i><span>Переменные</span></div>
+          <h1>Переменные окружения</h1><p class="ph-sub">Ключи, секреты и конфигурация для агентов и интеграций. Секреты шифруются и маскируются в логах.</p></div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="upload"></i>Импорт .env</button>
+          <button class="btn btn-primary" data-modal="mVar"><i data-lucide="plus"></i>Добавить переменную</button></div>
+      </div>
+
+      <div class="tabs" data-tabs>
+        <button class="active" data-tab="prod"><span class="status s-ok" style="font-size:12.5px">Production</span><span class="count">18</span></button>
+        <button data-tab="stg"><span class="status s-warn" style="font-size:12.5px">Staging</span><span class="count">16</span></button>
+        <button data-tab="dev"><span class="status s-info" style="font-size:12.5px">Development</span><span class="count">21</span></button>
+      </div>
+
+      <div data-panel="prod" class="card">
+        <div class="card-head"><i data-lucide="key-round" class="i muted"></i><h3>Production</h3>
+          <label class="switch spacer"><input type="checkbox"><span class="track"></span><span>Показать значения</span></label></div>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>Ключ</th><th>Значение</th><th>Тип</th><th>Изменено</th><th></th></tr></thead>
+          <tbody>
+            <tr><td class="mono t-primary">OPENAI_API_KEY</td><td class="mono t-sub">sk-••••••••••3f8a</td><td><span class="badge badge-danger"><i data-lucide="lock" class="i-sm"></i>Секрет</span></td><td class="t-sub">12.03.2025</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm"><i data-lucide="copy"></i></button><button class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i></button><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></div></td></tr>
+            <tr><td class="mono t-primary">GIGACHAT_SECRET</td><td class="mono t-sub">••••••••••7c21</td><td><span class="badge badge-danger"><i data-lucide="lock" class="i-sm"></i>Секрет</span></td><td class="t-sub">01.08.2026</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm"><i data-lucide="copy"></i></button><button class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i></button><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></div></td></tr>
+            <tr><td class="mono t-primary">LLM_BASE_URL</td><td class="mono t-sub">https://llm.sber.internal/v1</td><td><span class="badge badge-neutral">Строка</span></td><td class="t-sub">05.09.2026</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm"><i data-lucide="copy"></i></button><button class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i></button><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></div></td></tr>
+            <tr><td class="mono t-primary">MAX_CONCURRENCY</td><td class="mono t-sub">16</td><td><span class="badge badge-info">Число</span></td><td class="t-sub">10.09.2026</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm"><i data-lucide="copy"></i></button><button class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i></button><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></div></td></tr>
+            <tr><td class="mono t-primary">ENABLE_TRACING</td><td class="mono t-sub">true</td><td><span class="badge badge-purple">Boolean</span></td><td class="t-sub">10.09.2026</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm"><i data-lucide="copy"></i></button><button class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i></button><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></div></td></tr>
+            <tr><td class="mono t-primary">QDRANT_URL</td><td class="mono t-sub">http://qdrant:6333</td><td><span class="badge badge-neutral">Строка</span></td><td class="t-sub">18.09.2026</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm"><i data-lucide="copy"></i></button><button class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i></button><button class="btn btn-danger-soft btn-sm"><i data-lucide="trash-2"></i></button></div></td></tr>
+          </tbody>
+        </table></div>
+        <div class="card-foot"><i data-lucide="shield" class="i" style="color:var(--ok)"></i><span class="muted t-sm">Секреты шифруются AES-256 и недоступны для чтения после сохранения.</span></div>
+      </div>
+
+      <div data-panel="stg" class="hide empty card"><div class="card-body"><div class="empty"><div class="ic"><i data-lucide="git-branch" class="i"></i></div><h4>Staging: 16 переменных</h4><p>Переключите тумблер «Показать значения», чтобы раскрыть содержимое.</p></div></div></div>
+      <div data-panel="dev" class="hide empty card"><div class="card-body"><div class="empty"><div class="ic"><i data-lucide="code" class="i"></i></div><h4>Development: 21 переменная</h4><p>Локальные значения для разработки и тестов.</p></div></div></div>
+    </div>
+  </main>
+</div>
+
+<template id="mVar">
+  <div class="modal-head"><i data-lucide="key-round" class="i"></i><h3>Новая переменная</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="form-grid">
+      <div class="field"><label class="label">Ключ <span class="req">*</span></label><input class="input mono" placeholder="MY_VARIABLE"></div>
+      <div class="field"><label class="label">Тип</label><select class="select"><option>Строка</option><option>Секрет</option><option>Число</option><option>Boolean</option></select></div>
+    </div>
+    <div class="field"><label class="label">Значение <span class="req">*</span></label><textarea class="textarea mono" style="min-height:60px" placeholder="Значение переменной"></textarea></div>
+    <div class="field tight"><label class="label">Окружения</label>
+      <div class="row wrap gap-sm">
+        <label class="check"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span><span>Production</span></label>
+        <label class="check"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span><span>Staging</span></label>
+        <label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span><span>Development</span></label>
+      </div></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Сохранено|Переменная добавлена"><i data-lucide="check"></i>Сохранить</button></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

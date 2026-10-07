@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Активные сессии · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .chat{display:flex;flex-direction:column;gap:12px;max-height:340px;overflow-y:auto;padding:4px 2px}
+  .bubble{max-width:82%;padding:9px 13px;border-radius:14px;font-size:13.5px;line-height:1.45}
+  .bubble.user{align-self:flex-end;background:var(--surface-3);color:var(--text);border-bottom-right-radius:5px}
+  .bubble.agent{align-self:flex-start;background:var(--brand-050);color:var(--text);border:1px solid var(--brand-100);border-bottom-left-radius:5px}
+  .bubble .who{font-size:11px;font-weight:700;margin-bottom:3px;color:var(--brand-700)}
+  .bubble.user .who{color:var(--text-2)}
+  .toolcall{align-self:flex-start;font-family:var(--mono);font-size:11.5px;color:var(--text-2);background:var(--surface-2);border:1px dashed var(--border-strong);border-radius:8px;padding:5px 9px;display:inline-flex;align-items:center;gap:6px}
+  .typing{align-self:flex-start;display:inline-flex;gap:4px;padding:10px 14px;background:var(--brand-050);border:1px solid var(--brand-100);border-radius:14px}
+  .typing span{width:6px;height:6px;border-radius:50%;background:var(--brand);animation:bl 1.2s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes bl{0%,60%,100%{opacity:.3}30%{opacity:1}}
+</style>
+</head>
+<body>
+<div class="app" data-page="sessions">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main">
+          <div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Активные сессии</span></div>
+          <h1 class="row" style="gap:10px">Активные сессии <span class="badge badge-ok dot" style="vertical-align:middle">7 онлайн</span></h1>
+          <p class="ph-sub">Живые сессии — диалоги, которые создаются, когда пользователь или система общается с агентом или сценарием. Можно открыть переписку, передать оператору или завершить.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-outline"><i data-lucide="refresh-cw"></i>Обновить</button>
+          <a href="scenarios-list.html" class="btn btn-ghost"><i data-lucide="library"></i>Библиотека сценариев</a>
+          <button class="btn btn-danger-soft" data-toast="warn|Пауза|Все сессии поставлены на паузу"><i data-lucide="pause"></i>Пауза всех</button>
+        </div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="messages-square" class="i"></i></div><span class="kpi-label">Сессий онлайн</span></div><div class="kpi-val num">7</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="message-circle" class="i"></i></div><span class="kpi-label">Сообщений / мин</span></div><div class="kpi-val num">142</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="timer" class="i"></i></div><span class="kpi-label">Ср. ответ</span></div><div class="kpi-val num">1.8 c</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="hand" class="i"></i></div><span class="kpi-label">Ждут оператора</span></div><div class="kpi-val num">1</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск по session ID, пользователю, агенту…"></div>
+        <div class="pills"><span class="pill active">Все</span><span class="pill">Веб-чат</span><span class="pill">API</span><span class="pill">Telegram</span><span class="pill">Ждут оператора</span></div>
+        <div class="spacer"></div>
+        <div class="seg"><button class="active">Карточки</button><button>Таблица</button></div>
+      </div>
+
+      <div class="grid g-2">
+        <!-- session 1: agent typing -->
+        <div class="card">
+          <div class="card-head"><div class="avatar sm">ИП<span class="avatar-status on"></span></div>
+            <div><b>Иван Пронин</b><div class="t-xs muted mono">sess_8f21a · веб-чат</div></div>
+            <span class="status s-run spacer">Агент печатает…</span></div>
+          <div class="card-body">
+            <div class="row mb-2 gap-sm"><span class="tag"><i data-lucide="bot" class="i-sm"></i>Онбординг-ассистент</span><span class="badge badge-info"><i data-lucide="globe" class="i-sm"></i>Веб-чат</span></div>
+            <div class="row between"><span class="muted t-sm" style="max-width:75%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">«Подскажите, какие документы нужны для…»</span><span class="mono muted t-xs">14 сообщ.</span></div>
+            <div class="row between mt-2" style="border-top:1px solid var(--border);padding-top:10px">
+              <span class="muted t-xs">CSAT сессии</span>
+              <div class="row gap-sm"><span class="stars">★★★★<span class="off">★</span></span><b class="t-xs num">4.0</b><a class="btn btn-ghost btn-sm" data-modal="mFeedback"><i data-lucide="message-square-quote"></i>Ответы</a></div>
+            </div>
+          </div>
+          <div class="card-foot"><span class="muted t-xs"><i data-lucide="clock" class="i-sm" style="vertical-align:-2px"></i> 4 мин</span>
+            <div class="spacer row gap-sm"><button class="btn btn-primary btn-sm" data-modal="mChat"><i data-lucide="message-square"></i>Открыть диалог</button>
+            <button class="btn btn-outline btn-sm tooltip" data-tip="Передать оператору"><i data-lucide="user-round-cog"></i></button>
+            <button class="btn btn-danger-soft btn-sm" data-modal="mEnd"><i data-lucide="square"></i></button></div></div>
+        </div>
+
+        <!-- session 2: waiting user -->
+        <div class="card">
+          <div class="card-head"><div class="avatar sm" style="background:#e9f0fe;color:#245fce">АК<span class="avatar-status on"></span></div>
+            <div><b>Анна Ковалёва</b><div class="t-xs muted mono">sess_1c93d · Telegram</div></div>
+            <span class="status s-idle spacer">Ждёт ответа пользователя</span></div>
+          <div class="card-body">
+            <div class="row mb-2 gap-sm"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Разбор обращения</span><span class="badge badge-neutral"><i data-lucide="send" class="i-sm"></i>Telegram</span></div>
+            <div class="row between"><span class="muted t-sm" style="max-width:75%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">«Уточните номер договора, пожалуйста»</span><span class="mono muted t-xs">6 сообщ.</span></div>
+            <div class="row between mt-2" style="border-top:1px solid var(--border);padding-top:10px">
+              <span class="muted t-xs">CSAT сессии</span>
+              <div class="row gap-sm"><span class="stars">★★★★★</span><b class="t-xs num">5.0</b><a class="btn btn-ghost btn-sm" data-modal="mFeedback"><i data-lucide="message-square-quote"></i>Ответы</a></div>
+            </div>
+          </div>
+          <div class="card-foot"><span class="muted t-xs"><i data-lucide="clock" class="i-sm" style="vertical-align:-2px"></i> 2 мин</span>
+            <div class="spacer row gap-sm"><button class="btn btn-primary btn-sm" data-modal="mChat"><i data-lucide="message-square"></i>Открыть диалог</button>
+            <button class="btn btn-outline btn-sm tooltip" data-tip="Передать оператору"><i data-lucide="user-round-cog"></i></button>
+            <button class="btn btn-danger-soft btn-sm" data-modal="mEnd"><i data-lucide="square"></i></button></div></div>
+        </div>
+
+        <!-- session 3: HITL -->
+        <div class="card" style="border-color:var(--warn-bd)">
+          <div class="card-head"><div class="avatar sm" style="background:#fdf3e2;color:#a5660a">СМ<span class="avatar-status on"></span></div>
+            <div><b>Сергей Мохов</b><div class="t-xs muted mono">sess_44b0e · API</div></div>
+            <span class="status s-warn spacer">Нужен оператор (HITL)</span></div>
+          <div class="card-body">
+            <div class="row mb-2 gap-sm"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Проверка документов</span><span class="badge badge-warn"><i data-lucide="plug" class="i-sm"></i>API</span></div>
+            <div class="row between"><span class="muted t-sm">Агент запросил подтверждение решения</span><span class="mono muted t-xs">ждёт 40 c</span></div>
+            <div class="row gap-sm mt-2"><button class="btn btn-primary btn-sm" data-toast="ok|Подтверждено|Сессия продолжена"><i data-lucide="check"></i>Одобрить</button><button class="btn btn-outline btn-sm">Отклонить</button></div>
+            <div class="row between mt-2" style="border-top:1px solid var(--border);padding-top:10px">
+              <span class="muted t-xs">CSAT сессии</span>
+              <div class="row gap-sm"><span class="stars"><span class="off">★★★★★</span></span><span class="t-xs muted">ожидает оценки</span></div>
+            </div>
+          </div>
+          <div class="card-foot"><span class="muted t-xs">оператор: О. Смирнов</span>
+            <div class="spacer row gap-sm"><button class="btn btn-ghost btn-sm" data-modal="mChat"><i data-lucide="message-square"></i>Диалог</button></div></div>
+        </div>
+
+        <!-- session 4: system/API run -->
+        <div class="card">
+          <div class="card-head"><div class="avatar sm" style="background:var(--muted-bg);color:var(--text-2)"><i data-lucide="cpu" class="i-sm"></i></div>
+            <div><b>Системный вызов</b><div class="t-xs muted mono">sess_7d5f2 · API · batch</div></div>
+            <span class="status s-run spacer">Выполняется</span></div>
+          <div class="card-body">
+            <div class="row mb-2 gap-sm"><span class="tag"><i data-lucide="calculator" class="i-sm"></i>Скоринг-агент</span><span class="badge badge-warn"><i data-lucide="plug" class="i-sm"></i>API</span></div>
+            <div class="row between"><span class="muted t-sm">Пакетная обработка заявок · 34 из 50</span><span class="mono muted t-xs">1.2 c/шт</span></div>
+            <div class="progress mt-2"><span style="width:68%"></span></div>
+            <div class="row between mt-2" style="border-top:1px solid var(--border);padding-top:10px">
+              <span class="muted t-xs">CSAT сессии</span>
+              <span class="t-xs muted">н/д · системный вызов</span>
+            </div>
+          </div>
+          <div class="card-foot"><span class="muted t-xs"><i data-lucide="clock" class="i-sm" style="vertical-align:-2px"></i> 22 c</span>
+            <div class="spacer row gap-sm"><a href="traces.html" class="btn btn-ghost btn-sm"><i data-lucide="git-branch"></i>Трасса</a>
+            <button class="btn btn-danger-soft btn-sm" data-modal="mEnd"><i data-lucide="square"></i></button></div></div>
+        </div>
+      </div>
+
+      <p class="muted t-sm mt-3 row" style="gap:6px"><i data-lucide="info" class="i-sm"></i>Сессия — это исполнение (диалог) в реальном времени. Сами сценарии и их логика хранятся в <a href="scenarios-list.html" style="color:var(--brand-700);font-weight:600">библиотеке сценариев</a>.</p>
+    </div>
+  </main>
+</div>
+
+<!-- Live chat preview modal -->
+<template id="mChat" data-lg="1">
+  <div class="modal-head"><div class="avatar sm">ИП<span class="avatar-status on"></span></div>
+    <div><h3 style="font-size:15px">Иван Пронин</h3><div class="t-xs muted mono">sess_8f21a · Онбординг-ассистент · веб-чат</div></div>
+    <span class="status s-run spacer" style="margin-right:8px">онлайн</span><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="chat">
+      <div class="bubble user"><div class="who">Иван</div>Здравствуйте! Хочу открыть счёт для ИП.</div>
+      <div class="bubble agent"><div class="who">Агент</div>Здравствуйте! Помогу с открытием счёта для ИП. Подскажите, у вас уже есть ОГРНИП?</div>
+      <div class="bubble user"><div class="who">Иван</div>Да, есть.</div>
+      <div class="toolcall"><i data-lucide="wrench" style="width:13px;height:13px"></i>CRM API · get_client(ОГРНИП) → 200</div>
+      <div class="bubble agent"><div class="who">Агент</div>Отлично, нашёл вашу запись. Подскажите, какие документы нужны для… загружаю чек-лист.</div>
+      <div class="bubble user"><div class="who">Иван</div>Подскажите, какие документы нужны для валютного счёта?</div>
+      <div class="typing"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <div class="modal-foot">
+    <button class="btn btn-outline" data-close><i data-lucide="user-round-cog"></i>Передать оператору</button>
+    <div class="input-group f1" style="max-width:none"><i data-lucide="message-square" class="i input-ic"></i><input class="input" placeholder="Написать в сессию как оператор…"></div>
+    <button class="btn btn-primary" data-close data-toast="ok|Отправлено|Сообщение добавлено в сессию"><i data-lucide="send"></i></button>
+  </div>
+</template>
+
+<template id="mEnd">
+  <div class="modal-head"><div class="toast-ic err"><i data-lucide="alert-triangle" class="i-sm"></i></div><h3>Завершить сессию?</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body"><p class="sub">Диалог с пользователем будет закрыт. История сессии сохранится в логах и трассировке. Действие необратимо.</p></div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Не завершать</button><button class="btn btn-danger" data-close data-toast="warn|Завершено|Сессия закрыта"><i data-lucide="square"></i>Завершить сессию</button></div>
+</template>
+
+<template id="mFeedback">
+  <div class="modal-head"><i data-lucide="message-square-quote" class="i"></i><h3>Обратная связь по сессии</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="row mb-2"><div class="avatar sm">ИП</div><div><b>Иван Пронин</b><div class="t-xs muted mono">sess_8f21a · Онбординг-ассистент</div></div>
+      <div class="spacer" style="text-align:right"><span class="stars lg">★★★★<span class="off">★</span></span><div class="t-xs muted num">4.0 / 5</div></div></div>
+    <div class="divider"></div>
+    <div class="menu-label" style="padding-left:0">Оценка по критериям</div>
+    <div class="row between mb-1"><span class="t-sm">Полезность ответа</span><span class="stars">★★★★★</span></div>
+    <div class="row between mb-1"><span class="t-sm">Скорость</span><span class="stars">★★★★<span class="off">★</span></span></div>
+    <div class="row between mb-2"><span class="t-sm">Понятность</span><span class="stars">★★★★<span class="off">★</span></span></div>
+    <div class="menu-label" style="padding-left:0">Комментарий пользователя</div>
+    <div class="card" style="background:var(--surface-2);border:none"><div class="card-pad"><p class="t-sm" style="margin:0">«Всё быстро помогли с открытием счёта, но пришлось уточнять про валютный счёт отдельно. В целом доволен.»</p></div></div>
+    <div class="menu-label" style="padding-left:0;margin-top:12px">Вопрос: «Решён ли ваш вопрос?»</div>
+    <span class="badge badge-ok dot">Да, полностью</span>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Закрыть</button><a href="reports.html" class="btn btn-outline"><i data-lucide="bar-chart-3"></i>CSAT сценария</a></div>
+</template>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

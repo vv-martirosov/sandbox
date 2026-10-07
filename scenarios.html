@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сценарии · Flow-конструктор · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<script src="assets/vendor/Sortable.min.js"></script>
+<style>
+  .flow-wrap{display:grid;grid-template-columns:200px 1fr 320px;gap:16px;align-items:start}
+  @media(max-width:1200px){.flow-wrap{grid-template-columns:1fr}}
+  .palette-item{display:flex;align-items:center;gap:9px;padding:10px 11px;border:1px solid var(--border);border-radius:10px;
+    background:var(--surface);cursor:grab;margin-bottom:8px;font-size:13px;font-weight:600;transition:.14s}
+  .palette-item:hover{border-color:var(--brand-200);background:var(--brand-050)}
+  .palette-item:active{cursor:grabbing}
+  .canvas{background:var(--surface-2);border:1.5px dashed var(--border-strong);border-radius:16px;padding:20px;min-height:520px;
+    background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:20px 20px}
+  .fnode{background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 15px;box-shadow:var(--sh-1);
+    display:flex;align-items:center;gap:12px;position:relative;transition:.14s;cursor:pointer;max-width:520px;margin:0 auto}
+  .fnode.sel{border-color:var(--brand);box-shadow:var(--ring)}
+  .fnode:hover{box-shadow:var(--sh-2)}
+  .fnode .grip{color:var(--text-3);cursor:grab}
+  .fnode .fic{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;flex:none}
+  .fnode .fbody{flex:1;min-width:0}
+  .fnode .fbody b{font-size:13.5px}
+  .fconn{width:2px;height:22px;background:var(--border-strong);margin:0 auto;position:relative}
+  .fconn::after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);
+    border:5px solid transparent;border-top-color:var(--border-strong)}
+  .sortable-ghost{opacity:.4}.sortable-drag{box-shadow:var(--sh-3)!important}
+  .chk-list{max-height:260px;overflow-y:auto;padding-right:4px}
+  .chk-row{display:flex;align-items:center;gap:9px;padding:8px 8px;border-radius:8px;cursor:pointer}
+  .chk-row:hover{background:var(--surface-3)}
+</style>
+</head>
+<body>
+<div class="app" data-page="scenarios-list">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main">
+          <div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Сценарии</span><i data-lucide="chevron-right" class="i"></i><span>Онбординг клиента</span></div>
+          <h1 class="row" style="gap:10px">Онбординг клиента <span class="badge badge-ok dot">Активен</span></h1>
+          <p class="ph-sub">Перетаскивайте блоки шагов, настраивайте навыки и инструменты для каждого шага сценария.</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-ghost"><i data-lucide="history"></i>Версии</button>
+          <button class="btn btn-outline" data-toast="info|Тест|Пробный прогон запущен"><i data-lucide="play"></i>Тест-прогон</button>
+          <button class="btn btn-primary" data-toast="ok|Сохранено|Сценарий обновлён (v2.5)"><i data-lucide="save"></i>Сохранить</button>
+        </div>
+      </div>
+
+      <!-- meta row -->
+      <div class="card mb-3"><div class="card-body row wrap gap-lg">
+        <div class="field tight" style="flex:1;min-width:240px"><label class="label">Название сценария</label><input class="input" value="Онбординг клиента"></div>
+        <div class="field tight" style="width:180px"><label class="label">Тип</label><select class="select"><option>Crew (мультиагент)</option><option>Sequential</option><option>Hierarchical</option></select></div>
+        <div class="field tight" style="width:180px"><label class="label">Триггер запуска</label><select class="select"><option>API / вебхук</option><option>По расписанию</option><option>Событие в очереди</option></select></div>
+        <div class="field tight"><label class="label">&nbsp;</label><label class="switch"><input type="checkbox" checked><span class="track"></span><span>Логировать трассы</span></label></div>
+      </div></div>
+
+      <div class="flow-wrap">
+        <!-- Palette -->
+        <div class="card"><div class="card-body">
+          <div class="menu-label" style="padding:0 0 8px">Блоки шагов</div>
+          <div id="palette">
+            <div class="palette-item" data-type="agent"><i data-lucide="bot" class="i" style="color:var(--c1)"></i>Агент</div>
+            <div class="palette-item" data-type="tool"><i data-lucide="wrench" class="i" style="color:var(--c2)"></i>Инструмент</div>
+            <div class="palette-item" data-type="rag"><i data-lucide="database" class="i" style="color:var(--c6)"></i>RAG / поиск</div>
+            <div class="palette-item" data-type="cond"><i data-lucide="git-fork" class="i" style="color:var(--c3)"></i>Условие</div>
+            <div class="palette-item" data-type="human"><i data-lucide="hand" class="i" style="color:var(--c4)"></i>Human-in-loop</div>
+            <div class="palette-item" data-type="parallel"><i data-lucide="split" class="i" style="color:var(--c5)"></i>Параллельно</div>
+            <div class="palette-item" data-type="screen"><i data-lucide="monitor" class="i" style="color:var(--c6)"></i>Показать экран</div>
+          </div>
+          <div class="hint mt-2"><i data-lucide="move" class="i-sm"></i>Перетащите блок на холст</div>
+        </div></div>
+
+        <!-- Canvas -->
+        <div class="canvas" id="canvas">
+          <div class="fnode sel" data-name="Приём заявки"><i data-lucide="grip-vertical" class="i grip"></i><div class="fic" style="background:var(--info-bg);color:var(--c2)"><i data-lucide="webhook" class="i"></i></div><div class="fbody"><b>Приём заявки</b><div class="muted t-xs">Триггер · вебхук /apply</div></div><span class="badge badge-info">START</span></div>
+          <div class="fconn"></div>
+          <div class="fnode" data-name="Сбор анкеты"><i data-lucide="grip-vertical" class="i grip"></i><div class="fic" style="background:var(--brand-050);color:var(--c1)"><i data-lucide="bot" class="i"></i></div><div class="fbody"><b>Сбор и валидация анкеты</b><div class="muted t-xs">Агент · 3 навыка · 2 инструмента</div></div></div>
+          <div class="fconn"></div>
+          <div class="fnode" data-name="OCR документов"><i data-lucide="grip-vertical" class="i grip"></i><div class="fic" style="background:var(--purple-bg);color:var(--c4)"><i data-lucide="file-search" class="i"></i></div><div class="fbody"><b>OCR документов</b><div class="muted t-xs">Инструмент · Document Parser</div></div></div>
+          <div class="fconn"></div>
+          <div class="fnode" data-name="Скоринг"><i data-lucide="grip-vertical" class="i grip"></i><div class="fic" style="background:var(--warn-bg);color:var(--c3)"><i data-lucide="git-fork" class="i"></i></div><div class="fbody"><b>Скоринг и решение</b><div class="muted t-xs">Условие · score > 0.7</div></div></div>
+          <div class="fconn"></div>
+          <div class="fnode" data-name="Подтверждение"><i data-lucide="grip-vertical" class="i grip"></i><div class="fic" style="background:var(--danger-bg);color:var(--c5)"><i data-lucide="hand" class="i"></i></div><div class="fbody"><b>Подтверждение оператором</b><div class="muted t-xs">Human-in-loop · SLA 5 мин</div></div></div>
+          <div class="fconn"></div>
+          <div class="fnode" data-name="Показать экран"><i data-lucide="grip-vertical" class="i grip"></i><div class="fic" style="background:#e6f4fb;color:var(--c6)"><i data-lucide="monitor" class="i"></i></div><div class="fbody"><b>Показать экран результата</b><div class="muted t-xs">UI · 4 виджета</div></div><a href="screen-step.html" class="btn btn-outline btn-sm"><i data-lucide="layout-grid"></i>Виджеты</a></div>
+        </div>
+
+        <!-- Inspector -->
+        <div class="card" style="position:sticky;top:80px"><div class="card-head"><i data-lucide="sliders-horizontal" class="i muted"></i><h3>Настройка шага</h3></div>
+          <div class="card-body">
+            <div class="field"><label class="label">Название шага</label><input class="input" value="Сбор и валидация анкеты"></div>
+            <div class="field"><label class="label">Исполнитель</label><select class="select"><option>Агент: Онбординг-ассистент</option><option>Агент: Аналитик рынка</option></select></div>
+
+            <div class="field"><label class="label">Навыки (multi-select)</label>
+              <div class="tb-search mb-1" style="max-width:none"><i data-lucide="search" class="i"></i><input id="skillSearch" placeholder="Поиск по справочнику навыков…"></div>
+              <div class="chk-list" id="skillList">
+                <label class="chk-row" data-name="извлечение сущностей ner"><input type="checkbox" class="hide" checked><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Извлечение сущностей (NER)</span><span class="tag">навык</span></label>
+                <label class="chk-row" data-name="валидация форм проверка"><input type="checkbox" class="hide" checked><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Валидация форм</span><span class="tag">навык</span></label>
+                <label class="chk-row" data-name="классификация текста"><input type="checkbox" class="hide"><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Классификация текста</span><span class="tag">навык</span></label>
+                <label class="chk-row" data-name="суммаризация"><input type="checkbox" class="hide"><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Суммаризация</span><span class="tag">навык</span></label>
+                <label class="chk-row" data-name="перевод translation"><input type="checkbox" class="hide"><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Перевод</span><span class="tag">навык</span></label>
+              </div>
+            </div>
+
+            <div class="field"><label class="label">Инструменты (multi-select)</label>
+              <div class="tb-search mb-1" style="max-width:none"><i data-lucide="search" class="i"></i><input id="toolSearch" placeholder="Поиск по справочнику инструментов…"></div>
+              <div class="chk-list" id="toolList">
+                <label class="chk-row" data-name="crm api"><input type="checkbox" class="hide" checked><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">CRM API</span><span class="tag">tool</span></label>
+                <label class="chk-row" data-name="document parser pdf"><input type="checkbox" class="hide" checked><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Document Parser</span><span class="tag">tool</span></label>
+                <label class="chk-row" data-name="email sender smtp"><input type="checkbox" class="hide"><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">Email Sender</span><span class="tag">tool</span></label>
+                <label class="chk-row" data-name="sql query база"><input type="checkbox" class="hide"><span class="check" style="pointer-events:none"><span class="box" data-box><i data-lucide="check" class="i"></i></span></span><span class="f1 t-sm">SQL Query</span><span class="tag">tool</span></label>
+              </div>
+            </div>
+            <a href="step-edit.html" class="btn btn-outline btn-block mb-1"><i data-lucide="sliders-horizontal"></i>Открыть в мастере шага</a>
+            <button class="btn btn-danger-soft btn-block"><i data-lucide="trash-2"></i>Удалить шаг</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+<script>
+window.addEventListener('shell:ready', () => {
+  const canvas = document.getElementById('canvas');
+  // reorderable steps
+  Sortable.create(canvas, { animation: 160, handle: '.grip', filter: '.fconn', draggable: '.fnode',
+    onEnd: () => { CrewUI.toast('info','Порядок изменён','Шаги пересобраны'); } });
+  // palette -> canvas (clone)
+  const pal = document.getElementById('palette');
+  const TYPES = {
+    agent:{i:'bot',c:'--c1',bg:'--brand-050',t:'Агент',s:'Новый агент'},
+    tool:{i:'wrench',c:'--c2',bg:'--info-bg',t:'Инструмент',s:'Вызов инструмента'},
+    rag:{i:'database',c:'--c6',bg:'#e6f4fb',t:'RAG / поиск',s:'Поиск по базе знаний'},
+    cond:{i:'git-fork',c:'--c3',bg:'--warn-bg',t:'Условие',s:'Ветвление'},
+    human:{i:'hand',c:'--c4',bg:'--purple-bg',t:'Human-in-loop',s:'Подтверждение человеком'},
+    parallel:{i:'split',c:'--c5',bg:'--danger-bg',t:'Параллельно',s:'Параллельное выполнение'},
+    screen:{i:'monitor',c:'--c6',bg:'#e6f4fb',t:'Показать экран',s:'UI-виджеты для пользователя'}
+  };
+  Sortable.create(pal, { group:{ name:'flow', pull:'clone', put:false }, sort:false, animation:160,
+    onEnd(evt){
+      if (evt.to !== canvas) return;
+      const type = evt.item.dataset.type; const d = TYPES[type];
+      const node = document.createElement('div');
+      node.className = 'fnode'; node.dataset.name = d.t;
+      node.innerHTML = `<i data-lucide="grip-vertical" class="i grip"></i>
+        <div class="fic" style="background:var(${d.bg});color:var(${d.c})"><i data-lucide="${d.i}" class="i"></i></div>
+        <div class="fbody"><b>${d.t}</b><div class="muted t-xs">${d.s}</div></div>`;
+      evt.item.replaceWith(node);
+      if (window.lucide) lucide.createIcons();
+      CrewUI.toast('ok','Шаг добавлен', d.t + ' добавлен в сценарий');
+    }});
+  // select node
+  canvas.addEventListener('click', e => { const n = e.target.closest('.fnode'); if (!n) return;
+    canvas.querySelectorAll('.fnode').forEach(x => x.classList.toggle('sel', x === n)); });
+  // checkbox toggle visuals
+  document.querySelectorAll('.chk-row').forEach(r => { const cb = r.querySelector('input'); const box = r.querySelector('[data-box]');
+    const sync = () => box.parentElement.previousElementSibling, u = () => box.style.cssText = cb.checked ? 'background:var(--brand);border-color:var(--brand);color:#fff' : '';
+    // render initial + on change
+    const paint = () => { box.style.background = cb.checked ? 'var(--brand)' : '#fff'; box.style.borderColor = cb.checked ? 'var(--brand)':'var(--border-strong)';
+      box.querySelector('.i').style.opacity = cb.checked ? '1':'0'; };
+    paint(); r.addEventListener('click', ev => { if (ev.target.tagName!=='INPUT'){cb.checked=!cb.checked;} paint(); }); });
+  // search filters
+  const filter = (inputId, listId) => { const inp = document.getElementById(inputId);
+    inp.addEventListener('input', () => { const q = inp.value.toLowerCase();
+      document.querySelectorAll('#'+listId+' .chk-row').forEach(r => r.style.display = r.dataset.name.includes(q) ? '' : 'none'); }); };
+  filter('skillSearch','skillList'); filter('toolSearch','toolList');
+});
+</script>
+</body>
+</html>

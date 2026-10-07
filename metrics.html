@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Метрики · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="metrics">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="observability.html">Наблюдаемость</a><i data-lucide="chevron-right" class="i"></i><span>Метрики</span></div>
+          <h1>Метрики</h1><p class="ph-sub">Задержки, пропускная способность, потребление токенов и стоимость по моделям.</p></div>
+        <div class="page-actions"><div class="seg"><button>1ч</button><button class="active">24ч</button><button>7д</button></div>
+          <button class="btn btn-outline"><i data-lucide="download"></i>CSV</button></div>
+      </div>
+
+      <div class="tabs">
+        <a href="observability.html"><i data-lucide="gauge" class="i"></i>Обзор</a>
+        <a href="logs.html"><i data-lucide="scroll-text" class="i"></i>Логи</a>
+        <a href="traces.html"><i data-lucide="git-branch" class="i"></i>Трассировка</a>
+        <a class="active" href="metrics.html"><i data-lucide="line-chart" class="i"></i>Метрики</a>
+      </div>
+
+      <div class="grid g-2 mb-3">
+        <!-- latency percentiles -->
+        <div class="card"><div class="card-head"><h3>Задержка (перцентили)</h3>
+          <div class="row gap-sm t-sm spacer"><span class="row" style="gap:5px"><span style="width:9px;height:9px;border-radius:3px;background:var(--c1)"></span>p50</span>
+          <span class="row" style="gap:5px"><span style="width:9px;height:9px;border-radius:3px;background:var(--c2)"></span>p95</span>
+          <span class="row" style="gap:5px"><span style="width:9px;height:9px;border-radius:3px;background:var(--c5)"></span>p99</span></div></div>
+          <div class="card-body"><svg viewBox="0 0 600 210" width="100%">
+            <g stroke="#eef1f4"><line x1="30" y1="30" x2="590" y2="30"/><line x1="30" y1="80" x2="590" y2="80"/><line x1="30" y1="130" x2="590" y2="130"/><line x1="30" y1="180" x2="590" y2="180"/></g>
+            <polyline points="30,165 110,160 190,150 270,158 350,148 430,152 510,145 590,150" fill="none" stroke="var(--c1)" stroke-width="2.5"/>
+            <polyline points="30,120 110,110 190,118 270,95 350,105 430,90 510,100 590,88" fill="none" stroke="var(--c2)" stroke-width="2.5"/>
+            <polyline points="30,70 110,80 190,60 270,72 350,50 430,66 510,48 590,58" fill="none" stroke="var(--c5)" stroke-width="2.5"/>
+            <g fill="#8b94a3" font-size="10" text-anchor="end"><text x="26" y="34">4s</text><text x="26" y="84">3s</text><text x="26" y="134">1.5s</text><text x="26" y="184">0</text></g>
+          </svg></div>
+        </div>
+        <!-- throughput -->
+        <div class="card"><div class="card-head"><h3>Пропускная способность</h3><span class="ch-sub spacer">запросов / мин</span></div>
+          <div class="card-body"><svg viewBox="0 0 600 210" width="100%">
+            <defs><linearGradient id="tp" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2F6FED" stop-opacity=".22"/><stop offset="1" stop-color="#2F6FED" stop-opacity="0"/></linearGradient></defs>
+            <g stroke="#eef1f4"><line x1="30" y1="40" x2="590" y2="40"/><line x1="30" y1="100" x2="590" y2="100"/><line x1="30" y1="160" x2="590" y2="160"/></g>
+            <path d="M30,150 L110,120 L190,130 L270,90 L350,110 L430,70 L510,95 L590,80 L590,180 L30,180 Z" fill="url(#tp)"/>
+            <polyline points="30,150 110,120 190,130 270,90 350,110 430,70 510,95 590,80" fill="none" stroke="var(--c2)" stroke-width="2.5"/>
+          </svg></div>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.4fr 1fr">
+        <!-- token usage by model -->
+        <div class="card"><div class="card-head"><h3>Потребление токенов по моделям</h3></div>
+          <div class="card-body">
+            <div class="mb-2"><div class="row between mb-1"><span class="t-sm">GigaChat-Pro</span><span class="mono muted">6.4M · 62%</span></div><div class="progress"><span style="width:62%"></span></div></div>
+            <div class="mb-2"><div class="row between mb-1"><span class="t-sm">gpt-4o</span><span class="mono muted">2.8M · 27%</span></div><div class="progress"><span class="b2" style="width:27%"></span></div></div>
+            <div class="mb-2"><div class="row between mb-1"><span class="t-sm">gpt-4o-mini</span><span class="mono muted">0.8M · 8%</span></div><div class="progress"><span class="warn" style="width:8%"></span></div></div>
+            <div><div class="row between mb-1"><span class="t-sm">claude-sonnet-4</span><span class="mono muted">0.3M · 3%</span></div><div class="progress"><span style="width:3%;background:var(--c4)"></span></div></div>
+            <div class="divider"></div>
+            <div class="row between"><span class="muted t-sm">Итого сегодня</span><b class="num">10.3M токенов · ≈ 1 240 ₽</b></div>
+          </div>
+        </div>
+        <!-- error rate donut -->
+        <div class="card"><div class="card-head"><h3>Успешность вызовов</h3></div>
+          <div class="card-body" style="display:flex;align-items:center;gap:18px">
+            <svg viewBox="0 0 120 120" width="120" style="flex:none">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#eef1f4" stroke-width="15"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--c1)" stroke-width="15" stroke-dasharray="285 289" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <text x="60" y="57" text-anchor="middle" font-size="19" font-weight="700">98.6%</text><text x="60" y="73" text-anchor="middle" font-size="9" fill="#8b94a3">success</text>
+            </svg>
+            <div class="f1">
+              <div class="list-line" style="padding:7px 0"><span style="width:9px;height:9px;border-radius:3px;background:var(--c1)"></span><span class="f1 t-sm">Успешно</span><b class="num">18 142</b></div>
+              <div class="list-line" style="padding:7px 0"><span style="width:9px;height:9px;border-radius:3px;background:var(--c5)"></span><span class="f1 t-sm">Ошибки</span><b class="num">260</b></div>
+              <div class="list-line" style="padding:7px 0"><span style="width:9px;height:9px;border-radius:3px;background:var(--c3)"></span><span class="f1 t-sm">Ретраи</span><b class="num">118</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-3"><div class="card-head"><h3>Метрики по сценариям</h3></div>
+        <div class="table-wrap"><table class="tbl">
+          <thead><tr><th>Сценарий</th><th>p50</th><th>p95</th><th>RPM</th><th>Error %</th><th>Токены/запуск</th></tr></thead>
+          <tbody>
+            <tr><td class="t-primary">Онбординг клиента</td><td class="num">2.1s</td><td class="num">4.2s</td><td class="num">98</td><td><span class="badge badge-ok">1.8%</span></td><td class="num">4.8k</td></tr>
+            <tr><td class="t-primary">Скоринг заявки</td><td class="num">0.9s</td><td class="num">1.8s</td><td class="num">76</td><td><span class="badge badge-ok">0.9%</span></td><td class="num">1.2k</td></tr>
+            <tr><td class="t-primary">Разбор обращения</td><td class="num">3.4s</td><td class="num">6.9s</td><td class="num">54</td><td><span class="badge badge-warn">4.1%</span></td><td class="num">6.1k</td></tr>
+            <tr><td class="t-primary">Проверка документов</td><td class="num">4.0s</td><td class="num">8.4s</td><td class="num">30</td><td><span class="badge badge-danger">6.2%</span></td><td class="num">7.4k</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

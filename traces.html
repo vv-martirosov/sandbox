@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Трассировка · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .span-row{display:grid;grid-template-columns:300px 1fr;align-items:center;border-bottom:1px solid var(--border);cursor:pointer}
+  .span-row:hover{background:var(--surface-2)}
+  .span-name{padding:10px 14px;display:flex;align-items:center;gap:8px;font-size:12.5px;white-space:nowrap;overflow:hidden}
+  .span-track{position:relative;height:42px;border-left:1px solid var(--border)}
+  .span-bar{position:absolute;top:11px;height:20px;border-radius:5px;display:flex;align-items:center;padding:0 8px;
+    font-size:10.5px;font-weight:600;color:#fff;font-family:var(--mono);white-space:nowrap;overflow:hidden}
+  .ax{display:grid;grid-template-columns:300px 1fr;border-bottom:1px solid var(--border);font-size:10.5px;color:var(--text-3);font-family:var(--mono)}
+  .ax .ticks{display:flex;justify-content:space-between;padding:6px 10px;border-left:1px solid var(--border)}
+</style>
+</head>
+<body>
+<div class="app" data-page="traces">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="observability.html">Наблюдаемость</a><i data-lucide="chevron-right" class="i"></i><span>Трассировка</span></div>
+          <h1>Трассировка выполнения</h1><p class="ph-sub">Waterfall-диаграмма спанов одного запуска сценария: тайминги агентов, LLM и инструментов.</p></div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="list-tree"></i>Дерево</button><button class="btn btn-outline"><i data-lucide="share-2"></i>Поделиться</button></div>
+      </div>
+
+      <div class="tabs">
+        <a href="observability.html"><i data-lucide="gauge" class="i"></i>Обзор</a>
+        <a href="logs.html"><i data-lucide="scroll-text" class="i"></i>Логи</a>
+        <a class="active" href="traces.html"><i data-lucide="git-branch" class="i"></i>Трассировка</a>
+        <a href="metrics.html"><i data-lucide="line-chart" class="i"></i>Метрики</a>
+      </div>
+
+      <div class="card mb-3"><div class="card-body row wrap gap-lg">
+        <div><div class="muted t-xs">TRACE ID</div><b class="mono">8f21a-4c02-9d</b></div>
+        <div><div class="muted t-xs">Сценарий</div><b>Онбординг клиента</b></div>
+        <div><div class="muted t-xs">Длительность</div><b class="num">4.24 c</b></div>
+        <div><div class="muted t-xs">Спанов</div><b class="num">14</b></div>
+        <div><div class="muted t-xs">Токенов</div><b class="num">6 480</b></div>
+        <div class="spacer"><span class="status s-warn">1 ошибка · fallback</span></div>
+      </div></div>
+
+      <div class="grid" style="grid-template-columns:1fr 340px;align-items:start">
+        <div class="card">
+          <div class="ax"><div style="padding:6px 14px;font-weight:700">Спан</div><div class="ticks"><span>0ms</span><span>1.0s</span><span>2.0s</span><span>3.0s</span><span>4.2s</span></div></div>
+
+          <div class="span-row" data-span><div class="span-name"><i data-lucide="webhook" class="i-sm" style="color:var(--c2)"></i><b>POST /apply</b></div>
+            <div class="span-track"><div class="span-bar" style="left:0%;width:100%;background:var(--c2)">4.24 c · gateway</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:28px"><i data-lucide="bot" class="i-sm" style="color:var(--c1)"></i>agent: онбординг</div>
+            <div class="span-track"><div class="span-bar" style="left:2%;width:94%;background:var(--c1)">4.0 c</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:44px"><i data-lucide="wrench" class="i-sm" style="color:var(--c6)"></i>tool: CRM API</div>
+            <div class="span-track"><div class="span-bar" style="left:4%;width:10%;background:var(--c6)">412ms</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:44px"><i data-lucide="sparkles" class="i-sm" style="color:var(--c4)"></i>llm: extract fields</div>
+            <div class="span-track"><div class="span-bar" style="left:15%;width:24%;background:var(--c4)">1.04 c</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:44px"><i data-lucide="file-search" class="i-sm" style="color:var(--c5)"></i>tool: Doc Parser</div>
+            <div class="span-track"><div class="span-bar" style="left:39%;width:8%;background:var(--c5)"><i data-lucide="x" style="width:11px;height:11px"></i>err</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:44px"><i data-lucide="git-fork" class="i-sm" style="color:var(--c3)"></i>branch: fallback</div>
+            <div class="span-track"><div class="span-bar" style="left:47%;width:6%;background:var(--c3)">240ms</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:44px"><i data-lucide="sparkles" class="i-sm" style="color:var(--c4)"></i>llm: scoring</div>
+            <div class="span-track"><div class="span-bar" style="left:53%;width:34%;background:var(--c4)">1.44 c</div></div></div>
+
+          <div class="span-row" data-span><div class="span-name" style="padding-left:44px"><i data-lucide="hand" class="i-sm" style="color:var(--c1)"></i>hitl: checkpoint</div>
+            <div class="span-track"><div class="span-bar" style="left:87%;width:11%;background:#9aa4b2">wait</div></div></div>
+        </div>
+
+        <!-- span detail -->
+        <div class="card" style="position:sticky;top:80px"><div class="card-head"><i data-lucide="info" class="i muted"></i><h3>Детали спана</h3></div>
+          <div class="card-body">
+            <div class="row mb-2"><i data-lucide="sparkles" class="i" style="color:var(--c4)"></i><div><b>llm: scoring</b><div class="muted t-xs mono">span_id · a91c-0f</div></div></div>
+            <dl class="kv mb-2"><dt>Тип</dt><dd>LLM call</dd><dt>Модель</dt><dd>GigaChat-Pro</dd><dt>Начало</dt><dd>+2.24s</dd><dt>Длительность</dt><dd>1.44 c</dd><dt>Токены (in/out)</dt><dd>1 210 / 632</dd><dt>Статус</dt><dd><span class="badge badge-ok dot">OK</span></dd></dl>
+            <div class="divider"></div>
+            <div class="menu-label" style="padding:0 0 6px">Input</div>
+            <div class="code" style="font-size:11.5px">{ <span class="k">"score_features"</span>: {<span class="s">"income"</span>: 120000, <span class="s">"risk"</span>: <span class="k">"low"</span>} }</div>
+            <div class="menu-label" style="padding:10px 0 6px">Output</div>
+            <div class="code" style="font-size:11.5px">{ <span class="k">"decision"</span>: <span class="s">"approve"</span>, <span class="k">"confidence"</span>: 0.86 }</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+<script>window.addEventListener('shell:ready',()=>{document.querySelectorAll('[data-span]').forEach(s=>s.addEventListener('click',()=>{document.querySelectorAll('[data-span]').forEach(x=>x.style.background='');s.style.background='var(--brand-050)';}));});</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiki · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .wiki-grid{display:grid;grid-template-columns:250px 1fr 210px;gap:22px;align-items:start}
+  @media(max-width:1100px){.wiki-grid{grid-template-columns:1fr}.wiki-toc{display:none}}
+  .wtree a{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:13.5px;color:var(--text-2);cursor:pointer}
+  .wtree a:hover{background:var(--surface-3);color:var(--text)}
+  .wtree a.active{background:var(--brand-050);color:var(--brand-700);font-weight:600}
+  .wtree .sub{padding-left:20px}
+  .article h2{font-size:20px;margin:26px 0 10px}.article h3{font-size:16px;margin:20px 0 8px}
+  .article p{margin-bottom:12px;color:var(--text)}
+  .article ul{margin:0 0 12px;padding-left:20px}.article li{margin-bottom:5px}
+  .wiki-toc a{display:block;padding:5px 10px;font-size:12.5px;color:var(--text-3);border-left:2px solid var(--border);cursor:pointer}
+  .wiki-toc a:hover,.wiki-toc a.active{color:var(--brand-700);border-left-color:var(--brand)}
+  .callout{background:var(--brand-050);border:1px solid var(--brand-100);border-radius:12px;padding:14px 16px;margin:14px 0}
+</style>
+</head>
+<body>
+<div class="app" data-page="wiki">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Wiki</span></div>
+          <h1>Wiki платформы</h1><p class="ph-sub">Внутренняя база знаний команды: гайды, регламенты, лучшие практики по работе с агентами.</p></div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="history"></i>История</button>
+          <a href="wiki-create.html" class="btn btn-primary"><i data-lucide="plus"></i>Новая запись</a></div>
+      </div>
+
+      <div class="wiki-grid">
+        <!-- tree -->
+        <div class="card"><div class="card-body">
+          <div class="tb-search mb-2" style="max-width:none"><i data-lucide="search" class="i"></i><input placeholder="Поиск по Wiki…"></div>
+          <div class="wtree">
+            <div class="menu-label" style="padding-left:6px">Онбординг</div>
+            <a class="active"><i data-lucide="file-text" class="i-sm"></i>Быстрый старт</a>
+            <a><i data-lucide="file-text" class="i-sm"></i>Архитектура платформы</a>
+            <div class="menu-label" style="padding-left:6px">Гайды</div>
+            <a><i data-lucide="bot" class="i-sm"></i>Как создать агента</a>
+            <a><i data-lucide="workflow" class="i-sm"></i>Проектирование сценариев</a>
+            <a class="sub"><i data-lucide="corner-down-right" class="i-sm"></i>Паттерны Crew</a>
+            <a><i data-lucide="shield" class="i-sm"></i>Безопасность и PII</a>
+            <div class="menu-label" style="padding-left:6px">Регламенты</div>
+            <a><i data-lucide="scale" class="i-sm"></i>Промпт-политика</a>
+            <a><i data-lucide="alert-triangle" class="i-sm"></i>Реагирование на инциденты</a>
+          </div>
+        </div></div>
+
+        <!-- article -->
+        <div class="card"><div class="card-body article" style="padding:28px 32px">
+          <div class="breadcrumb"><span>Онбординг</span><i data-lucide="chevron-right" class="i"></i><span>Быстрый старт</span></div>
+          <h1 style="font-size:27px;margin-top:8px">Быстрый старт на платформе</h1>
+          <div class="row wrap gap-lg muted t-sm mt-2 mb-2">
+            <span class="row" style="gap:6px"><div class="avatar sm">АП</div>Алексей Петров</span>
+            <span class="row" style="gap:6px"><i data-lucide="clock" class="i-sm"></i>Обновлено 2 дня назад</span>
+            <span class="row" style="gap:6px"><i data-lucide="eye" class="i-sm"></i>1 240 просмотров</span>
+          </div>
+          <div class="row wrap gap-sm mb-2"><span class="tag">#онбординг</span><span class="tag">#гайд</span><span class="badge badge-ok dot">Актуально</span></div>
+          <div class="divider"></div>
+
+          <p>Этот гайд поможет запустить первый мультиагентный сценарий за 15 минут. Мы пройдём путь от создания агента до анализа результатов в наблюдаемости.</p>
+
+          <div class="callout"><b class="row" style="gap:6px;color:var(--brand-700)"><i data-lucide="lightbulb" class="i-sm"></i>Перед началом</b>
+            <p class="t-sm mt-1" style="margin:0">Убедитесь, что подключён хотя бы один LLM-провайдер в разделе «Интеграции».</p></div>
+
+          <h2 id="s1">1. Создание агента</h2>
+          <p>Перейдите в раздел «Агенты» и нажмите «Создать агента». Задайте роль, цель и системный промпт. Ключевые параметры:</p>
+          <ul><li><b>Температура</b> — 0.1–0.3 для детерминированных задач, выше для генерации;</li>
+            <li><b>Инструменты</b> — подключите нужные из библиотеки;</li>
+            <li><b>Память</b> — включите для контекста между сессиями.</li></ul>
+
+          <h2 id="s2">2. Сборка сценария</h2>
+          <p>В разделе «Сценарии» создайте flow: перетащите блоки шагов, назначьте исполнителей и настройте навыки. Используйте условия для ветвления и Human-in-loop для критичных решений.</p>
+
+          <h2 id="s3">3. Запуск и наблюдение</h2>
+          <p>Запустите сценарий и откройте трассировку, чтобы увидеть тайминги каждого шага. Метрики и логи помогут найти узкие места.</p>
+
+          <div class="divider"></div>
+          <div class="row between"><div class="row gap-sm"><button class="btn btn-outline btn-sm"><i data-lucide="thumbs-up"></i>Полезно · 42</button><button class="btn btn-ghost btn-sm"><i data-lucide="message-square"></i>Комментарии · 6</button></div>
+            <a href="wiki-create.html" class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i>Редактировать</a></div>
+        </div></div>
+
+        <!-- TOC -->
+        <div class="wiki-toc" style="position:sticky;top:80px">
+          <div class="menu-label" style="padding-left:10px">Содержание</div>
+          <a class="active">Создание агента</a>
+          <a>Сборка сценария</a>
+          <a>Запуск и наблюдение</a>
+          <div class="divider" style="margin:14px 0"></div>
+          <div class="menu-label" style="padding-left:10px">Авторы</div>
+          <div class="row gap-sm" style="padding:6px 10px"><div class="avatar-grp"><div class="avatar sm">АП</div><div class="avatar sm">МВ</div><div class="avatar sm">ИК</div></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

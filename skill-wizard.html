@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мастер создания навыка / интеграции · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="skills-library">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><a href="skills-library.html">База знаний</a><i data-lucide="chevron-right" class="i"></i><span>Мастер создания</span></div>
+          <h1>Мастер создания навыка / интеграции</h1><p class="ph-sub">Выберите тип и подтип — форма настройки подстроится под выбор.</p></div>
+        <div class="page-actions"><button class="btn btn-ghost">Отмена</button>
+          <button class="btn btn-primary" data-toast="ok|Создано|Компонент добавлен в библиотеку"><i data-lucide="check"></i>Создать</button></div>
+      </div>
+
+      <div class="steps mb-3" style="max-width:640px">
+        <div class="step done">Тип</div><div class="step active">Подтип</div><div class="step">Настройка</div><div class="step">Проверка</div>
+      </div>
+
+      <!-- Step 1: type -->
+      <div class="card mb-3"><div class="card-head"><span class="badge badge-neutral">Шаг 1</span><h3>Что создаём?</h3></div>
+        <div class="card-body"><div class="grid g-3" id="typeGrid">
+          <label class="opt-card sel" data-type="skill"><input type="radio" name="wt" checked><div class="kpi-ic g" style="width:40px;height:40px"><i data-lucide="sparkles" class="i"></i></div><div><b>Навык</b><div class="muted t-xs">Способность агента: NLP, Vision, аналитика</div></div></label>
+          <label class="opt-card" data-type="tool"><input type="radio" name="wt"><div class="kpi-ic b" style="width:40px;height:40px"><i data-lucide="wrench" class="i"></i></div><div><b>Инструмент</b><div class="muted t-xs">Действие: функция, код, API-вызов</div></div></label>
+          <label class="opt-card" data-type="integration"><input type="radio" name="wt"><div class="kpi-ic p" style="width:40px;height:40px"><i data-lucide="plug" class="i"></i></div><div><b>Интеграция</b><div class="muted t-xs">Подключение внешнего сервиса</div></div></label>
+        </div></div>
+      </div>
+
+      <!-- Step 2: subtype -->
+      <div class="card mb-3"><div class="card-head"><span class="badge badge-neutral">Шаг 2</span><h3>Подтип</h3><span class="ch-sub spacer" id="subHint">для типа «Навык»</span></div>
+        <div class="card-body"><div class="grid g-3" id="subGrid"></div></div>
+      </div>
+
+      <!-- Step 3: config -->
+      <div class="grid" style="grid-template-columns:1fr 320px;align-items:start">
+        <div class="card"><div class="card-head"><span class="badge badge-neutral">Шаг 3</span><h3>Настройка</h3></div><div class="card-body">
+          <div class="field"><label class="label">Название <span class="req">*</span></label><input class="input" id="cfgName" placeholder="Название компонента"></div>
+          <div class="field"><label class="label">Описание</label><textarea class="textarea" placeholder="Что делает и когда применять"></textarea></div>
+          <div id="cfgDynamic"></div>
+        </div></div>
+        <div class="card" style="position:sticky;top:80px"><div class="card-head"><h3>Предпросмотр</h3></div><div class="card-body">
+          <div class="row mb-2"><div class="kpi-ic g" style="width:40px;height:40px" id="pvIc"><i data-lucide="sparkles" class="i"></i></div><div><b id="pvType">Навык</b><div class="muted t-xs" id="pvSub">—</div></div></div>
+          <div class="callout" style="background:var(--brand-050);border:1px solid var(--brand-100);border-radius:12px;padding:12px 14px;margin:0"><b class="t-sm row" style="gap:6px;color:var(--brand-700)"><i data-lucide="info" class="i-sm"></i>Подсказка</b><p class="t-sm mt-1" style="margin:0" id="pvHint">Навык подключается к агенту и не требует внешних учётных данных.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+<script>
+window.addEventListener('shell:ready', () => {
+  const SUB = {
+    skill: { hint:'для типа «Навык»', ic:'sparkles', label:'Навык',
+      items:[
+        {k:'nlp', i:'align-left', t:'NLP', d:'Текст: суммаризация, NER, классификация'},
+        {k:'vision', i:'image', t:'Vision', d:'Изображения и документы (OCR)'},
+        {k:'analytics', i:'bar-chart-3', t:'Аналитика', d:'Расчёты и агрегации'},
+        {k:'custom', i:'braces', t:'Кастомный', d:'Собственная логика на промпте'},
+      ],
+      cfg:`<div class="field"><label class="label">Базовая модель</label><select class="select"><option>GigaChat-Pro</option><option>gpt-4o</option></select></div>
+        <div class="field"><label class="label">Промпт-шаблон навыка</label><textarea class="textarea mono" placeholder="Инструкция навыка">Извлеки из текста сущности и верни JSON.</textarea></div>
+        <div class="field tight"><label class="label">Формат вывода</label><div class="seg"><button class="active">JSON</button><button>Текст</button><button>Markdown</button></div></div>`,
+      hintTxt:'Навык подключается к агенту и не требует внешних учётных данных.' },
+    tool: { hint:'для типа «Инструмент»', ic:'wrench', label:'Инструмент',
+      items:[
+        {k:'func', i:'function-square', t:'Функция', d:'Python/JS-функция'},
+        {k:'rest', i:'server', t:'REST API', d:'HTTP-вызов эндпоинта'},
+        {k:'code', i:'terminal', t:'Code Interpreter', d:'Исполнение кода в песочнице'},
+        {k:'sql', i:'database', t:'SQL Query', d:'Запрос к базе данных'},
+      ],
+      cfg:`<div class="field"><label class="label">Метод</label><div class="seg"><button class="active">GET</button><button>POST</button><button>PUT</button></div></div>
+        <div class="field"><label class="label">URL / сигнатура</label><div class="input-group affix"><span class="input-affix pre">https://</span><input class="input left mono" placeholder="api.service.ru/v1/..."></div></div>
+        <div class="field"><label class="label">Схема параметров (JSON Schema)</label><textarea class="textarea mono" placeholder='{ "type": "object", "properties": {...} }'></textarea></div>
+        <div class="field tight"><label class="label">Таймаут</label><div class="input-group affix"><input class="input left" value="30"><span class="input-affix post">сек</span></div></div>`,
+      hintTxt:'Инструмент выполняет действие. Укажите схему параметров, чтобы агент вызывал его корректно.' },
+    integration: { hint:'для типа «Интеграция»', ic:'plug', label:'Интеграция',
+      items:[
+        {k:'mcp', i:'boxes', t:'MCP Server', d:'Model Context Protocol'},
+        {k:'oauth', i:'key-round', t:'OAuth-сервис', d:'CRM, почта, календарь'},
+        {k:'db', i:'database', t:'База данных', d:'SQL / NoSQL подключение'},
+        {k:'webhook', i:'webhook', t:'Webhook', d:'Исходящие события'},
+      ],
+      cfg:`<div class="field"><label class="label">Тип аутентификации</label><select class="select"><option>OAuth 2.0</option><option>API Key</option><option>Basic Auth</option><option>Без авторизации</option></select></div>
+        <div class="field"><label class="label">Client ID</label><input class="input mono" placeholder="client_id"></div>
+        <div class="field"><label class="label">Client Secret</label><div class="input-group"><i data-lucide="lock" class="i input-ic"></i><input class="input" type="password" placeholder="секрет"></div></div>
+        <div class="field tight"><label class="label">Scopes</label><div class="row wrap gap-sm"><span class="chip brand">read<span class="x"><i data-lucide="x" class="i-sm"></i></span></span><span class="chip chip-add"><i data-lucide="plus" class="i-sm"></i>Scope</span></div></div>`,
+      hintTxt:'Интеграция требует учётных данных. Секреты шифруются и хранятся в «Переменных окружения».' },
+  };
+  const subGrid = document.getElementById('subGrid');
+  const cfg = document.getElementById('cfgDynamic');
+  let curType = 'skill';
+  function renderSub(type) {
+    const s = SUB[type]; curType = type;
+    document.getElementById('subHint').textContent = s.hint;
+    document.getElementById('pvType').textContent = s.label;
+    document.getElementById('pvHint').textContent = s.hintTxt;
+    document.getElementById('pvIc').innerHTML = '<i data-lucide="'+s.ic+'" class="i"></i>';
+    subGrid.innerHTML = s.items.map((it,idx)=>`
+      <label class="opt-card ${idx===0?'sel':''}" data-sub="${it.t}">
+        <input type="radio" name="ws" ${idx===0?'checked':''}>
+        <div class="kpi-ic ${type==='skill'?'g':type==='tool'?'b':'p'}" style="width:36px;height:36px"><i data-lucide="${it.i}" class="i-sm"></i></div>
+        <div><b>${it.t}</b><div class="muted t-xs">${it.d}</div></div></label>`).join('');
+    cfg.innerHTML = s.cfg;
+    document.getElementById('pvSub').textContent = s.items[0].t;
+    if (window.lucide) lucide.createIcons();
+    // subtype selection updates preview
+    subGrid.querySelectorAll('[data-sub]').forEach(el => el.addEventListener('click', () => {
+      subGrid.querySelectorAll('[data-sub]').forEach(x=>x.classList.remove('sel'));
+      el.classList.add('sel');
+      document.getElementById('pvSub').textContent = el.dataset.sub;
+    }));
+  }
+  document.querySelectorAll('#typeGrid [data-type]').forEach(el => el.addEventListener('click', () => {
+    document.querySelectorAll('#typeGrid [data-type]').forEach(x=>x.classList.remove('sel'));
+    el.classList.add('sel'); renderSub(el.dataset.type);
+  }));
+  renderSub('skill');
+});
+</script>
+</body>
+</html>

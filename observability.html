@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Наблюдаемость · Обзор · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="observability">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main">
+          <div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Наблюдаемость</span></div>
+          <h1>Наблюдаемость</h1>
+          <p class="ph-sub">Единая точка мониторинга: логи, трассировки и метрики выполнения агентов и сценариев.</p>
+        </div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="calendar"></i>Последний час</button>
+          <button class="btn btn-outline"><i data-lucide="refresh-cw"></i>Авто-обновление</button></div>
+      </div>
+
+      <div class="tabs">
+        <a class="active" href="observability.html"><i data-lucide="gauge" class="i"></i>Обзор</a>
+        <a href="logs.html"><i data-lucide="scroll-text" class="i"></i>Логи<span class="count">1.2k</span></a>
+        <a href="traces.html"><i data-lucide="git-branch" class="i"></i>Трассировка</a>
+        <a href="metrics.html"><i data-lucide="line-chart" class="i"></i>Метрики</a>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="heart-pulse" class="i"></i></div><span class="kpi-label">Uptime</span></div><div class="kpi-val num">99.94%</div><div class="kpi-meta"><span class="badge badge-ok dot">Healthy</span></div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic r"><i data-lucide="alert-octagon" class="i"></i></div><span class="kpi-label">Error rate</span></div><div class="kpi-val num">1.4%</div><div class="kpi-meta"><span class="trend down"><i data-lucide="trending-down"></i>-0.3%</span></div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="timer" class="i"></i></div><span class="kpi-label">Latency p95</span></div><div class="kpi-val num">2.1 c</div><div class="kpi-meta"><span class="trend up"><i data-lucide="trending-up"></i>+8%</span></div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="zap" class="i"></i></div><span class="kpi-label">Throughput</span></div><div class="kpi-val num">312 rpm</div></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.4fr 1fr">
+        <div class="card">
+          <div class="card-head"><h3>Ошибки по времени</h3><span class="ch-sub spacer">за час</span></div>
+          <div class="card-body"><svg viewBox="0 0 620 200" width="100%">
+            <g stroke="#eef1f4"><line x1="30" y1="30" x2="610" y2="30"/><line x1="30" y1="90" x2="610" y2="90"/><line x1="30" y1="150" x2="610" y2="150"/></g>
+            <g fill="var(--c5)">
+              <rect x="40" y="140" width="26" height="20" rx="3"/><rect x="90" y="120" width="26" height="40" rx="3"/><rect x="140" y="150" width="26" height="10" rx="3"/>
+              <rect x="190" y="100" width="26" height="60" rx="3"/><rect x="240" y="130" width="26" height="30" rx="3"/><rect x="290" y="70" width="26" height="90" rx="3" opacity=".9"/>
+              <rect x="340" y="120" width="26" height="40" rx="3"/><rect x="390" y="145" width="26" height="15" rx="3"/><rect x="440" y="110" width="26" height="50" rx="3"/>
+              <rect x="490" y="135" width="26" height="25" rx="3"/><rect x="540" y="150" width="26" height="10" rx="3"/></g>
+          </svg></div>
+        </div>
+        <div class="card"><div class="card-head"><h3>Топ ошибок</h3><a href="logs.html" class="btn btn-ghost btn-sm spacer">Все<i data-lucide="arrow-right"></i></a></div>
+          <div class="card-body">
+            <div class="list-line"><span class="badge badge-danger">TIMEOUT</span><span class="f1 t-sm">CRM API · превышение 30s</span><b class="num">142</b></div>
+            <div class="list-line"><span class="badge badge-warn">RATE_LIMIT</span><span class="f1 t-sm">OpenAI · 429</span><b class="num">88</b></div>
+            <div class="list-line"><span class="badge badge-danger">TOOL_ERR</span><span class="f1 t-sm">Document Parser · corrupt PDF</span><b class="num">54</b></div>
+            <div class="list-line"><span class="badge badge-warn">VALIDATION</span><span class="f1 t-sm">Схема ответа не прошла</span><b class="num">31</b></div>
+            <div class="list-line"><span class="badge badge-neutral">CONTEXT</span><span class="f1 t-sm">Превышен лимит контекста</span><b class="num">12</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service map -->
+      <div class="card mt-3"><div class="card-head"><i data-lucide="network" class="i muted"></i><h3>Карта сервисов</h3><span class="badge badge-ok dot spacer">Все узлы онлайн</span></div>
+        <div class="card-body">
+          <svg viewBox="0 0 900 220" width="100%">
+            <g stroke="#cdd4dd" stroke-width="2" fill="none">
+              <path d="M150,110 C230,110 230,60 310,60"/><path d="M150,110 C230,110 230,110 310,110"/><path d="M150,110 C230,110 230,160 310,160"/>
+              <path d="M430,60 C520,60 520,110 600,110"/><path d="M430,110 C520,110 520,110 600,110"/><path d="M430,160 C520,160 520,110 600,110"/>
+              <path d="M720,110 L790,110"/></g>
+            <g font-size="11" font-weight="600" fill="#1b2330" text-anchor="middle">
+              <g><rect x="70" y="88" width="120" height="44" rx="10" fill="#fff" stroke="#1FA03B"/><text x="130" y="114">Gateway</text></g>
+              <g><rect x="310" y="40" width="120" height="40" rx="10" fill="#fff" stroke="#e6e9ee"/><text x="370" y="64">Оркестратор</text></g>
+              <g><rect x="310" y="90" width="120" height="40" rx="10" fill="#fff" stroke="#e6e9ee"/><text x="370" y="114">Агент-пул</text></g>
+              <g><rect x="310" y="140" width="120" height="40" rx="10" fill="#fff" stroke="#e6e9ee"/><text x="370" y="164">Tool-раннер</text></g>
+              <g><rect x="600" y="90" width="120" height="40" rx="10" fill="#fff" stroke="#e6e9ee"/><text x="660" y="114">LLM-провайдер</text></g>
+              <g><rect x="790" y="90" width="90" height="40" rx="10" fill="#fff" stroke="#D98200"/><text x="835" y="114">Vector DB</text></g></g>
+            <g fill="#1FA03B"><circle cx="130" cy="110" r="4"/></g>
+          </svg>
+          <div class="row gap-lg mt-2 t-sm muted"><span class="row" style="gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--ok)"></span>Онлайн</span>
+            <span class="row" style="gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--warn)"></span>Нагружен</span>
+            <span class="row" style="gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--danger)"></span>Ошибка</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

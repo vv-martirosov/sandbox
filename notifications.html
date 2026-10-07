@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Уведомления · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .nrow{display:flex;align-items:flex-start;gap:13px;padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:.1s}
+  .nrow:hover{background:var(--surface-2)}
+  .nrow.unread{background:var(--brand-050)}.nrow.unread:hover{background:#e2f2e8}
+  .nrow.unread .ndot{background:var(--brand)}
+  .ndot{width:8px;height:8px;border-radius:50%;background:transparent;margin-top:7px;flex:none}
+</style>
+</head>
+<body>
+<div class="app" data-page="wiki">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Уведомления</span></div>
+          <h1 class="row" style="gap:10px">Уведомления <span class="badge badge-danger">4 новых</span></h1>
+          <p class="ph-sub">События платформы: завершения сценариев, инциденты, действия пользователей и системные оповещения.</p></div>
+        <div class="page-actions"><button class="btn btn-outline" data-toast="ok|Готово|Все уведомления отмечены прочитанными"><i data-lucide="check-check"></i>Прочитать все</button>
+          <button class="btn btn-ghost"><i data-lucide="settings"></i>Настройки</button></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="pills"><span class="pill active">Все<span class="count" style="margin-left:6px">32</span></span><span class="pill">Непрочитанные<span class="count" style="margin-left:6px">4</span></span><span class="pill">Инциденты</span><span class="pill">Сценарии</span><span class="pill">Пользователи</span><span class="pill">Система</span></div>
+        <div class="spacer"></div>
+        <div class="tb-search" style="max-width:260px"><i data-lucide="search" class="i"></i><input placeholder="Поиск…"></div>
+      </div>
+
+      <div class="card">
+        <div class="menu-label" style="padding:12px 18px 4px">Сегодня</div>
+        <div class="nrow unread" data-modal="mN1"><span class="ndot"></span><div class="toast-ic err"><i data-lucide="x-circle" class="i-sm"></i></div>
+          <div class="f1"><div class="row between"><b class="t-sm">Ошибка вызова инструмента «CRM API»</b><span class="muted t-xs">14 мин</span></div>
+            <div class="muted t-sm">Сценарий «Онбординг клиента» · timeout 30s · 142 ошибки за час</div>
+            <div class="row gap-sm mt-1"><span class="badge badge-danger">Инцидент</span><span class="tag mono">trace 8f21a</span></div></div>
+          <i data-lucide="chevron-right" class="i muted" style="margin-top:8px"></i></div>
+
+        <div class="nrow unread" data-modal="mN2"><span class="ndot"></span><div class="toast-ic warn"><i data-lucide="alert-triangle" class="i-sm"></i></div>
+          <div class="f1"><div class="row between"><b class="t-sm">Рост latency p95 у агента «Скоринг»</b><span class="muted t-xs">9 мин</span></div>
+            <div class="muted t-sm">p95 вырос до 3.1 c (порог 2.5 c)</div>
+            <div class="row gap-sm mt-1"><span class="badge badge-warn">Метрики</span></div></div>
+          <i data-lucide="chevron-right" class="i muted" style="margin-top:8px"></i></div>
+
+        <div class="nrow unread" data-modal="mN3"><span class="ndot"></span><div class="toast-ic ok"><i data-lucide="check-circle" class="i-sm"></i></div>
+          <div class="f1"><div class="row between"><b class="t-sm">Сценарий «Онбординг клиента» завершён</b><span class="muted t-xs">2 мин</span></div>
+            <div class="muted t-sm">12 шагов · 4.2 c · success 98%</div>
+            <div class="row gap-sm mt-1"><span class="badge badge-ok">Сценарий</span></div></div>
+          <i data-lucide="chevron-right" class="i muted" style="margin-top:8px"></i></div>
+
+        <div class="nrow unread" data-modal="mN4"><span class="ndot"></span><div class="toast-ic info"><i data-lucide="user-plus" class="i-sm"></i></div>
+          <div class="f1"><div class="row between"><b class="t-sm">Новый пользователь: Светлана Белова</b><span class="muted t-xs">40 мин</span></div>
+            <div class="muted t-sm">Приглашена с ролью «Только чтение»</div>
+            <div class="row gap-sm mt-1"><span class="badge badge-info">Пользователи</span></div></div>
+          <i data-lucide="chevron-right" class="i muted" style="margin-top:8px"></i></div>
+
+        <div class="menu-label" style="padding:12px 18px 4px">Вчера</div>
+        <div class="nrow" data-modal="mN2"><span class="ndot"></span><div class="toast-ic ok"><i data-lucide="git-commit-horizontal" class="i-sm"></i></div>
+          <div class="f1"><div class="row between"><b class="t-sm">Опубликована новая версия навыка «Web Search»</b><span class="muted t-xs">вчера, 18:20</span></div>
+            <div class="muted t-sm">v2.4 · затронуто 18 агентов</div><div class="row gap-sm mt-1"><span class="badge badge-neutral">Система</span></div></div>
+          <i data-lucide="chevron-right" class="i muted" style="margin-top:8px"></i></div>
+
+        <div class="nrow" data-modal="mN2"><span class="ndot"></span><div class="toast-ic warn"><i data-lucide="wallet" class="i-sm"></i></div>
+          <div class="f1"><div class="row between"><b class="t-sm">Достигнут 80% дневного бюджета</b><span class="muted t-xs">вчера, 15:02</span></div>
+            <div class="muted t-sm">40 000 из 50 000 ₽</div><div class="row gap-sm mt-1"><span class="badge badge-warn">Лимиты</span></div></div>
+          <i data-lucide="chevron-right" class="i muted" style="margin-top:8px"></i></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mN1">
+  <div class="modal-head"><div class="toast-ic err"><i data-lucide="x-circle" class="i-sm"></i></div><h3>Ошибка вызова инструмента</h3><span class="badge badge-danger" style="margin-left:6px">Инцидент</span><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <dl class="kv mb-2"><dt>Инструмент</dt><dd>CRM API</dd><dt>Ошибка</dt><dd>TIMEOUT (30s)</dd><dt>Сценарий</dt><dd>Онбординг клиента</dd><dt>Trace ID</dt><dd class="mono">8f21a-4c02</dd><dt>Повторов за час</dt><dd>142</dd><dt>Время</dt><dd>12:41:14</dd></dl>
+    <div class="menu-label" style="padding-left:0">Стек</div>
+    <div class="code" style="font-size:11.5px">ToolError: CRM API GET /clients/CL-88213
+  → connect ETIMEDOUT after 30000ms
+  at tool-runner.invoke (crm.js:88)</div>
+    <div class="callout" style="background:var(--danger-bg);border-color:var(--danger-bd);border-radius:12px;padding:12px 14px;margin-top:12px"><b class="t-sm">Рекомендация</b><p class="t-sm mt-1" style="margin:0">Проверьте доступность CRM API и увеличьте таймаут шага или включите ретраи.</p></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Закрыть</button><a href="traces.html" class="btn btn-outline"><i data-lucide="git-branch"></i>Трассировка</a><a href="logs.html" class="btn btn-primary"><i data-lucide="scroll-text"></i>Открыть логи</a></div>
+</template>
+<template id="mN2">
+  <div class="modal-head"><div class="toast-ic warn"><i data-lucide="alert-triangle" class="i-sm"></i></div><h3>Детали уведомления</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body"><p class="sub">Полная информация о событии с контекстом, метриками и связанными объектами платформы.</p>
+    <dl class="kv mt-2"><dt>Тип</dt><dd>Метрики / порог</dd><dt>Объект</dt><dd>Агент «Скоринг»</dd><dt>Значение</dt><dd>p95 = 3.1 c</dd><dt>Порог</dt><dd>2.5 c</dd></dl></div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Закрыть</button><a href="metrics.html" class="btn btn-primary"><i data-lucide="line-chart"></i>К метрикам</a></div>
+</template>
+<template id="mN3">
+  <div class="modal-head"><div class="toast-ic ok"><i data-lucide="check-circle" class="i-sm"></i></div><h3>Сценарий завершён</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body"><dl class="kv"><dt>Сценарий</dt><dd>Онбординг клиента</dd><dt>Шагов</dt><dd>12</dd><dt>Длительность</dt><dd>4.2 c</dd><dt>Success rate</dt><dd>98%</dd><dt>Токенов</dt><dd>6 480</dd></dl></div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Закрыть</button><a href="reports.html" class="btn btn-primary"><i data-lucide="bar-chart-3"></i>Value-отчёт</a></div>
+</template>
+<template id="mN4">
+  <div class="modal-head"><div class="toast-ic info"><i data-lucide="user-plus" class="i-sm"></i></div><h3>Новый пользователь</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body"><div class="row mb-2"><div class="avatar lg" style="background:var(--muted-bg);color:var(--text-2)">СБ</div><div><b>Светлана Белова</b><div class="muted t-xs">s.belova@sber.ru</div></div></div>
+    <dl class="kv"><dt>Роль</dt><dd>Только чтение</dd><dt>Статус</dt><dd><span class="badge badge-warn dot">Приглашён</span></dd><dt>Пригласил</dt><dd>Марти В.</dd></dl></div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Закрыть</button><a href="user-card.html" class="btn btn-primary"><i data-lucide="user"></i>Открыть карточку</a></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

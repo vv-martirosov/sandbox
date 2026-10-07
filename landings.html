@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лендинги · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>.lnd{transition:.14s;cursor:pointer}.lnd:hover{box-shadow:var(--sh-2);transform:translateY(-2px)}
+  .lnd-prev{height:120px;border-radius:10px 10px 0 0;overflow:hidden;background:var(--surface-2);border-bottom:1px solid var(--border)}
+  .lnd-prev img{width:100%;height:100%;object-fit:cover}</style>
+</head>
+<body>
+<div class="app" data-page="landings">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Интерфейсы</span><i data-lucide="chevron-right" class="i"></i><span>Лендинги</span></div>
+          <h1>Лендинги</h1><p class="ph-sub">Веб-страницы, привязанные к сценариям и агентам: точки входа, промо и формы захвата.</p></div>
+        <div class="page-actions"><div class="seg"><button class="active">Сетка</button><button>Таблица</button></div>
+          <button class="btn btn-primary" data-modal="mLnd"><i data-lucide="plus"></i>Создать лендинг</button></div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="panels-top-left" class="i"></i></div><span class="kpi-label">Всего страниц</span></div><div class="kpi-val num">12</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="check-circle" class="i"></i></div><span class="kpi-label">Опубликовано</span></div><div class="kpi-val num">8</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="file-edit" class="i"></i></div><span class="kpi-label">Черновики</span></div><div class="kpi-val num">4</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="eye" class="i"></i></div><span class="kpi-label">Просмотров / нед.</span></div><div class="kpi-val num">48.2k</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск лендинга…"></div>
+        <div class="pills"><span class="pill active">Все</span><span class="pill">Опубликованы</span><span class="pill">Черновики</span><span class="pill">Запланированы</span></div>
+      </div>
+
+      <div class="grid g-3">
+        <div class="card lnd"><div class="lnd-prev" data-lightbox="assets/img/shot2.svg"><img src="assets/img/shot2.svg"></div><div class="card-body">
+          <div class="row between"><b>Открытие счёта для ИП</b><span class="badge badge-ok dot">Онлайн</span></div>
+          <div class="muted t-xs mono mt-1">promo.sber.ru/ip-account</div>
+          <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Онбординг клиента</span></div>
+          <div class="divider" style="margin:12px 0"></div>
+          <div class="row between t-xs"><span class="muted"><i data-lucide="eye" class="i-sm" style="vertical-align:-2px"></i> 18.4k</span><span class="badge badge-ok">конверсия 6.2%</span></div>
+        </div></div>
+
+        <div class="card lnd"><div class="lnd-prev" data-lightbox="assets/img/shot1.svg"><img src="assets/img/shot1.svg"></div><div class="card-body">
+          <div class="row between"><b>AI-консультант по кредитам</b><span class="badge badge-ok dot">Онлайн</span></div>
+          <div class="muted t-xs mono mt-1">promo.sber.ru/credit-ai</div>
+          <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="bot" class="i-sm"></i>Скоринг-агент</span></div>
+          <div class="divider" style="margin:12px 0"></div>
+          <div class="row between t-xs"><span class="muted"><i data-lucide="eye" class="i-sm" style="vertical-align:-2px"></i> 12.1k</span><span class="badge badge-ok">конверсия 4.8%</span></div>
+        </div></div>
+
+        <div class="card lnd"><div class="lnd-prev" data-lightbox="assets/img/doc.svg"><img src="assets/img/doc.svg"></div><div class="card-body">
+          <div class="row between"><b>Промо: бизнес-карта</b><span class="badge badge-warn dot">Запланирован</span></div>
+          <div class="muted t-xs mono mt-1">promo.sber.ru/biz-card</div>
+          <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="calendar" class="i-sm"></i>с 25 сен</span></div>
+          <div class="divider" style="margin:12px 0"></div>
+          <div class="row between t-xs"><span class="muted">черновик</span><button class="btn btn-outline btn-sm" data-toast="ok|Опубликовано|Лендинг опубликован">Опубликовать</button></div>
+        </div></div>
+
+        <div class="card lnd"><div class="lnd-prev" style="display:grid;place-items:center"><i data-lucide="image" class="i-lg muted" style="width:32px;height:32px"></i></div><div class="card-body">
+          <div class="row between"><b>Форма обратной связи</b><span class="badge badge-neutral">Черновик</span></div>
+          <div class="muted t-xs mono mt-1">— не опубликован —</div>
+          <div class="row wrap gap-sm mt-2"><span class="tag"><i data-lucide="workflow" class="i-sm"></i>Разбор обращения</span></div>
+          <div class="divider" style="margin:12px 0"></div>
+          <div class="row between t-xs"><span class="muted">обновлён 2 дня назад</span><a href="#" class="btn btn-ghost btn-sm"><i data-lucide="pencil"></i>Редактор</a></div>
+        </div></div>
+
+        <div class="card lnd" style="border-style:dashed;background:var(--surface-2)" data-modal="mLnd"><div class="card-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:230px">
+          <div class="kpi-ic" style="width:46px;height:46px;background:var(--brand-050);color:var(--brand-600)"><i data-lucide="plus" class="i-lg"></i></div>
+          <b class="t-lg mt-1">Создать лендинг</b><span class="muted t-sm">с нуля или из шаблона</span>
+        </div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mLnd">
+  <div class="modal-head"><i data-lucide="panels-top-left" class="i"></i><h3>Новый лендинг</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Название <span class="req">*</span></label><input class="input" placeholder="Например: Открытие вклада"></div>
+    <div class="field"><label class="label">URL</label><div class="input-group affix"><span class="input-affix pre">promo.sber.ru/</span><input class="input left mono" placeholder="deposit"></div></div>
+    <div class="field"><label class="label">Привязанный сценарий</label><select class="select"><option>Онбординг клиента</option><option>Скоринг заявки</option><option>Разбор обращения</option></select></div>
+    <div class="field tight"><label class="label">Шаблон</label><div class="seg"><button class="active">Пустой</button><button>Промо</button><button>Форма</button></div></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Создано|Лендинг создан · открываю редактор"><i data-lucide="check"></i>Создать</button></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

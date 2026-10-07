@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Логи · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+<style>
+  .logrow{display:grid;grid-template-columns:150px 78px 130px 1fr;gap:12px;padding:9px 14px;border-bottom:1px solid var(--border);
+    font-family:var(--mono);font-size:12.5px;align-items:center;cursor:pointer}
+  .logrow:hover{background:var(--surface-2)}
+  .logrow .msg{color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lvl{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;text-align:center;letter-spacing:.03em}
+  .lvl.info{background:var(--info-bg);color:#245fce}.lvl.warn{background:var(--warn-bg);color:#a5660a}
+  .lvl.err{background:var(--danger-bg);color:#c93b40}.lvl.debug{background:var(--muted-bg);color:var(--text-2)}
+  .log-detail{background:#0f1b14;color:#c8f0d4;font-family:var(--mono);font-size:12px;padding:14px 18px;line-height:1.7;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="app" data-page="logs">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="observability.html">Наблюдаемость</a><i data-lucide="chevron-right" class="i"></i><span>Логи</span></div>
+          <h1>Логи выполнения</h1><p class="ph-sub">Потоковые логи агентов, инструментов и оркестратора с фильтрацией по уровню и сервису.</p></div>
+        <div class="page-actions">
+          <label class="switch"><input type="checkbox" checked><span class="track"></span><span>Live tail</span></label>
+          <button class="btn btn-outline"><i data-lucide="download"></i>Экспорт</button></div>
+      </div>
+
+      <div class="tabs">
+        <a href="observability.html"><i data-lucide="gauge" class="i"></i>Обзор</a>
+        <a class="active" href="logs.html"><i data-lucide="scroll-text" class="i"></i>Логи<span class="count">1.2k</span></a>
+        <a href="traces.html"><i data-lucide="git-branch" class="i"></i>Трассировка</a>
+        <a href="metrics.html"><i data-lucide="line-chart" class="i"></i>Метрики</a>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:340px"><i data-lucide="search" class="i"></i><input placeholder="Поиск по сообщению, trace_id…"></div>
+        <div class="pills"><span class="pill active">Все</span><span class="pill">INFO</span><span class="pill">WARN</span><span class="pill">ERROR</span><span class="pill">DEBUG</span></div>
+        <select class="select" style="width:180px"><option>Все сервисы</option><option>Оркестратор</option><option>Агент-пул</option><option>Tool-раннер</option></select>
+        <div class="spacer badge badge-neutral"><span class="status s-run" style="font-size:11px">стрим активен</span></div>
+      </div>
+
+      <div class="card">
+        <div class="logrow" style="background:var(--surface-2);font-weight:700;color:var(--text-3);font-family:var(--ff);font-size:11px;text-transform:uppercase;cursor:default">
+          <span>Время</span><span>Уровень</span><span>Сервис</span><span>Сообщение</span></div>
+
+        <div class="logrow" data-detail><span class="muted">12:41:08.221</span><span class="lvl info">INFO</span><span class="sub">orchestrator</span><span class="msg">Scenario «Онбординг клиента» started · trace_id=8f21a</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:08.244</span><span class="lvl debug">DEBUG</span><span class="sub">agent-pool</span><span class="msg">Agent «Онбординг-ассистент» spawned, tools=[CRM API, Doc Parser]</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:09.010</span><span class="lvl info">INFO</span><span class="sub">tool-runner</span><span class="msg">CRM API GET /clients/CL-88213 → 200 (412 ms)</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:11.882</span><span class="lvl warn">WARN</span><span class="sub">llm-gateway</span><span class="msg">OpenAI 429 rate_limit, retrying with backoff (attempt 1/3)</span></div>
+        <div class="logrow" data-detail style="background:#fdf6f6"><span class="muted">12:41:14.301</span><span class="lvl err">ERROR</span><span class="sub">tool-runner</span><span class="msg">Document Parser failed: corrupt PDF stream at page 4 · TOOL_ERR</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:14.560</span><span class="lvl info">INFO</span><span class="sub">orchestrator</span><span class="msg">Fallback branch activated → manual review queue</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:15.120</span><span class="lvl debug">DEBUG</span><span class="sub">agent-pool</span><span class="msg">Memory write: client_profile cached (ttl=3600s)</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:16.744</span><span class="lvl info">INFO</span><span class="sub">llm-gateway</span><span class="msg">GigaChat-Pro completion ok · 1 842 tokens · 1.1 c</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:18.003</span><span class="lvl warn">WARN</span><span class="sub">orchestrator</span><span class="msg">Step latency above SLA: «Скоринг» 3.1s (SLA 2.5s)</span></div>
+        <div class="logrow" data-detail><span class="muted">12:41:19.550</span><span class="lvl info">INFO</span><span class="sub">orchestrator</span><span class="msg">HITL checkpoint reached, awaiting operator approval</span></div>
+      </div>
+      <div class="row between mt-2">
+        <span class="muted t-sm">Показано 10 из 1 214 записей</span>
+        <div class="row gap-sm"><button class="btn btn-outline btn-sm"><i data-lucide="chevron-left"></i></button>
+          <button class="btn btn-outline btn-sm">Загрузить ещё</button></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+<script>
+window.addEventListener('shell:ready', () => {
+  document.querySelectorAll('[data-detail]').forEach(r => r.addEventListener('click', () => {
+    const nx = r.nextElementSibling;
+    if (nx && nx.classList.contains('log-detail')) { nx.remove(); return; }
+    const d = document.createElement('div'); d.className = 'log-detail';
+    d.textContent = '{\n  "trace_id": "8f21a-4c02",\n  "span_id": "'+Math.random().toString(16).slice(2,8)+'",\n  "level": "'+r.querySelector('.lvl').textContent+'",\n  "service": "'+r.querySelector('.sub').textContent+'",\n  "message": "'+r.querySelector('.msg').textContent+'",\n  "duration_ms": '+(Math.floor(Math.random()*2000))+',\n  "attributes": { "scenario": "onboarding", "step": 4, "agent": "assistant" }\n}';
+    r.after(d);
+  }));
+});
+</script>
+</body>
+</html>

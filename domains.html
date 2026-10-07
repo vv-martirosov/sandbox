@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Домены · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="domains">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Интерфейсы</span><i data-lucide="chevron-right" class="i"></i><span>Домены</span></div>
+          <h1>Домены</h1><p class="ph-sub">Доступные и авторизованные домены платформы: верификация, SSL и привязка к поверхностям.</p></div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="refresh-cw"></i>Проверить DNS</button>
+          <button class="btn btn-primary" data-modal="mDom"><i data-lucide="plus"></i>Добавить домен</button></div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="globe" class="i"></i></div><span class="kpi-label">Всего доменов</span></div><div class="kpi-val num">9</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="badge-check" class="i"></i></div><span class="kpi-label">Верифицировано</span></div><div class="kpi-val num">7</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="clock" class="i"></i></div><span class="kpi-label">Ожидают</span></div><div class="kpi-val num">1</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="shield-check" class="i"></i></div><span class="kpi-label">SSL истекает &lt;30д</span></div><div class="kpi-val num">1</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск домена…"></div>
+        <div class="pills"><span class="pill active">Все</span><span class="pill">Верифицированы</span><span class="pill">Ожидают</span><span class="pill">С ошибкой</span></div>
+      </div>
+
+      <div class="card"><div class="table-wrap"><table class="tbl">
+        <thead><tr><th class="tbl-check"><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></th>
+          <th class="sortable">Домен</th><th>Тип</th><th>Статус</th><th>SSL</th><th>Авторизация</th><th>Привязка</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td class="cell-user"><i data-lucide="globe" class="i" style="color:var(--c1)"></i><div><div class="t-primary mono">agents.sber.ru</div><div class="t-sub">основной</div></div></td>
+            <td><span class="badge badge-neutral">Primary</span></td><td><span class="status s-ok">Верифицирован</span></td>
+            <td><span class="badge badge-ok dot">Валиден · 320д</span></td><td><span class="badge badge-info">Sber ID</span></td>
+            <td><span class="tag"><i data-lucide="globe" class="i-sm"></i>Web app</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="domMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td class="cell-user"><i data-lucide="globe" class="i" style="color:var(--c2)"></i><div><div class="t-primary mono">app.sber.ru</div><div class="t-sub">mini-app</div></div></td>
+            <td><span class="badge badge-neutral">Alias</span></td><td><span class="status s-ok">Верифицирован</span></td>
+            <td><span class="badge badge-ok dot">Валиден · 190д</span></td><td><span class="badge badge-info">Telegram</span></td>
+            <td><span class="tag"><i data-lucide="send" class="i-sm"></i>Mini App</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="domMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td class="cell-user"><i data-lucide="globe" class="i" style="color:var(--c3)"></i><div><div class="t-primary mono">promo.sber.ru</div><div class="t-sub">лендинги</div></div></td>
+            <td><span class="badge badge-neutral">Alias</span></td><td><span class="status s-ok">Верифицирован</span></td>
+            <td><span class="badge badge-warn dot">Истекает · 24д</span></td><td><span class="badge badge-neutral">Публичный</span></td>
+            <td><span class="tag"><i data-lucide="panels-top-left" class="i-sm"></i>Лендинги</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="domMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td class="cell-user"><i data-lucide="globe" class="i" style="color:var(--text-3)"></i><div><div class="t-primary mono">ai.sberbank.ru</div><div class="t-sub">новый</div></div></td>
+            <td><span class="badge badge-neutral">Alias</span></td><td><span class="status s-warn">Ожидает DNS</span></td>
+            <td><span class="badge badge-neutral">—</span></td><td><span class="badge badge-neutral">—</span></td>
+            <td><span class="muted">—</span></td>
+            <td><div class="row-actions"><button class="btn btn-outline btn-sm" data-modal="mVerify">Проверить</button><button class="tb-btn" style="width:30px;height:30px" data-menu="domMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td class="cell-user"><i data-lucide="globe" class="i" style="color:var(--danger)"></i><div><div class="t-primary mono">test.internal</div><div class="t-sub">dev</div></div></td>
+            <td><span class="badge badge-neutral">Alias</span></td><td><span class="status s-err">Ошибка DNS</span></td>
+            <td><span class="badge badge-danger dot">Нет сертификата</span></td><td><span class="badge badge-neutral">Internal</span></td>
+            <td><span class="muted">—</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="domMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+        </tbody>
+      </table></div>
+      <div class="card-foot"><span class="muted t-sm">Показано 5 из 9</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mDom">
+  <div class="modal-head"><i data-lucide="globe" class="i"></i><h3>Добавить домен</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Домен <span class="req">*</span></label><div class="input-group affix"><span class="input-affix pre">https://</span><input class="input left mono" placeholder="app.example.ru"></div></div>
+    <div class="field"><label class="label">Тип</label><div class="seg"><button class="active">Alias</button><button>Primary</button></div></div>
+    <div class="field tight"><label class="label">Авторизация</label><select class="select"><option>Публичный</option><option>Sber ID (SSO)</option><option>Только по allowlist</option></select></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="info|Домен добавлен|Настройте DNS-записи для верификации"><i data-lucide="plus"></i>Добавить</button></div>
+</template>
+
+<template id="mVerify" data-lg="1">
+  <div class="modal-head"><i data-lucide="badge-check" class="i"></i><h3>Верификация домена ai.sberbank.ru</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <p class="sub mb-2">Добавьте следующие DNS-записи у регистратора. Проверка выполняется автоматически каждые 5 минут.</p>
+    <div class="code" style="font-size:11.5px">TXT   _ucp-verify   <span class="s">"ucp-site-verification=8f21a4c02"</span>
+CNAME app           <span class="s">edge.ucp.sber.ru</span></div>
+    <div class="list-line mt-2"><i data-lucide="clock" class="i muted"></i><span class="f1 t-sm">TXT-запись</span><span class="status s-warn">ожидает</span></div>
+    <div class="list-line"><i data-lucide="check-circle" class="i" style="color:var(--ok)"></i><span class="f1 t-sm">CNAME-запись</span><span class="status s-ok">найдена</span></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Закрыть</button><button class="btn btn-primary" data-close data-toast="info|Проверка|DNS-записи перепроверяются…"><i data-lucide="refresh-cw"></i>Проверить сейчас</button></div>
+</template>
+<script src="assets/app.js"></script>
+</body>
+</html>

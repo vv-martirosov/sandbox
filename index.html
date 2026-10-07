@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дашборд · AI UCP Control Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="index">
+  <main class="main">
+    <div class="page">
+
+      <div class="page-head">
+        <div class="ph-main">
+          <div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Дашборд</span></div>
+          <h1>Обзор платформы</h1>
+          <p class="ph-sub">Состояние агентов, сценариев и потребления ресурсов в реальном времени.</p>
+        </div>
+        <div class="page-actions">
+          <div class="seg">
+            <button>24 часа</button><button class="active">7 дней</button><button>30 дней</button>
+          </div>
+          <button class="btn btn-outline" data-toast="info|Экспорт|Отчёт формируется…"><i data-lucide="download"></i>Экспорт</button>
+          <button class="btn btn-primary" data-modal="mQuick"><i data-lucide="plus"></i>Запустить сценарий</button>
+        </div>
+      </div>
+
+      <!-- KPI -->
+      <div class="grid g-4 mb-3">
+        <div class="kpi">
+          <div class="kpi-top"><div class="kpi-ic g"><i data-lucide="bot" class="i"></i></div>
+            <span class="kpi-label">Активные агенты</span></div>
+          <div class="kpi-val num">24</div>
+          <div class="kpi-meta"><span class="trend up"><i data-lucide="trending-up"></i>+3</span><span class="muted">за неделю</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-top"><div class="kpi-ic b"><i data-lucide="workflow" class="i"></i></div>
+            <span class="kpi-label">Запусков сценариев</span></div>
+          <div class="kpi-val num">18 402</div>
+          <div class="kpi-meta"><span class="trend up"><i data-lucide="trending-up"></i>+12.4%</span><span class="muted">vs прошлая неделя</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-top"><div class="kpi-ic a"><i data-lucide="check-check" class="i"></i></div>
+            <span class="kpi-label">Success rate</span></div>
+          <div class="kpi-val num">96.8%</div>
+          <div class="kpi-meta"><span class="trend down"><i data-lucide="trending-down"></i>-0.5%</span><span class="muted">SLA 95%</span></div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-top"><div class="kpi-ic p"><i data-lucide="coins" class="i"></i></div>
+            <span class="kpi-label">Токенов сегодня</span></div>
+          <div class="kpi-val num">12.7M</div>
+          <div class="kpi-meta"><span class="trend up"><i data-lucide="trending-up"></i>+8%</span><span class="muted">≈ 1 240 ₽</span></div>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.6fr 1fr">
+        <!-- Line chart -->
+        <div class="card">
+          <div class="card-head">
+            <h3>Нагрузка на платформу</h3><span class="ch-sub">запросы / час</span>
+            <div class="spacer"></div>
+            <div class="row gap-sm t-sm">
+              <span class="row" style="gap:5px"><span style="width:9px;height:9px;border-radius:3px;background:var(--c1)"></span>Успешно</span>
+              <span class="row" style="gap:5px"><span style="width:9px;height:9px;border-radius:3px;background:var(--c5)"></span>Ошибки</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <svg viewBox="0 0 620 240" width="100%" style="display:block">
+              <defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#1FA03B" stop-opacity=".22"/><stop offset="1" stop-color="#1FA03B" stop-opacity="0"/></linearGradient></defs>
+              <g stroke="#eef1f4" stroke-width="1">
+                <line x1="40" y1="30" x2="610" y2="30"/><line x1="40" y1="80" x2="610" y2="80"/>
+                <line x1="40" y1="130" x2="610" y2="130"/><line x1="40" y1="180" x2="610" y2="180"/></g>
+              <g fill="#8b94a3" font-size="10" text-anchor="end">
+                <text x="34" y="34">1.5k</text><text x="34" y="84">1.0k</text><text x="34" y="134">500</text><text x="34" y="184">0</text></g>
+              <path d="M40,150 L110,120 L180,135 L250,80 L320,100 L390,55 L460,72 L530,45 L600,60 L600,200 L40,200 Z" fill="url(#ga)"/>
+              <polyline points="40,150 110,120 180,135 250,80 320,100 390,55 460,72 530,45 600,60" fill="none" stroke="var(--c1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="40,190 110,185 180,188 250,178 320,182 390,175 460,180 530,172 600,178" fill="none" stroke="var(--c5)" stroke-width="2" stroke-dasharray="1 0" opacity=".85"/>
+              <g fill="#fff" stroke="var(--c1)" stroke-width="2.5">
+                <circle class="tooltip" data-tip="10:00 · 1 090" cx="250" cy="80" r="4"/>
+                <circle class="tooltip" data-tip="16:00 · 1 320" cx="530" cy="45" r="4"/></g>
+              <g fill="#8b94a3" font-size="10" text-anchor="middle">
+                <text x="40" y="222">00:00</text><text x="180" y="222">06:00</text><text x="320" y="222">12:00</text><text x="460" y="222">18:00</text><text x="600" y="222">24:00</text></g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Donut: distribution -->
+        <div class="card">
+          <div class="card-head"><h3>Распределение вызовов</h3></div>
+          <div class="card-body" style="display:flex;align-items:center;gap:20px">
+            <svg viewBox="0 0 120 120" width="128" height="128" style="flex:none">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#eef1f4" stroke-width="16"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--c1)" stroke-width="16" stroke-dasharray="130 289" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--c2)" stroke-width="16" stroke-dasharray="78 289" stroke-dashoffset="-130" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--c3)" stroke-width="16" stroke-dasharray="52 289" stroke-dashoffset="-208" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              <text x="60" y="56" text-anchor="middle" font-size="20" font-weight="700" fill="#1b2330">61%</text>
+              <text x="60" y="72" text-anchor="middle" font-size="9" fill="#8b94a3">LLM</text>
+            </svg>
+            <div style="flex:1">
+              <div class="list-line" style="padding:8px 0"><span style="width:9px;height:9px;border-radius:3px;background:var(--c1)"></span><span class="f1">LLM-вызовы</span><b class="num">61%</b></div>
+              <div class="list-line" style="padding:8px 0"><span style="width:9px;height:9px;border-radius:3px;background:var(--c2)"></span><span class="f1">Инструменты</span><b class="num">27%</b></div>
+              <div class="list-line" style="padding:8px 0"><span style="width:9px;height:9px;border-radius:3px;background:var(--c3)"></span><span class="f1">RAG / поиск</span><b class="num">12%</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.6fr 1fr;margin-top:18px">
+        <!-- Top scenarios table -->
+        <div class="card">
+          <div class="card-head"><h3>Топ сценариев</h3><span class="ch-sub">по количеству запусков</span>
+            <div class="spacer"></div><a href="scenarios.html" class="btn btn-ghost btn-sm">Все сценарии<i data-lucide="arrow-right"></i></a></div>
+          <div class="table-wrap">
+            <table class="tbl">
+              <thead><tr><th>Сценарий</th><th>Запусков</th><th>Success</th><th>Ср. время</th><th>Статус</th></tr></thead>
+              <tbody>
+                <tr><td><div class="t-primary">Онбординг клиента</div><div class="t-sub">crew · 12 шагов</div></td><td class="num">6 240</td>
+                  <td><div class="progress thin" style="width:80px"><span style="width:98%"></span></div><span class="t-xs muted">98.2%</span></td>
+                  <td class="num">4.2 c</td><td><span class="status s-run">Активен</span></td></tr>
+                <tr><td><div class="t-primary">Скоринг заявки</div><div class="t-sub">agent · 5 шагов</div></td><td class="num">4 110</td>
+                  <td><div class="progress thin" style="width:80px"><span style="width:95%"></span></div><span class="t-xs muted">95.1%</span></td>
+                  <td class="num">1.8 c</td><td><span class="status s-run">Активен</span></td></tr>
+                <tr><td><div class="t-primary">Разбор обращения</div><div class="t-sub">crew · 8 шагов</div></td><td class="num">3 502</td>
+                  <td><div class="progress thin warn" style="width:80px"><span class="warn" style="width:91%"></span></div><span class="t-xs muted">91.4%</span></td>
+                  <td class="num">6.9 c</td><td><span class="status s-warn">Деградация</span></td></tr>
+                <tr><td><div class="t-primary">Генерация отчёта</div><div class="t-sub">agent · 3 шага</div></td><td class="num">2 240</td>
+                  <td><div class="progress thin" style="width:80px"><span style="width:99%"></span></div><span class="t-xs muted">99.0%</span></td>
+                  <td class="num">12.1 c</td><td><span class="status s-ok">Стабилен</span></td></tr>
+                <tr><td><div class="t-primary">Проверка документов</div><div class="t-sub">crew · 6 шагов</div></td><td class="num">1 980</td>
+                  <td><div class="progress thin danger" style="width:80px"><span class="danger" style="width:88%"></span></div><span class="t-xs muted">88.0%</span></td>
+                  <td class="num">8.4 c</td><td><span class="status s-err">Инциденты</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Activity + health -->
+        <div class="flex col" style="gap:18px">
+          <div class="card">
+            <div class="card-head"><h3>Здоровье системы</h3><span class="badge badge-ok dot spacer">Operational</span></div>
+            <div class="card-body">
+              <div class="list-line"><i data-lucide="cpu" class="i muted"></i><span class="f1">Оркестратор</span><div class="row gap-sm"><div class="progress thin" style="width:90px"><span style="width:42%"></span></div><span class="t-sm num">42%</span></div></div>
+              <div class="list-line"><i data-lucide="database" class="i muted"></i><span class="f1">Vector DB</span><div class="row gap-sm"><div class="progress thin" style="width:90px"><span class="b2" style="width:67%"></span></div><span class="t-sm num">67%</span></div></div>
+              <div class="list-line"><i data-lucide="server" class="i muted"></i><span class="f1">Очередь задач</span><div class="row gap-sm"><div class="progress thin" style="width:90px"><span class="warn" style="width:81%"></span></div><span class="t-sm num">81%</span></div></div>
+              <div class="list-line"><i data-lucide="gauge" class="i muted"></i><span class="f1">GPU-пул</span><div class="row gap-sm"><div class="progress thin" style="width:90px"><span style="width:55%"></span></div><span class="t-sm num">55%</span></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><h3>Последние события</h3></div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="tl-item ok"><div class="row between"><b class="t-sm">Сценарий завершён</b><span class="tl-time">2 мин</span></div><div class="muted t-sm">«Онбординг клиента» · 12 шагов</div></div>
+                <div class="tl-item"><div class="row between"><b class="t-sm">Новый агент</b><span class="tl-time">28 мин</span></div><div class="muted t-sm">«Аналитик рынка» опубликован</div></div>
+                <div class="tl-item err"><div class="row between"><b class="t-sm">Ошибка инструмента</b><span class="tl-time">41 мин</span></div><div class="muted t-sm">CRM API · timeout 30s</div></div>
+                <div class="tl-item"><div class="row between"><b class="t-sm">Обновлён навык</b><span class="tl-time">1 ч</span></div><div class="muted t-sm">«Web Search» v2.4</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Modal template -->
+<template id="mQuick">
+  <div class="modal-head"><i data-lucide="play" class="i"></i><h3>Быстрый запуск сценария</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Сценарий</label>
+      <select class="select"><option>Онбординг клиента</option><option>Скоринг заявки</option><option>Разбор обращения</option></select></div>
+    <div class="field"><label class="label">Входные данные (JSON)</label>
+      <textarea class="textarea mono" placeholder='{ "client_id": "..." }'>{ "client_id": "CL-88213" }</textarea></div>
+    <label class="check"><input type="checkbox" checked><span class="box"><i data-lucide="check" class="i"></i></span><span>Записывать трассировку выполнения</span></label>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button>
+    <button class="btn btn-primary" data-close data-toast="ok|Запущено|Сценарий добавлен в очередь"><i data-lucide="play"></i>Запустить</button></div>
+</template>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

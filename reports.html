@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отчёт по сценарию · Value Agent · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="reports">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main">
+          <div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><a href="reports.html">Отчёты</a><i data-lucide="chevron-right" class="i"></i><span>Онбординг клиента</span></div>
+          <h1>Value-отчёт: Онбординг клиента</h1>
+          <p class="ph-sub">Бизнес-эффект сценария за выбранный период: экономия времени, стоимости и качество автоматизации.</p>
+        </div>
+        <div class="page-actions">
+          <select class="select" style="width:220px"><option>Онбординг клиента</option><option>Скоринг заявки</option><option>Разбор обращения</option></select>
+          <button class="btn btn-outline"><i data-lucide="calendar"></i>Q3 2026</button>
+          <button class="btn btn-primary" data-toast="ok|Готово|PDF-отчёт сформирован"><i data-lucide="file-down"></i>Скачать PDF</button>
+        </div>
+      </div>
+
+      <!-- Value KPIs -->
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="briefcase" class="i"></i></div><span class="kpi-label">Автоматизировано кейсов</span></div>
+          <div class="kpi-val num">6 240</div><div class="kpi-meta"><span class="trend up"><i data-lucide="trending-up"></i>+14%</span><span class="muted">за квартал</span></div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="clock" class="i"></i></div><span class="kpi-label">Сэкономлено часов</span></div>
+          <div class="kpi-val num">3 480 ч</div><div class="kpi-meta"><span class="muted">≈ 21 FTE / месяц</span></div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="wallet" class="i"></i></div><span class="kpi-label">Экономия затрат</span></div>
+          <div class="kpi-val num">4.2 млн ₽</div><div class="kpi-meta"><span class="trend up"><i data-lucide="trending-up"></i>+9%</span></div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="percent" class="i"></i></div><span class="kpi-label">ROI сценария</span></div>
+          <div class="kpi-val num">×7.4</div><div class="kpi-meta"><span class="muted">окупаемость 1.6 мес</span></div></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1.6fr 1fr">
+        <div class="card">
+          <div class="card-head"><h3>Накопленный эффект</h3><span class="ch-sub">экономия ₽ vs ручной процесс</span></div>
+          <div class="card-body">
+            <svg viewBox="0 0 620 230" width="100%" style="display:block">
+              <g stroke="#eef1f4"><line x1="40" y1="30" x2="610" y2="30"/><line x1="40" y1="90" x2="610" y2="90"/><line x1="40" y1="150" x2="610" y2="150"/></g>
+              <g fill="#8b94a3" font-size="10" text-anchor="end"><text x="34" y="34">4М</text><text x="34" y="94">2М</text><text x="34" y="154">0</text></g>
+              <g>
+                <rect class="tooltip" data-tip="Июль · 1.1М ₽" x="70"  y="120" width="42" height="70" rx="4" fill="var(--c1)"/>
+                <rect class="tooltip" data-tip="Авг · 2.6М ₽"  x="200" y="70"  width="42" height="120" rx="4" fill="var(--c1)"/>
+                <rect class="tooltip" data-tip="Сен · 4.2М ₽"  x="330" y="40"  width="42" height="150" rx="4" fill="var(--c1)"/>
+                <rect x="460" y="55" width="42" height="135" rx="4" fill="var(--c1)" opacity=".4"/>
+              </g>
+              <g fill="#8b94a3" font-size="10" text-anchor="middle"><text x="91" y="208">Июль</text><text x="221" y="208">Август</text><text x="351" y="208">Сентябрь</text><text x="481" y="208">Прогноз</text></g>
+            </svg>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Качество автоматизации</h3></div>
+          <div class="card-body">
+            <div class="mb-2"><div class="row between mb-1"><span class="t-sm sub">Полностью автономно</span><b class="num">82%</b></div><div class="progress"><span style="width:82%"></span></div></div>
+            <div class="mb-2"><div class="row between mb-1"><span class="t-sm sub">С участием оператора (HITL)</span><b class="num">14%</b></div><div class="progress"><span class="b2" style="width:14%"></span></div></div>
+            <div class="mb-2"><div class="row between mb-1"><span class="t-sm sub">Эскалация к человеку</span><b class="num">4%</b></div><div class="progress"><span class="warn" style="width:4%"></span></div></div>
+            <div class="divider"></div>
+            <div class="kv"><dt>CSAT после автоматизации</dt><dd>4.6 / 5</dd><dt>Среднее время кейса</dt><dd>4.2 c</dd><dt>Точность решений</dt><dd>96.8%</dd></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CSAT -->
+      <div class="card mt-3"><div class="card-head"><i data-lucide="smile" class="i muted"></i><h3>CSAT — удовлетворённость</h3><span class="ch-sub">сценарий «Онбординг клиента»</span>
+        <span class="badge badge-neutral spacer"><i data-lucide="message-square-quote" class="i-sm"></i>обратная связь по завершению</span></div>
+        <div class="card-body grid" style="grid-template-columns:230px 1fr 1.1fr;gap:26px">
+          <!-- overall -->
+          <div style="text-align:center">
+            <div class="csat-pct" style="color:var(--ok)">92%</div>
+            <div class="muted t-xs mb-2">общий CSAT</div>
+            <span class="stars lg">★★★★<span class="off">★</span></span>
+            <div class="t-sm mt-1"><b class="num">4.6</b> <span class="muted">/ 5 · 1 240 оценок</span></div>
+            <div class="divider" style="margin:14px 0"></div>
+            <div class="row between t-xs"><span class="muted">Ответили</span><b class="num">19.9%</b></div>
+            <div class="row between t-xs"><span class="muted">Тренд за месяц</span><span class="trend up"><i data-lucide="trending-up"></i>+2.1%</span></div>
+          </div>
+          <!-- distribution -->
+          <div>
+            <div class="menu-label" style="padding-left:0">Распределение оценок</div>
+            <div class="dist-row"><span class="stars">★★★★★</span><div class="progress"><span style="width:68%"></span></div><b class="num tar">68%</b></div>
+            <div class="dist-row"><span class="stars">★★★★<span class="off">★</span></span><div class="progress"><span style="width:21%"></span></div><b class="num tar">21%</b></div>
+            <div class="dist-row"><span class="stars">★★★<span class="off">★★</span></span><div class="progress"><span class="warn" style="width:6%"></span></div><b class="num tar">6%</b></div>
+            <div class="dist-row"><span class="stars">★★<span class="off">★★★</span></span><div class="progress"><span class="danger" style="width:3%"></span></div><b class="num tar">3%</b></div>
+            <div class="dist-row"><span class="stars">★<span class="off">★★★★</span></span><div class="progress"><span class="danger" style="width:2%"></span></div><b class="num tar">2%</b></div>
+            <div class="divider" style="margin:12px 0"></div>
+            <div class="row gap-lg t-sm"><span class="muted">Промоутеры (4–5★): <b class="sub">89%</b></span><span class="muted">Критики (1–2★): <b class="sub">5%</b></span></div>
+          </div>
+          <!-- recent comments -->
+          <div>
+            <div class="row between"><div class="menu-label" style="padding-left:0">Ответы пользователей</div><a class="btn btn-ghost btn-sm" data-modal="mAnswers">Все ответы<i data-lucide="arrow-right"></i></a></div>
+            <div class="list-line" style="padding:9px 0"><div class="avatar sm">ИП</div><div class="f1"><span class="stars t-sm">★★★★<span class="off">★</span></span><p class="t-xs sub" style="margin:2px 0 0">«Быстро помогли, но про валютный счёт уточнял отдельно.»</p></div></div>
+            <div class="list-line" style="padding:9px 0"><div class="avatar sm" style="background:#e9f0fe;color:#245fce">АК</div><div class="f1"><span class="stars t-sm">★★★★★</span><p class="t-xs sub" style="margin:2px 0 0">«Всё понятно и без звонков в банк. Спасибо!»</p></div></div>
+            <div class="list-line" style="padding:9px 0;border:none"><div class="avatar sm" style="background:#fdecec;color:#c93b40">ОП</div><div class="f1"><span class="stars t-sm">★★<span class="off">★★★</span></span><p class="t-xs sub" style="margin:2px 0 0">«Долго ждал подтверждения оператора.»</p></div></div>
+          </div>
+        </div>
+        <div class="card-foot"><i data-lucide="info" class="i muted"></i><span class="muted t-sm">CSAT рассчитывается по каждому сценарию и по каждой сессии. Оценки сессий доступны в разделе <a href="sessions.html" style="color:var(--brand-700);font-weight:600">Активные сессии</a>.</span></div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="card mt-3">
+        <div class="card-head"><h3>Сравнение: ручной процесс vs агент</h3><span class="badge badge-ok dot spacer">Верифицировано</span></div>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead><tr><th>Метрика</th><th>Ручной процесс</th><th>AI-сценарий</th><th>Эффект</th></tr></thead>
+            <tbody>
+              <tr><td class="t-primary">Время на кейс</td><td class="num">38 мин</td><td class="num">4.2 c</td><td><span class="badge badge-ok">−99.8%</span></td></tr>
+              <tr><td class="t-primary">Стоимость кейса</td><td class="num">340 ₽</td><td class="num">21 ₽</td><td><span class="badge badge-ok">−94%</span></td></tr>
+              <tr><td class="t-primary">Ошибок на 1000 кейсов</td><td class="num">47</td><td class="num">18</td><td><span class="badge badge-ok">−62%</span></td></tr>
+              <tr><td class="t-primary">Пропускная способность / день</td><td class="num">210</td><td class="num">9 800</td><td><span class="badge badge-info">×46</span></td></tr>
+              <tr><td class="t-primary">SLA-нарушений</td><td class="num">6.4%</td><td class="num">1.1%</td><td><span class="badge badge-ok">−83%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Value by step -->
+      <div class="card mt-3">
+        <div class="card-head"><h3>Вклад шагов сценария в ценность</h3><span class="ch-sub spacer">по сэкономленному времени</span></div>
+        <div class="card-body">
+          <div class="list-line"><span class="tag" style="background:var(--brand-050);color:var(--brand-700)">Шаг 1</span><span class="f1">Сбор и валидация анкеты</span><div class="progress" style="width:260px"><span style="width:88%"></span></div><b class="num" style="width:56px;text-align:right">1 210 ч</b></div>
+          <div class="list-line"><span class="tag" style="background:var(--brand-050);color:var(--brand-700)">Шаг 4</span><span class="f1">Проверка документов (OCR)</span><div class="progress" style="width:260px"><span style="width:72%"></span></div><b class="num" style="width:56px;text-align:right">980 ч</b></div>
+          <div class="list-line"><span class="tag" style="background:var(--brand-050);color:var(--brand-700)">Шаг 7</span><span class="f1">Скоринг и решение</span><div class="progress" style="width:260px"><span style="width:56%"></span></div><b class="num" style="width:56px;text-align:right">760 ч</b></div>
+          <div class="list-line"><span class="tag" style="background:var(--brand-050);color:var(--brand-700)">Шаг 10</span><span class="f1">Формирование ответа клиенту</span><div class="progress" style="width:260px"><span style="width:38%"></span></div><b class="num" style="width:56px;text-align:right">530  ч</b></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mAnswers" data-lg="1">
+  <div class="modal-head"><i data-lucide="message-square-quote" class="i"></i><h3>Ответы пользователей · CSAT</h3><span class="badge badge-ok dot" style="margin-left:6px">92%</span><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="row wrap mb-2"><div class="tb-search" style="max-width:none;flex:1"><i data-lucide="search" class="i"></i><input placeholder="Поиск по комментариям…"></div>
+      <select class="select" style="width:150px"><option>Все оценки</option><option>5 звёзд</option><option>4 звезды</option><option>1–2 звезды</option></select></div>
+    <div style="max-height:420px;overflow-y:auto">
+      <div class="list-line"><div class="avatar sm">ИП</div><div class="f1"><div class="row between"><b class="t-sm">Иван Пронин</b><span class="stars">★★★★<span class="off">★</span></span></div><p class="t-sm sub" style="margin:3px 0 0">«Быстро помогли с открытием счёта, но про валютный счёт пришлось уточнять отдельно.»</p><div class="t-xs muted mt-1">sess_8f21a · сегодня 12:44</div></div></div>
+      <div class="list-line"><div class="avatar sm" style="background:#e9f0fe;color:#245fce">АК</div><div class="f1"><div class="row between"><b class="t-sm">Анна Ковалёва</b><span class="stars">★★★★★</span></div><p class="t-sm sub" style="margin:3px 0 0">«Всё понятно и без звонков в банк. Спасибо!»</p><div class="t-xs muted mt-1">sess_1c93d · сегодня 12:31</div></div></div>
+      <div class="list-line"><div class="avatar sm" style="background:#fdecec;color:#c93b40">ОП</div><div class="f1"><div class="row between"><b class="t-sm">Олег Прохоров</b><span class="stars">★★<span class="off">★★★</span></span></div><p class="t-sm sub" style="margin:3px 0 0">«Долго ждал подтверждения оператора, чуть не закрыл окно.»</p><div class="t-xs muted mt-1">sess_44b0e · сегодня 11:58</div></div></div>
+      <div class="list-line"><div class="avatar sm" style="background:#f1ecfe;color:#6f42d6">ЕС</div><div class="f1"><div class="row between"><b class="t-sm">Елена Соколова</b><span class="stars">★★★★★</span></div><p class="t-sm sub" style="margin:3px 0 0">«Удобно, что можно прямо в чате прикрепить документы.»</p><div class="t-xs muted mt-1">sess_7a01c · вчера 17:20</div></div></div>
+      <div class="list-line" style="border:none"><div class="avatar sm" style="background:var(--muted-bg);color:var(--text-2)">ДМ</div><div class="f1"><div class="row between"><b class="t-sm">Дмитрий Морозов</b><span class="stars">★★★<span class="off">★★</span></span></div><p class="t-sm sub" style="margin:3px 0 0">«Нормально, но хотелось бы больше пояснений по тарифам.»</p><div class="t-xs muted mt-1">sess_9f33b · вчера 15:02</div></div></div>
+    </div>
+  </div>
+  <div class="modal-foot"><span class="muted t-sm spacer">1 240 ответов · средняя 4.6 / 5</span><button class="btn btn-outline" data-close data-toast="ok|Экспорт|Ответы CSAT выгружены в CSV"><i data-lucide="download"></i>Экспорт</button></div>
+</template>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

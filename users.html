@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пользователи · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="users">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Пользователи</span></div>
+          <h1>Пользователи</h1><p class="ph-sub">Управление доступом, ролями и активностью участников платформы.</p></div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="upload"></i>Импорт</button>
+          <button class="btn btn-primary" data-modal="mInvite"><i data-lucide="user-plus"></i>Пригласить</button></div>
+      </div>
+
+      <div class="grid g-4 mb-3">
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic g"><i data-lucide="users" class="i"></i></div><span class="kpi-label">Всего</span></div><div class="kpi-val num">48</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic b"><i data-lucide="user-check" class="i"></i></div><span class="kpi-label">Активны сейчас</span></div><div class="kpi-val num">31</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic a"><i data-lucide="shield" class="i"></i></div><span class="kpi-label">Администраторы</span></div><div class="kpi-val num">5</div></div>
+        <div class="kpi"><div class="kpi-top"><div class="kpi-ic p"><i data-lucide="mail" class="i"></i></div><span class="kpi-label">Приглашения</span></div><div class="kpi-val num">3</div></div>
+      </div>
+
+      <div class="row wrap mb-2">
+        <div class="tb-search" style="max-width:320px"><i data-lucide="search" class="i"></i><input placeholder="Поиск по имени или email…"></div>
+        <div class="pills"><span class="pill active">Все</span><span class="pill">Админы</span><span class="pill">Разработчики</span><span class="pill">Операторы</span><span class="pill">Только чтение</span></div>
+        <div class="spacer"></div><button class="btn btn-outline btn-sm"><i data-lucide="sliders-horizontal"></i>Фильтры</button>
+      </div>
+
+      <div class="card"><div class="table-wrap"><table class="tbl">
+        <thead><tr>
+          <th class="tbl-check"><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></th>
+          <th class="sortable">Пользователь</th><th>Роль</th><th>Статус</th><th>Последний вход</th><th>2FA</th><th></th></tr></thead>
+        <tbody>
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td><a href="user-card.html" class="cell-user"><div class="avatar">МВ<span class="avatar-status on"></span></div><div><div class="t-primary">Марти Вартанов</div><div class="t-sub">martirosov@sber.ru</div></div></a></td>
+            <td><span class="badge badge-purple"><i data-lucide="crown" class="i-sm"></i>Owner</span></td>
+            <td><span class="status s-ok">Активен</span></td><td class="t-sub">только что</td>
+            <td><span class="badge badge-ok dot">Вкл</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="rowMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td><a href="user-card.html" class="cell-user"><div class="avatar" style="background:#e9f0fe;color:#245fce">АП<span class="avatar-status on"></span></div><div><div class="t-primary">Алексей Петров</div><div class="t-sub">a.petrov@sber.ru</div></div></a></td>
+            <td><span class="badge badge-info"><i data-lucide="code" class="i-sm"></i>Разработчик</span></td>
+            <td><span class="status s-ok">Активен</span></td><td class="t-sub">12 мин назад</td>
+            <td><span class="badge badge-ok dot">Вкл</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="rowMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td><a href="user-card.html" class="cell-user"><div class="avatar" style="background:#f1ecfe;color:#6f42d6">ИК</div><div><div class="t-primary">Ирина Козлова</div><div class="t-sub">i.kozlova@sber.ru</div></div></a></td>
+            <td><span class="badge badge-info"><i data-lucide="code" class="i-sm"></i>Разработчик</span></td>
+            <td><span class="status s-idle">Не в сети</span></td><td class="t-sub">2 ч назад</td>
+            <td><span class="badge badge-ok dot">Вкл</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="rowMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td><a href="user-card.html" class="cell-user"><div class="avatar" style="background:#fdf3e2;color:#a5660a">ОП</div><div><div class="t-primary">Олег Смирнов</div><div class="t-sub">o.smirnov@sber.ru</div></div></a></td>
+            <td><span class="badge badge-warn"><i data-lucide="headphones" class="i-sm"></i>Оператор</span></td>
+            <td><span class="status s-ok">Активен</span></td><td class="t-sub">40 мин назад</td>
+            <td><span class="badge badge-danger dot">Выкл</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="rowMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+
+          <tr><td><label class="check"><input type="checkbox"><span class="box"><i data-lucide="check" class="i"></i></span></label></td>
+            <td><a href="user-card.html" class="cell-user"><div class="avatar" style="background:var(--muted-bg);color:var(--text-2)">СБ</div><div><div class="t-primary">Светлана Белова</div><div class="t-sub">s.belova@sber.ru</div></div></a></td>
+            <td><span class="badge badge-neutral"><i data-lucide="eye" class="i-sm"></i>Только чтение</span></td>
+            <td><span class="badge badge-warn dot">Приглашён</span></td><td class="t-sub">—</td>
+            <td><span class="muted">—</span></td>
+            <td><div class="row-actions"><button class="tb-btn" style="width:30px;height:30px" data-menu="rowMenu"><i data-lucide="more-horizontal" class="i-sm"></i></button></div></td></tr>
+        </tbody>
+      </table></div>
+      <div class="card-foot"><span class="muted t-sm">Показано 5 из 48</span><div class="spacer row gap-sm">
+        <button class="btn btn-outline btn-sm" disabled><i data-lucide="chevron-left"></i></button>
+        <button class="btn btn-primary btn-sm" style="width:32px">1</button><button class="btn btn-outline btn-sm" style="width:32px">2</button>
+        <button class="btn btn-outline btn-sm"><i data-lucide="chevron-right"></i></button></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<template id="mInvite">
+  <div class="modal-head"><i data-lucide="user-plus" class="i"></i><h3>Пригласить пользователя</h3><div class="x" data-close><i data-lucide="x" class="i"></i></div></div>
+  <div class="modal-body">
+    <div class="field"><label class="label">Email <span class="req">*</span></label><input class="input" placeholder="name@sber.ru"></div>
+    <div class="field"><label class="label">Роль</label><select class="select"><option>Только чтение</option><option>Оператор</option><option>Разработчик</option><option>Администратор</option></select></div>
+    <div class="field tight"><label class="label">Сообщение <span class="opt">— опционально</span></label><textarea class="textarea" placeholder="Добро пожаловать в команду!"></textarea></div>
+  </div>
+  <div class="modal-foot"><button class="btn btn-ghost" data-close>Отмена</button><button class="btn btn-primary" data-close data-toast="ok|Приглашение отправлено|Письмо ушло на указанный email"><i data-lucide="send"></i>Отправить</button></div>
+</template>
+
+<template id="rowMenu"></template>
+<script src="assets/app.js"></script>
+<script>
+// register a row menu after shell ready (uses app menu system via inline)
+window.addEventListener('shell:ready',()=>{});
+</script>
+</body>
+</html>

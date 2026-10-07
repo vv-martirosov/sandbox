@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Профиль организации · AI UCP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231FA03B'/%3E%3C/svg%3E">
+<script src="assets/vendor/lucide.min.js"></script>
+</head>
+<body>
+<div class="app" data-page="organization">
+  <main class="main">
+    <div class="page">
+      <div class="page-head">
+        <div class="ph-main"><div class="breadcrumb"><a href="index.html">Главная</a><i data-lucide="chevron-right" class="i"></i><span>Организация</span></div>
+          <h1>Профиль организации</h1><p class="ph-sub">Карточка партнёра: реквизиты, тарифный план, команда и параметры доступа.</p></div>
+        <div class="page-actions"><button class="btn btn-outline"><i data-lucide="download"></i>Реквизиты</button>
+          <button class="btn btn-primary" data-toast="ok|Сохранено|Профиль организации обновлён"><i data-lucide="check"></i>Сохранить</button></div>
+      </div>
+
+      <!-- Partner header -->
+      <div class="card mb-3"><div class="card-body row wrap" style="gap:20px;align-items:center">
+        <div class="avatar xl" style="border-radius:22px;overflow:hidden"><img src="assets/img/org.svg" alt="logo"></div>
+        <div class="f1" style="min-width:220px">
+          <div class="row" style="gap:10px"><h1 style="font-size:22px">ПАО «Сбербанк»</h1><span class="badge badge-purple"><i data-lucide="crown" class="i-sm"></i>Enterprise</span><span class="badge badge-ok dot">Верифицирован</span></div>
+          <div class="row wrap gap-lg mt-1 muted t-sm">
+            <span class="row" style="gap:6px"><i data-lucide="hash" class="i-sm"></i>ИНН 7707083893</span>
+            <span class="row" style="gap:6px"><i data-lucide="globe" class="i-sm"></i>sber.ru</span>
+            <span class="row" style="gap:6px"><i data-lucide="users" class="i-sm"></i>48 пользователей</span>
+            <span class="row" style="gap:6px"><i data-lucide="calendar" class="i-sm"></i>Партнёр с 2024</span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm"><i data-lucide="image"></i>Сменить логотип</button>
+      </div></div>
+
+      <div class="grid" style="grid-template-columns:1fr 1fr">
+        <div class="card"><div class="card-head"><i data-lucide="building-2" class="i muted"></i><h3>Реквизиты</h3></div><div class="card-body">
+          <div class="field"><label class="label">Название организации</label><input class="input" value="ПАО «Сбербанк»"></div>
+          <div class="form-grid">
+            <div class="field"><label class="label">ИНН</label><input class="input mono" value="7707083893"></div>
+            <div class="field"><label class="label">КПП</label><input class="input mono" value="773601001"></div>
+          </div>
+          <div class="field"><label class="label">Контактный email</label><div class="input-group"><i data-lucide="mail" class="i input-ic"></i><input class="input" value="ai-platform@sber.ru"></div></div>
+          <div class="field tight"><label class="label">Отрасль</label><select class="select"><option>Финансы и банкинг</option><option>Ритейл</option><option>Телеком</option></select></div>
+        </div></div>
+
+        <div class="card"><div class="card-head"><i data-lucide="credit-card" class="i muted"></i><h3>Тариф и лимиты</h3><span class="badge badge-purple spacer">Enterprise</span></div><div class="card-body">
+          <div class="row between mb-1"><span class="muted t-sm">Токены (мес.)</span><b class="num">312M / 500M</b></div>
+          <div class="progress mb-2"><span style="width:62%"></span></div>
+          <div class="row between mb-1"><span class="muted t-sm">Активные агенты</span><b class="num">24 / 100</b></div>
+          <div class="progress mb-2"><span class="b2" style="width:24%"></span></div>
+          <div class="row between mb-1"><span class="muted t-sm">Пользователи</span><b class="num">48 / 250</b></div>
+          <div class="progress"><span style="width:19%"></span></div>
+          <div class="divider"></div>
+          <div class="row between"><div><b class="t-sm">Автопродление</b><div class="muted t-xs">Следующее списание: 01.10.2026</div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+        </div></div>
+      </div>
+
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:18px">
+        <div class="card"><div class="card-head"><i data-lucide="shield" class="i muted"></i><h3>Домены и SSO</h3></div><div class="card-body">
+          <div class="field"><label class="label">Проверенные домены</label>
+            <div class="row wrap gap-sm"><span class="chip brand"><i data-lucide="check" class="i-sm"></i>sber.ru</span><span class="chip brand"><i data-lucide="check" class="i-sm"></i>sberbank.ru</span><span class="chip chip-add"><i data-lucide="plus" class="i-sm"></i>Домен</span></div></div>
+          <div class="divider"></div>
+          <div class="row between mb-2"><div class="row" style="gap:10px"><div class="kpi-ic b" style="width:34px;height:34px"><i data-lucide="key-round" class="i-sm"></i></div><div><b class="t-sm">SAML SSO</b><div class="muted t-xs">Корпоративный вход</div></div></div><span class="badge badge-ok dot">Активно</span></div>
+          <div class="row between"><div class="row" style="gap:10px"><div class="kpi-ic a" style="width:34px;height:34px"><i data-lucide="users" class="i-sm"></i></div><div><b class="t-sm">SCIM-провижининг</b><div class="muted t-xs">Автосоздание пользователей</div></div></div><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+        </div></div>
+
+        <div class="card"><div class="card-head"><i data-lucide="users" class="i muted"></i><h3>Команда управления</h3><a href="users.html" class="btn btn-ghost btn-sm spacer">Все<i data-lucide="arrow-right"></i></a></div><div class="card-body">
+          <div class="list-line"><div class="avatar sm">МВ</div><div class="f1"><b class="t-sm">Марти Вартанов</b><div class="muted t-xs">Owner</div></div><span class="badge badge-purple">Владелец</span></div>
+          <div class="list-line"><div class="avatar sm" style="background:#e9f0fe;color:#245fce">АП</div><div class="f1"><b class="t-sm">Алексей Петров</b><div class="muted t-xs">Разработчик</div></div><span class="badge badge-info">Admin</span></div>
+          <div class="list-line"><div class="avatar sm" style="background:#fdf3e2;color:#a5660a">ОП</div><div class="f1"><b class="t-sm">Олег Смирнов</b><div class="muted t-xs">Оператор</div></div><span class="badge badge-neutral">Оператор</span></div>
+          <button class="btn btn-outline btn-block mt-2" data-toast="info|Приглашение|Форма приглашения открыта"><i data-lucide="user-plus"></i>Пригласить в управление</button>
+        </div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
